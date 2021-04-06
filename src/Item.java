@@ -27,4 +27,8 @@ public abstract class Item
     {
         this.description = description;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> da570debbd03d6c5b469aff98986cc1444d0667f
