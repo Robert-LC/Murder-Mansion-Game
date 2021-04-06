@@ -1,0 +1,8 @@
+bedroom, nice room, bloody sheet, hastily written note, main hall, closet  
+library, full of books, stack of books, journal, broken shelf, garden, main hall
+garden, outside, glove, dirty shovel, library
+closet, dark and dim, rusty musket, tattered cloth, bedroom 
+main hall, grand magestic, map of the mansion, key, broken glass, kitchen, library, bedroom, basement
+kitchen, full of knives, bloody knife, food, dining room, main hall
+bathroom, smells bad, note, bedroom
+dining hall, tons of chairs, posion bottle, main hall, kitchen
