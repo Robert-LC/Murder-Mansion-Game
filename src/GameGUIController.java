@@ -29,18 +29,14 @@ public class GameGUIController {
     @FXML
     private Button exitButton4;
 
-    void displayText(Player p, Mansion m) {
-        System.out.println(m.getRoom(p.location).getDesc());
-    }
-
     public void initialize() {
         exitButton1.managedProperty().bind(exitButton1.visibleProperty());
         exitButton2.managedProperty().bind(exitButton2.visibleProperty());
         exitButton3.managedProperty().bind(exitButton3.visibleProperty());
         exitButton4.managedProperty().bind(exitButton4.visibleProperty());
-        exitButton1.setText("Bedroom");
-        exitButton2.setText("Kitchen");
-        exitButton3.setText("Library");
+        exitButton1.setText("Kitchen");
+        exitButton2.setText("Library");
+        exitButton3.setText("Bedroom");
         exitButton4.setText("Basement");
         textArea.setText(m.getRoom("Main Hall").getDesc());
     }
@@ -56,7 +52,7 @@ public class GameGUIController {
     @FXML
     void exitButton2Pressed(ActionEvent event) {
         location = exitButton2.getText();
-        textArea.setText(m.getRoom(location).getDesc());
+        textArea.setText(m.getRoom("Closet").getDesc());
         exitButton1.setText(m.getRoom(location).getExits()[0]);
         this.updateButtons(m.getRoom(location).getExits());
     }
