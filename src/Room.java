@@ -6,7 +6,7 @@ public class Room
     String name;
     String desc;
     ArrayList<Item> contents;
-    String[] exits;
+    ArrayList<String> exits;
 
     //public Room(String name, String[] exits, Item[] contents)
    // {
@@ -58,7 +58,7 @@ public class Room
         this.desc = desc;
     }
 
-    public void setExits(String[] exits)
+    public void setExits(ArrayList<String> exits)
     {
         this.exits = exits;
     }

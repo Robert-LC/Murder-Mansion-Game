@@ -20,10 +20,10 @@ public class FileReaderClass
     private String e;
 
     // Reads from a txt file, creates a Clue, Utility, or Consumable based on the txt file.
-    public HashMap<Item, String> readItemsFile(String path)
+    public HashMap<String, Item> readItemsFile(String path)
     {
-        // Create a hashmap (Item Object, String ObjType(Clue,Utility,Consumable))
-        HashMap<Item, String> itemTypeHashMap = new HashMap<>();
+        // Create a hashmap (Item Name, Item Object))
+        HashMap<String, Item> itemTypeHashMap = new HashMap<String, Item>();
         try (BufferedReader fileReader = new BufferedReader(new FileReader(path)))
         {
             // Reads file until the reader reaches the end of the file
@@ -36,14 +36,14 @@ public class FileReaderClass
 
                 // Index 0 determines if the Item is Clue, Utility or Consumable
                 // Index 1, 2, and 3 are then used as arguments to construct the object
-                // After attributes are added to the object, add it to the Items HashMap
+                // After attributes are added to the object, add the object to the Items HashMap, along with its type
                 if(info[0].equalsIgnoreCase("clue"))
                 {
                     clu.setName(info[1]);
                     clu.setDescription(info[2]);
                     clu.setRoomLocation(info[3]);
 
-                    itemTypeHashMap.put(clu, info[3]);
+                    itemTypeHashMap.put(info[1], clu);
                 }
                 else if(info[0].equalsIgnoreCase("utility"))
                 {
@@ -51,7 +51,7 @@ public class FileReaderClass
                     uti.setDescription(info[2]);
                     uti.setRoomLocation(info[3]);
 
-                    itemTypeHashMap.put(uti, info[3]);
+                    itemTypeHashMap.put(info[1], uti);
                 }
                 else if(info[0].equalsIgnoreCase("consumable"))
                 {
@@ -59,7 +59,7 @@ public class FileReaderClass
                     con.setDescription(info[2]);
                     con.setRoomLocation(info[3]);
 
-                    itemTypeHashMap.put(uti, info[3]);
+                    itemTypeHashMap.put(info[1], uti);
                 }
             }
         }
@@ -68,15 +68,16 @@ public class FileReaderClass
             System.out.println("File not found");
         }
 
-        // Return an Array of all the items that were created from the txt file.
+        // Return A HashMap(Item Name, Item Object)
         return itemTypeHashMap;
     }
 
     // Reads a file with rooms and creates them
-    public ArrayList<Room> readRoomFile(String path)
+    public ArrayList<Room> readRoomFile(String path, HashMap<String, Item> itemStringHashMap)
     {
         // Create an empty items arrayList to be populated
         ArrayList<Room> roomsArray = new ArrayList<>();
+
 
         try (BufferedReader fileReader = new BufferedReader(new FileReader(path)))
         {
@@ -84,7 +85,38 @@ public class FileReaderClass
             while((e = fileReader.readLine()) != null)
             {
                 String[] info = e.split("/");
+                //Creates a new empty Room, itemArray, and exitArray every loop.
                 Room r = new Room();
+                ArrayList<Item> itemsArray = new ArrayList<>();
+                ArrayList<String> exitsArray = new ArrayList<>();
+
+                // For every item in the HashMap
+                for(Item item : itemStringHashMap.values())
+                {
+                    // If the RoomName(Info[0]) is also the location of the Item Object
+                    // If they are equal, add the Item to the Items Array
+                    if(info[0].equalsIgnoreCase(item.getRoomLocation()))
+                    {
+                        itemsArray.add(item);
+                    }
+
+                    // 2 Is the index where the room exits start on the file
+                    for(int i = 2; i < info.length; i++)
+                    {
+                        exitsArray.add(info[i]);
+                    }
+
+                    // Then construct the Room
+                    r.setName(info[0]);
+                    r.setDesc(info[1]);
+                    r.setContents(itemsArray);
+                    r.setExits(exitsArray);
+
+                    //Finally add the Room to an ArrayList of Rooms
+                    roomsArray.add(r);
+
+                    // Once the for loop ends, Room and itemsArray get renewed as empty.
+                }
 
             }
         }
@@ -92,7 +124,11 @@ public class FileReaderClass
         {
             System.out.println("File not found");
         }
+
+        return roomsArray;
     }
+
+
 
     public ArrayList<Suspect> readSuspectFile(String path)
     {

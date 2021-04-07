@@ -12,12 +12,14 @@ public class Mansion {
         //File Read in all room info -- for now just manually create for testing
         //Name, Description, Exits, Contents, etc.
         FileReaderClass reader = new FileReaderClass();
+        HashMap<String, Item> itemTypeHashMap = new HashMap<String, Item>();
 
-        // Create an arrayList of items from the text file
-        reader.readItemsFile("Items.txt");
+        // Reads items.txt, Creates Item Objects then stores them in a Hashmap(Item Name, Item Object)
+        itemTypeHashMap = reader.readItemsFile("Items.txt");
 
 
-        reader.readRoomFile("Rooms.txt");
+        // Reads Rooms.txt, Creates room objects using the txt file, and the HashMap with items in it
+        reader.readRoomFile("Rooms.txt", itemTypeHashMap);
         this.build();
     }
 
