@@ -33,7 +33,7 @@ public class TextFileWriter
             {
                 temp += item.getName() + ",";
             }
-            temp = temp.subString(0, temp.length - 1);
+            temp = temp.subString(0, temp.length() - 1);
             myWriter.write(temp);
         }
         catch(IOException ex)
