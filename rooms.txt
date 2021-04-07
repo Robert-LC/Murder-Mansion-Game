@@ -1,4 +1,4 @@
-Bedroom/Nice room./Main Hall/Closet
+Bedroom/Nice room./Main Hall/Closet/Bathroom
 Library/The library is one of the more old-fashioned rooms of the mansion. Lined top to bottom with shelves, the library is filled with thousands of novels purchased from all parts of the world. Beautifully clear windows peer over the garden, allowing an abundance of sunlight to fill the room. The library remains mostly untouched, as the mansion’s owners use it more as a collection room than an active library. Every now and again, members of the mansion may stop by, but for the most part, the room is left alone./Garden/Main Hall
 Garden/The garden is probably one of the most beautiful parts of the mansion; it is filled with rows upon rows of flowers and other brightly colored plants. A specific portion of it is also dedicated to a butterfly garden that guests are welcome to walk through and enjoy. The area is used for a variety of events, mostly small parties, lunches, and other gatherings. Many members of the mansion stroll through the garden and take advantage of all the beauty it has to offer./Library
 Closet/Dark and dim./Bedroom
