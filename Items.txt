@@ -11,4 +11,4 @@ Utility/Map/The map of this place./Main Hall
 Utility/Rusty Key/This rusty key must open something.../Main Hall
 Clue/Broken Glass/Looks like someone is a little clumsy./Main Hall
 Clue/Piss Stained Note/People really love notes, but why in here?/Bathroom
-Clue/Poison Bottle/Vial filled with some greenish liquid, looks unhealthy./Dining Room
+Clue/Poison Bottle/Vial filled with some greenish liquid, looks unhealthy./Dining Hall
