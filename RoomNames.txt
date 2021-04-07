@@ -1,0 +1,8 @@
+bedroom
+library
+garden
+closet
+main hall
+kitchen
+bathroom
+dining hall

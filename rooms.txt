@@ -1,0 +1,8 @@
+Bedroom/Nice room./main hall/closet  
+Library/Full of books./garden/main hall
+Garden/outside/library
+Closet/Dark and dim./bedroom 
+Main Hall/Grand and majestic./kitchen/library/bedroom/basement
+Kitchen/Full of knives./dining room/main hall
+Bathroom/Smells bad./bedroom
+Dining Hall/Tons of chairs./main hall/kitchen

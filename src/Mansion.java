@@ -12,7 +12,8 @@ public class Mansion {
         //File Read in all room info -- for now just manually create for testing
         //Name, Description, Exits, Contents, etc.
         FileReaderClass reader = new FileReaderClass();
-        reader.readFile("path");
+        reader.readItemsFile("Items.txt");
+        reader.readRoomFile("Rooms.txt");
         this.build();
     }
 
