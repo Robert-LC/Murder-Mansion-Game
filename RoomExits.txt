@@ -1,8 +1,0 @@
-main hall, closet
-garden, main hall
-library
-bedroom
-kitchen, library, bedroom, basement
-dining room, main hall
-bedroom
-main hall, kitchen

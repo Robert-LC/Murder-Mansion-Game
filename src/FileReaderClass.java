@@ -39,13 +39,12 @@ public class FileReaderClass
                     clu.setDescription(info[2]);
 
                 }
-                else if(info[2].equalsIgnoreCase("utility"))
+                else if(info[0].equalsIgnoreCase("utility"))
                 {
                     uti.setName(info[1]);
                     uti.setName(info[2]);
                 }
-                // Creates a Consumable
-                else
+                else if(info[0].equalsIgnoreCase("consumable"))
                 {
                     con.setName(info[1]);
                     con.setDescription(info[2]);
