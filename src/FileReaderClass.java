@@ -1,4 +1,4 @@
- /**
+/**
  * ================================================================================
  * File Name: FileReaderClass.java
  * Project Name: Final Project
@@ -100,24 +100,33 @@ public class FileReaderClass
                         itemsArray.add(item);
                     }
 
-                    // 2 Is the index where the room exits start on the file
-                    for(int i = 2; i < info.length; i++)
-                    {
-                        exitsArray.add(info[i]);
-                    }
-
-                    // Then construct the Room
-                    r.setName(info[0]);
-                    r.setDesc(info[1]);
-                    r.setContents(itemsArray);
-                    r.setExits(exitsArray);
-
-                    //Finally add the Room to an ArrayList of Rooms
-                    roomsArray.add(r);
-
-                    // Once the for loop ends, Room and itemsArray get renewed as empty.
                 }
 
+                // 2 Is the index where the room exits start on the file
+                for(int i = 2; i < info.length; i++)
+                {
+                    exitsArray.add(info[i]);
+
+                }
+
+                // Then construct the Room
+                r.setName(info[0]);
+                r.setDesc(info[1]);
+                r.setContents(itemsArray);
+
+
+
+                //Convert array list to array as that's what is used in Room class -- SAM
+                String[] newArray = new String[exitsArray.size()];
+                for(int i = 0; i < exitsArray.size(); i++) {
+                    newArray[i] = exitsArray.get(i);
+                }
+                r.setExits(newArray);
+
+                //Finally add the Room to an ArrayList of Rooms
+                roomsArray.add(r);
+
+                // Once the for loop ends, Room and itemsArray get renewed as empty.
             }
         }
         catch (IOException ex)
@@ -132,7 +141,7 @@ public class FileReaderClass
 
     public ArrayList<Suspect> readSuspectFile(String path)
     {
-
+        return new ArrayList<>();
     }
 
 
