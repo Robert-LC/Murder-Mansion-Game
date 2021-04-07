@@ -1,14 +1,14 @@
-Clue/Bloody Sheet/Crimson red.
-Clue/Hastily Written Note/Looks like someone was in a hurry.
-Consumable/Stack of Books/Looks dusty.
-Clue/Journal/Whose secrets are in here?
-Clue/Broken Shelf/Flimsy old oak wood.
-Clue/Glove/If the glove don't fit you musta quit.
-Utility/Dirty Shovel/Looks strong.
-Utility/Rusty Musket/Damn this thing is rusty.
-Clue/Tattered Cloth/Looks like someone was angry.
-Utility/Map/The map of this place.
-Utility/Rusty Key/This rusty key must open something...
-Clue/Broken Glass/Looks like someone is a little clumsy.
-Clue/Piss Stained Note/People really love notes, but why in here?
-Clue/Poison Bottle/Vial filled with some greenish liquid, looks unhealthy.
+Clue/Bloody Sheet/Crimson red./Bedroom
+Clue/Hastily Written Note/Looks like someone was in a hurry./Bedroom
+Consumable/Stack of Books/Looks dusty./Library
+Clue/Journal/Whose secrets are in here?/Library
+Clue/Broken Shelf/Flimsy old oak wood./Library
+Clue/Glove/If the glove don't fit you musta quit./Garden
+Utility/Dirty Shovel/Looks strong./Garden
+Utility/Rusty Musket/Damn this thing is rusty./Closet
+Clue/Tattered Cloth/Looks like someone was angry./Closet
+Utility/Map/The map of this place./Main Hall
+Utility/Rusty Key/This rusty key must open something.../Main Hall
+Clue/Broken Glass/Looks like someone is a little clumsy./Main Hall
+Clue/Piss Stained Note/People really love notes, but why in here?/Bathroom
+Clue/Poison Bottle/Vial filled with some greenish liquid, looks unhealthy./Dining Room

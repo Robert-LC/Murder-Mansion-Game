@@ -12,7 +12,11 @@ public class Mansion {
         //File Read in all room info -- for now just manually create for testing
         //Name, Description, Exits, Contents, etc.
         FileReaderClass reader = new FileReaderClass();
-        reader.readItemsFile("Items.txt");
+
+        // Create an arrayList of items from the text file
+        ArrayList<Item> items = reader.readItemsFile("Items.txt");
+
+
         reader.readRoomFile("Rooms.txt");
         this.build();
     }
