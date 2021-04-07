@@ -14,7 +14,7 @@ public class Mansion {
         FileReaderClass reader = new FileReaderClass();
 
         // Create an arrayList of items from the text file
-        ArrayList<Item> items = reader.readItemsFile("Items.txt");
+        reader.readItemsFile("Items.txt");
 
 
         reader.readRoomFile("Rooms.txt");

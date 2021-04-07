@@ -1,10 +1,11 @@
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Room
 {
     String name;
     String desc;
-    Item[] contents;
+    ArrayList<Item> contents;
     String[] exits;
 
     //public Room(String name, String[] exits, Item[] contents)
@@ -62,7 +63,7 @@ public class Room
         this.exits = exits;
     }
 
-    public void setContents(Item[] contents)
+    public void setContents(ArrayList<Item> contents)
     {
         this.contents = contents;
     }

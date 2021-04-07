@@ -20,10 +20,10 @@ public class FileReaderClass
     private String e;
 
     // Reads from a txt file, creates a Clue, Utility, or Consumable based on the txt file.
-    public ArrayList<Item> readItemsFile(String path)
+    public HashMap<Item, String> readItemsFile(String path)
     {
-        // Create an empty items arrayList to be populated
-        ArrayList<Item> itemsArray = new ArrayList<>();
+        // Create a hashmap (Item Object, String ObjType(Clue,Utility,Consumable))
+        HashMap<Item, String> itemTypeHashMap = new HashMap<>();
         try (BufferedReader fileReader = new BufferedReader(new FileReader(path)))
         {
             // Reads file until the reader reaches the end of the file
@@ -36,28 +36,30 @@ public class FileReaderClass
 
                 // Index 0 determines if the Item is Clue, Utility or Consumable
                 // Index 1, 2, and 3 are then used as arguments to construct the object
-                // After attributes are added to the object, add it to the items array
+                // After attributes are added to the object, add it to the Items HashMap
                 if(info[0].equalsIgnoreCase("clue"))
                 {
                     clu.setName(info[1]);
                     clu.setDescription(info[2]);
                     clu.setRoomLocation(info[3]);
-                    itemsArray.add(clu);
 
+                    itemTypeHashMap.put(clu, info[3]);
                 }
                 else if(info[0].equalsIgnoreCase("utility"))
                 {
                     uti.setName(info[1]);
-                    uti.setName(info[2]);
-                    uti.setName(info[3]);
-                    itemsArray.add(uti);
+                    uti.setDescription(info[2]);
+                    uti.setRoomLocation(info[3]);
+
+                    itemTypeHashMap.put(uti, info[3]);
                 }
                 else if(info[0].equalsIgnoreCase("consumable"))
                 {
                     con.setName(info[1]);
                     con.setDescription(info[2]);
-                    con.setName(info[3]);
-                    itemsArray.add(con);
+                    con.setRoomLocation(info[3]);
+
+                    itemTypeHashMap.put(uti, info[3]);
                 }
             }
         }
@@ -67,7 +69,7 @@ public class FileReaderClass
         }
 
         // Return an Array of all the items that were created from the txt file.
-        return itemsArray;
+        return itemTypeHashMap;
     }
 
     // Reads a file with rooms and creates them
@@ -83,10 +85,6 @@ public class FileReaderClass
             {
                 String[] info = e.split("/");
                 Room r = new Room();
-
-                r.setName(info[1]);
-                r.setDesc(info[2]);
-                r.setContents();
 
             }
         }
