@@ -106,7 +106,6 @@ public class FileReaderClass
                 for(int i = 2; i < info.length; i++)
                 {
                     exitsArray.add(info[i]);
-
                 }
 
                 // Then construct the Room
@@ -116,9 +115,10 @@ public class FileReaderClass
 
 
 
-                //Convert array list to array as that's what is used in Room class -- SAM
+                //Convert array list to array as that's what is used in Room class
                 String[] newArray = new String[exitsArray.size()];
-                for(int i = 0; i < exitsArray.size(); i++) {
+                for(int i = 0; i < exitsArray.size(); i++)
+                {
                     newArray[i] = exitsArray.get(i);
                 }
                 r.setExits(newArray);
