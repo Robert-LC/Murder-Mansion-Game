@@ -25,8 +25,8 @@ public class TextFileWriter
         try(FileWriter myWriter = new FileWriter(fileName))
         {
             myWriter.write(turn + "\n");
-            myWriter.write(player.checkPoints() + "\n");
-            myWriter.write(player.checkLocation() + "\n");
+            myWriter.write(player.getPoints() + "\n");
+            myWriter.write(player.getLocation() + "\n");
 
             String temp = "";
             for(Item item:player.getInventory())

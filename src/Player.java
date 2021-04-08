@@ -20,6 +20,7 @@ public class Player
     {
 
     }
+
     public void addItem(Item item)
     {
 
@@ -30,14 +31,19 @@ public class Player
 
     }
 
-    public int checkPoints()
+    public int getPoints()
     {
-
+        return points;
     }
 
-    public String checkLocation()
+    public String getLocation()
     {
+        return location;
+    }
 
+    public ArrayList<Item> getInventory()
+    {
+        return inventory;
     }
 
 }
