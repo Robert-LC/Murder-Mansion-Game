@@ -25,15 +25,17 @@ public class Consumable extends Item
     {
         super(name, description, roomLocation);
     }
+    
+    public void consume()
+    {
+
+    }
 
     // DO NOT DELETE, NEED BLANK CONSTRUCTOR TO READ FROM FILE
     Consumable(){}
 
 
-    public void consume()
-    {
-
-    }
+    
 
 
 }
