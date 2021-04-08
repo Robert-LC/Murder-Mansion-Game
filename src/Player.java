@@ -16,19 +16,34 @@ public class Player
     private ArrayList<Item> inventory;
     private String location;
 
-    public void move()
+    Player()
     {
+        setPoints(0);
+        setLocation("Main Hall");
+        inventory = new ArrayList<Item>();
 
     }
 
+    public void setPoints(int points)
+    {
+        this.points = points;
+    }
+
+    // Same as Move()
+    public void setLocation(String location)
+    {
+        this.location = location;
+    }
+
+
     public void addItem(Item item)
     {
-
+        inventory.add(item);
     }
 
     public void removeItem(int index)
     {
-
+        inventory.remove(index);
     }
 
     public int getPoints()
