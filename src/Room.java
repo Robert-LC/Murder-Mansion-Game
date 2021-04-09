@@ -5,6 +5,8 @@ public class Room {
     String desc;
     String[] exits;
     ArrayList<Item> contents;
+    ArrayList<Suspect> suspects; // A room can have no suspects, it will just be an emtpy arrayList. This will save a lot of hassle.
+
 
     public Room() {
         contents = new ArrayList<>();
@@ -44,5 +46,15 @@ public class Room {
 
     public String[] getExits() {
         return exits;
+    }
+
+    public ArrayList<Suspect> getSuspects()
+    {
+        return suspects;
+    }
+
+    public void setSuspects(ArrayList<Suspect> suspects)
+    {
+        this.suspects = suspects;
     }
 }

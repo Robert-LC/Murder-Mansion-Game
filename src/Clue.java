@@ -18,7 +18,7 @@
  */
 public class Clue extends Item
 {
-    private Suspects suspect;
+    private Suspect suspect;
     
     // Constructor for Clues calls the Item Constructor.
     Clue(String name, String description, String roomLocation)
@@ -26,9 +26,9 @@ public class Clue extends Item
         super(name, description, roomLocation);
     }
     
-    public Suspects getSuspect()
+    public Suspect getSuspect()
     {
-        return Suspects;
+        return Suspect;
     }
     
     // DO NOT DELETE, NEED BLANK CONSTRUCTOR TO READ FROM FILE

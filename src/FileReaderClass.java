@@ -72,14 +72,15 @@ public class FileReaderClass
         return itemTypeHashMap;
     }
 
-    // Reads a file with rooms and creates them
+    // Read a file with Room names and descriptions, takes a hash map of Items, and an ArrayList of Suspects
+    // Uses all that data to create Room Objects which are then put in a Mansion Object.
     public ArrayList<Room> readRoomFile(String path, HashMap<String, Item> itemStringHashMap)
     {
         // Create an empty items arrayList to be populated
         ArrayList<Room> roomsArray = new ArrayList<>();
 
 
-        try (BufferedReader fileReader = new BufferedReader(new FileReader(path)))
+        try(BufferedReader fileReader = new BufferedReader(new FileReader(path)))
         {
             // Reads file until the reader reaches the end of the file
             while((e = fileReader.readLine()) != null)
@@ -129,7 +130,7 @@ public class FileReaderClass
                 // Once the for loop ends, Room and itemsArray get renewed as empty.
             }
         }
-        catch (IOException ex)
+        catch(IOException ex)
         {
             System.out.println("File not found");
         }
@@ -137,12 +138,48 @@ public class FileReaderClass
         return roomsArray;
     }
 
-
-
+    // Reads from a creates a Suspect, then adds it to an arrayList of Suspects
     public ArrayList<Suspect> readSuspectFile(String path)
     {
-        return new ArrayList<>();
+        // Create an arrayList to be populated with suspects
+        ArrayList<Suspect> suspectArray = new ArrayList<>();
+        try(BufferedReader fileReader = new BufferedReader(new FileReader(path)))
+        {
+            // Reads file until the reader reaches the end of the file
+            while((e = fileReader.readLine()) != null)
+            {
+                // Creates a Suspect from the file, then adds the Suspect Object to the arrayList.
+                String[] info = e.split("/");
+                Suspect s = new Suspect();
+                s.setName(info[0]);
+                s.setDescription(info[2]);
+                s.setGuilty(false);
+
+
+                //Didn't add guilty boolean from file - Instead all Suspects guilty = false.
+                //Then in Mansion constructor, we draw one random suspect from the arrayList and set their boolean
+                //Guilty = true;
+
+                //Either we have to dialogue individually for each character, or make another text file that can be
+                //used as a pool of dialogue that all characters share.
+
+                // Finally add the created Suspect to the suspectArray
+                suspectArray.add(s);
+            }
+        }
+        catch(IOException ex)
+        {
+            System.out.println("File not found");
+        }
+
+        return suspectArray;
     }
-
-
 }
+
+
+
+
+
+
+
+
