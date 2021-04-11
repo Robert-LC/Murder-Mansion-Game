@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/15.0.1" fx:controller="GameGUIController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GameGUIController">
   <columnConstraints>
     <ColumnConstraints />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.199951171875" minWidth="10.0" prefWidth="111.2" />
@@ -44,10 +44,10 @@
                   <content>
                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0">
                            <children>
-                              <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Button" AnchorPane.bottomAnchor="141.20000000000002" />
-                              <Button layoutX="14.0" layoutY="40.0" mnemonicParsing="false" text="Button" />
-                              <Button layoutX="14.0" layoutY="77.0" mnemonicParsing="false" text="Button" />
-                              <Button layoutX="14.0" layoutY="114.0" mnemonicParsing="false" text="Button" />
+                              <Button fx:id="actionButton1" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#actionButton1Pressed" text="Button" AnchorPane.bottomAnchor="141.20000000000002" />
+                              <Button fx:id="actionButton2" layoutX="14.0" layoutY="40.0" mnemonicParsing="false" onAction="#actionButton2Pressed" text="Button" />
+                              <Button fx:id="actionButton3" layoutX="14.0" layoutY="77.0" mnemonicParsing="false" onAction="#actionButton3Pressed" text="Button" />
+                              <Button fx:id="actionButton4" layoutX="14.0" layoutY="114.0" mnemonicParsing="false" onAction="#actionButton4Pressed" text="Button" />
                            </children>
                         </AnchorPane>
                   </content>
@@ -58,15 +58,15 @@
                            <children>
                               <VBox prefHeight="180.0" prefWidth="110.0">
                                  <children>
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                                    <Text fx:id="invSlot1" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot1" />
+                                    <Text fx:id="invSlot2" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot2" />
+                                    <Text fx:id="invSlot3" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot3" />
+                                    <Text fx:id="invSlot4" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot4" />
+                                    <Text fx:id="invSlot5" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot5" />
+                                    <Text fx:id="invSlot6" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot6" />
+                                    <Text fx:id="invSlot7" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot7" />
+                                    <Text fx:id="invSlot8" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot8" />
+                                    <Text fx:id="invSlot9" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot9" />
                                  </children>
                               </VBox>
                            </children>
