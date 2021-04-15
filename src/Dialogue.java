@@ -15,6 +15,8 @@ import java.util.ArrayList;
 /**
  * Includes static methods that will be called when talking to suspects
  * The methods are static so the Dialogue class does not need to be instantiated.
+ * Dialogue with a Suspect will not give clue objects to the player, instead the player will use the notepad to write
+ * the info down.
  *
  * @author Robert LoCicero
  * @since 04/15/2021
