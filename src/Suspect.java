@@ -5,6 +5,7 @@ public class Suspect {
     String location;
     String description;
     ArrayList<String> dialogue;
+    int greetedCounter = 0; //Simple counter, that will be used to count how many times a Suspect has been talked to for dialogue options
     Boolean guilty;
 
 
@@ -68,5 +69,15 @@ public class Suspect {
     public void setLocation(String location)
     {
         this.location = location;
+    }
+
+    public int getGreetedCounter()
+    {
+        return greetedCounter;
+    }
+
+    public void setGreetedCounter(int greetedCounter)
+    {
+        this.greetedCounter = greetedCounter;
     }
 }
