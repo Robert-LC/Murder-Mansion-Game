@@ -72,7 +72,7 @@ public class FileReaderClass
         return itemTypeHashMap;
     }
 
-    // Read a file with Room names and descriptions, takes a hash map of Items, and an ArrayList of Suspects
+    // Read a file with Room names and descriptions, takes a file path, hash map of Items
     // Uses all that data to create Room Objects which are then put in a Mansion Object.
     public ArrayList<Room> readRoomFile(String path, HashMap<String, Item> itemStringHashMap)
     {
@@ -152,6 +152,7 @@ public class FileReaderClass
                 String[] info = e.split("/");
                 Suspect s = new Suspect();
                 s.setName(info[0]);
+                s.setLocation(info[1]);
                 s.setDescription(info[2]);
                 s.setGuilty(false);
 

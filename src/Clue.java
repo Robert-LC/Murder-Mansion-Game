@@ -26,10 +26,10 @@ public class Clue extends Item
         super(name, description, roomLocation);
     }
     
-    public Suspect getSuspect()
-    {
-        return Suspect;
-    }
+    //public Suspect getSuspect()
+    //{
+        //return Suspect;
+    //}
     
     // DO NOT DELETE, NEED BLANK CONSTRUCTOR TO READ FROM FILE
     Clue(){}

@@ -2,9 +2,11 @@ import java.util.ArrayList;
 
 public class Suspect {
     String name;
+    String location;
     String description;
     ArrayList<String> dialogue;
     Boolean guilty;
+
 
 
     public Suspect()
@@ -56,5 +58,15 @@ public class Suspect {
     public void setGuilty(Boolean guilty)
     {
         this.guilty = guilty;
+    }
+
+    public String getLocation()
+    {
+        return location;
+    }
+
+    public void setLocation(String location)
+    {
+        this.location = location;
     }
 }

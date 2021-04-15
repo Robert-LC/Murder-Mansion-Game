@@ -26,10 +26,10 @@ public class Utility extends Item
         super(name, description, roomLocation);
     }
     
-    public Room getRoom()
-    {
-        return Room;
-    }
+    //public Room getRoom()
+    //{
+        //return Room;
+    //}
     
     // DO NOT DELETE, NEED BLANK CONSTRUCTOR TO READ FROM FILE
     Utility(){}
