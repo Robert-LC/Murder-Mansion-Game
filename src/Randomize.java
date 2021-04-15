@@ -37,27 +37,28 @@ public class Randomize
         Random rand = new Random(); 
         Suspect guiltyParty = suspects.get(rand.nextInt(suspects.size())); //selects a random suspect that will be the guilty party throughout the game
         guiltyParty.setGuilty(true);
-        ArrayList<Clue> tempClues = new ArrayList<>();
+        ArrayList<Clue> clues = new ArrayList<>();
         ArrayList<Clue> finalClues = new ArrayList<>();
 
         for(Map.Entry<String, Item> set:items.entrySet()) //iterates through the HashMap and adds all clue objects to a temp ArrayList
         {
             if(set.getValue().getClass().getName().equals("Clue"))
             {
-                tempClues.add((Clue)set.getValue());
+                clues.add((Clue)set.getValue());
             }
         }
-        for(Clue myClue:tempClues) //gets the three clues that match with the guilty suspect and adds it to the ArrayList used for randomizing
+        for(Clue myClue:clues) //gets the three clues that match with the guilty suspect and adds it to the ArrayList used for randomizing
         {
-            if((myClue.getSuspect1().getName().equals(guiltyParty.getName())) && (myClue.getSuspect2().getName().equals(guiltyParty.getName())) && (myClue.getSuspect3().getName().equals(guiltyParty.getName())))
+            if((myClue.getSuspect1().getName().equals(guiltyParty.getName())) || (myClue.getSuspect2().getName().equals(guiltyParty.getName())) || (myClue.getSuspect3().getName().equals(guiltyParty.getName())))
             {
                 finalClues.add((Clue)myClue);
             }
         }
+        Clue temp;
         while(finalClues.size() != 6) //adds some dummy clues that aren't related to the guilty suspect. This amount is changable by changing the number in the while loop
         {
-            Clue temp = tempClues.get(rand.nextInt(tempClues.size()));
-            if(!((temp.getSuspect1().getName().equals(guiltyParty.getName())) && (temp.getSuspect2().getName().equals(guiltyParty.getName())) && (temp.getSuspect3().getName().equals(guiltyParty.getName()))))
+            temp = clues.get(rand.nextInt(clues.size()));
+            if(!((temp.getSuspect1().getName().equals(guiltyParty.getName())) || (temp.getSuspect2().getName().equals(guiltyParty.getName())) || (temp.getSuspect3().getName().equals(guiltyParty.getName()))))
             {
                 finalClues.add((Clue)temp);
             }
@@ -72,7 +73,7 @@ public class Randomize
         }
         //Assigns the first clue that is important to the guilty suspect to an INACCESSABLE room
         //This is so at least one item that is neccessary to win is in a room you'll need to work for to get into
-        finalClues.get(0).setRoomLocation(tempUnRooms.get(rand.nextInt(tempUnRooms.size())).getName());
+        finalClues.get(0).setRoomLocation(tempRooms.get(rand.nextInt(tempRooms.size())).getName());
 
         for(int loop = 1; loop < finalClues.size(); loop++) //Loops through the other randomly selected items and assigns them randomly to any room. This can cause duplicates but it's fine cause it's random
         {
