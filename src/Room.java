@@ -4,11 +4,13 @@ public class Room {
     String name;
     String desc;
     String[] exits;
+    RoomType type;
     ArrayList<Item> contents;
     ArrayList<Suspect> suspects; // A room can have no suspects, it will just be an emtpy arrayList. This will save a lot of hassle.
 
 
     public Room() {
+        type = RoomType.OCCUPIED;
         contents = new ArrayList<>();
     }
 
@@ -56,5 +58,15 @@ public class Room {
     public void setSuspects(ArrayList<Suspect> suspects)
     {
         this.suspects = suspects;
+    }
+
+    public void setType(RoomType type)
+    {
+        this.type = type;
+    }
+
+    public RoomType getType()
+    {
+        return type;
     }
 }

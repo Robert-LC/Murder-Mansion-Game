@@ -16,7 +16,7 @@
  * 
  * @author Megan Toth
  */
-public class Clue extends Item
+public class Clue extends Item implements PointValue
 {
     private Suspect suspect;
     
@@ -26,12 +26,24 @@ public class Clue extends Item
         super(name, description, roomLocation);
     }
     
-    //public Suspect getSuspect()
-    //{
-        //return Suspect;
-    //}
+    public Suspect getSuspect()
+    {
+        return suspect;
+    }
     
     // DO NOT DELETE, NEED BLANK CONSTRUCTOR TO READ FROM FILE
     Clue(){}
+
+    public int calcPoints()
+    {
+        if(suspect.getGuilty())
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
 
 }

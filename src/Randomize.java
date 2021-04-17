@@ -12,7 +12,6 @@
 import java.util.Random; //used to generate a random number to assign an item to a room
 import java.util.ArrayList; //used to get roomnames from a collection of rooms
 import java.util.HashMap; //used to access HashMap methods
-import java.util.Map; //used to iterate through hashmap
 
 /**
  * Includes methods to randomize game objects to allow a better game experience.
@@ -31,8 +30,9 @@ public class Randomize
      * @param items
      * @param rooms
      * @param suspects
+     * @return Suspect that is guilty
      */
-    public static void randomize(HashMap<String, Item> items, ArrayList<Room> rooms, ArrayList<Suspect> suspects)
+    public static Suspect randomize(HashMap<String, Item> items, ArrayList<Room> rooms, ArrayList<Suspect> suspects)
     {
         Random rand = new Random(); 
         Suspect guiltyParty = suspects.get(rand.nextInt(suspects.size())); //selects a random suspect that will be the guilty party throughout the game
@@ -40,16 +40,16 @@ public class Randomize
         ArrayList<Clue> clues = new ArrayList<>();
         ArrayList<Clue> finalClues = new ArrayList<>();
 
-        for(Map.Entry<String, Item> set:items.entrySet()) //iterates through the HashMap and adds all clue objects to a temp ArrayList
+        for(Item item : items.values()) //iterates through the HashMap and adds all clue objects to a temp ArrayList
         {
-            if(set.getValue().getClass().getName().equals("Clue"))
+            if(item.getClass().getName().equals("Clue"))
             {
-                clues.add((Clue)set.getValue());
+                clues.add((Clue)item);
             }
         }
         for(Clue myClue:clues) //gets the three clues that match with the guilty suspect and adds it to the ArrayList used for randomizing
         {
-            if((myClue.getSuspect1().getName().equals(guiltyParty.getName())) || (myClue.getSuspect2().getName().equals(guiltyParty.getName())) || (myClue.getSuspect3().getName().equals(guiltyParty.getName())))
+            if((myClue.getSuspect().getName().equals(guiltyParty.getName())))
             {
                 finalClues.add((Clue)myClue);
             }
@@ -58,7 +58,7 @@ public class Randomize
         while(finalClues.size() != 6) //adds some dummy clues that aren't related to the guilty suspect. This amount is changable by changing the number in the while loop
         {
             temp = clues.get(rand.nextInt(clues.size()));
-            if(!((temp.getSuspect1().getName().equals(guiltyParty.getName())) || (temp.getSuspect2().getName().equals(guiltyParty.getName())) || (temp.getSuspect3().getName().equals(guiltyParty.getName()))))
+            if(!(temp.getSuspect().getName().equals(guiltyParty.getName())))
             {
                 finalClues.add((Clue)temp);
             }
@@ -66,7 +66,7 @@ public class Randomize
         ArrayList<Room> tempRooms = new ArrayList<>();
         for(Room room:rooms) //loops through the ArrayList of rooms to find all INACCESSABLE rooms
         {
-            if(room.getType() == RoomType.INACCESSABLE)
+            if(room.getType() == RoomType.INACCESSIBLE)
             {
                 tempRooms.add(room);
             }
@@ -79,5 +79,6 @@ public class Randomize
         {
             finalClues.get(loop).setRoomLocation(rooms.get(rand.nextInt(rooms.size())).getName());
         }
+        return guiltyParty;
     }//end randomize()
 }//end randomizeItems
