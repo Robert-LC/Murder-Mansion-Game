@@ -94,6 +94,8 @@
             <Button fx:id="exitButton2" mnemonicParsing="false" onAction="#exitButton2Pressed" text="Exit 2" />
             <Button fx:id="exitButton3" mnemonicParsing="false" onAction="#exitButton3Pressed" text="Exit 3" />
             <Button fx:id="exitButton4" mnemonicParsing="false" onAction="#exitButton4Pressed" text="Exit 4" />
+            <Button fx:id="contextButton1" mnemonicParsing="false" onAction="#contextButton1Pressed" text="context1" />
+            <Button fx:id="contextButton2" mnemonicParsing="false" onAction="#contextButton2Pressed" text="context2" />
          </children>
       </HBox>
    </children>
