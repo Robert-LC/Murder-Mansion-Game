@@ -10,7 +10,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Mansion m = new Mansion();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("GameGUI.fxml"));
-        loader.setControllerFactory(GameGUIController -> new GameGUIController(m));
+        loader.setControllerFactory(GameGUIController -> new GameGUIController());
         Parent root = loader.load();
         primaryStage.setTitle("Murder Mansion");
         primaryStage.setScene(new Scene(root));

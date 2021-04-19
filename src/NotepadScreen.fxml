@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="NotepadScreenController">
+  <columnConstraints>
+    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="502.1999755859375" minWidth="10.0" prefWidth="502.1999755859375" />
+    <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="521.6000122070312" minWidth="10.0" prefWidth="97.4000244140625" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="354.39996337890625" minHeight="10.0" prefHeight="331.199951171875" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="167.00000610351563" minHeight="0.0" prefHeight="68.800048828125" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+      <TextField fx:id="textField" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="26.0" prefWidth="290.0" promptText="Your note" style="-fx-border-color: black;" GridPane.rowIndex="1" />
+      <TextArea fx:id="textArea" editable="false" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="257.0" prefWidth="492.0" style="-fx-border-color: black;">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </TextArea>
+      <Button fx:id="saveNoteButton" mnemonicParsing="false" onAction="#saveNoteButtonPressed" text="Save Note" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <ToolBar prefHeight="36.0" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+        <items>
+          <Button fx:id="clearNotepadButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#clearNotepadButtonPressed" text="Clear Notepad" />
+            <Button fx:id="deleteNoteButton" contentDisplay="CENTER" mnemonicParsing="false" onAction="#deleteNoteButtonPressed" text="Delete Note" />
+        </items>
+         <GridPane.margin>
+            <Insets left="5.0" />
+         </GridPane.margin>
+      </ToolBar>
+   </children>
+</GridPane>

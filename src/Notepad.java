@@ -21,6 +21,12 @@ public class Notepad
 {
     private ArrayList<String> notes;
 
+    //to initialize the ArrayList
+    public Notepad()
+    {
+        notes = new ArrayList<>();
+    }
+
     /**
      * Every index in the notes array will be concatenated to string and separated by a new line.
      *
@@ -53,5 +59,10 @@ public class Notepad
     public ArrayList<String> getNotes()
     {
         return notes;
+    }
+
+    public void clearNotes()
+    {
+        notes.clear();
     }
 }
