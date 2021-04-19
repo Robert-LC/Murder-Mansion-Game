@@ -15,6 +15,8 @@ public class GameGUIController {
 
     public Player p = new Player();
 
+    public int turn;
+
     int buttonClicked = -1;
 
     int actionButtonClicked = -1;
@@ -30,6 +32,9 @@ public class GameGUIController {
 
     @FXML
     private Button actionButton4;
+
+    @FXML
+    private Button notepadButton;
 
     @FXML
     private Text invSlot1;
@@ -57,6 +62,9 @@ public class GameGUIController {
 
     @FXML
     private Text invSlot9;
+
+    @FXML
+    private Text turnNumText;
 
     @FXML
     private TextArea textArea;
@@ -115,10 +123,17 @@ public class GameGUIController {
         actionButton2.setText("Rusty Key");
         actionButton3.setText("Broken Glass");
         actionButton4.setVisible(false);
+        turn = 1;
+    }
+
+    @FXML
+    void notepadButtonPressed(ActionEvent event)
+    {
     }
 
     @FXML
     void exitButton1Pressed(ActionEvent event) {
+        turn ++;
         location = exitButton1.getText();
         textArea.setText(m.getRoom(location).getDesc());
         this.updateButtons();
@@ -126,6 +141,7 @@ public class GameGUIController {
 
     @FXML
     void exitButton2Pressed(ActionEvent event) {
+        turn ++;
         location = exitButton2.getText();
         textArea.setText(m.getRoom(location).getDesc());
         this.updateButtons();
@@ -133,6 +149,7 @@ public class GameGUIController {
 
     @FXML
     void exitButton3Pressed(ActionEvent event) {
+        turn ++;
         location = exitButton3.getText();
         textArea.setText(m.getRoom(location).getDesc());
         this.updateButtons();
@@ -140,12 +157,14 @@ public class GameGUIController {
 
     @FXML
     void exitButton4Pressed(ActionEvent event) {
+        turn ++;
         location = exitButton4.getText();
         textArea.setText(m.getRoom(location).getDesc());
         this.updateButtons();
     }
 
     void updateButtons() {
+        turnNumText.setText("Turn: " + turn);
         String[] array = m.getRoom(location).getExits();
         for(int i = 0; i < array.length; i++) {
             if(array[i] != null) {

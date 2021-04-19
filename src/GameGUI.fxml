@@ -54,10 +54,15 @@
                 </TitledPane>
                 <TitledPane animated="false" text="Inventory">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <VBox prefHeight="180.0" prefWidth="110.0">
+                              <VBox prefHeight="200.0" prefWidth="110.0">
                                  <children>
+                                    <Button fx:id="notepadButton" alignment="CENTER" mnemonicParsing="false" onAction="#notepadButtonPressed" text="Notepad" textAlignment="CENTER">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </Button>
                                     <Text fx:id="invSlot1" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot1" />
                                     <Text fx:id="invSlot2" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot2" />
                                     <Text fx:id="invSlot3" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot3" />
@@ -75,6 +80,7 @@
                 </TitledPane>
               </panes>
             </Accordion>
+            <Text fx:id="turnNumText" strokeType="OUTSIDE" strokeWidth="0.0" text="Turn: 1" />
          </children>
          <GridPane.margin>
             <Insets />
