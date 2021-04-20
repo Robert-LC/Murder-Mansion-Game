@@ -60,6 +60,11 @@ public class Room {
         this.suspects = suspects;
     }
 
+    public void addSingleSuspect(Suspect suspect) //Adds a suspect to the arrayList of suspects in a room.
+    {
+        suspects.add(suspect);
+    }
+
     public void setType(RoomType type)
     {
         this.type = type;

@@ -34,6 +34,9 @@ public class GameGUIController {
     private Button actionButton4;
 
     @FXML
+    private Button greetButton;
+
+    @FXML
     private Button notepadButton;
 
     @FXML
@@ -101,6 +104,7 @@ public class GameGUIController {
         invSlot7.managedProperty().bind(invSlot7.visibleProperty());
         invSlot8.managedProperty().bind(invSlot8.visibleProperty());
         invSlot9.managedProperty().bind(invSlot9.visibleProperty());
+        //greetButton.managedProperty().bind(greetButton.visibleProperty());
         contextButton1.managedProperty().bind(contextButton1.visibleProperty());
         contextButton2.managedProperty().bind(contextButton2.visibleProperty());
         invSlot1.setVisible(false);
@@ -112,6 +116,7 @@ public class GameGUIController {
         invSlot7.setVisible(false);
         invSlot8.setVisible(false);
         invSlot9.setVisible(false);
+        //greetButton.setVisible(false);
         contextButton1.setVisible(false);
         contextButton2.setVisible(false);
         exitButton1.setText("Kitchen");
@@ -124,6 +129,7 @@ public class GameGUIController {
         actionButton3.setText("Broken Glass");
         actionButton4.setVisible(false);
         turn = 1;
+        this.updateButtons(); //needs to be called so greet button will work on Butler Billy.
     }
 
     @FXML
@@ -136,6 +142,7 @@ public class GameGUIController {
         turn ++;
         location = exitButton1.getText();
         textArea.setText(m.getRoom(location).getDesc());
+        p.setLocation(location);
         this.updateButtons();
     }
 
@@ -144,6 +151,7 @@ public class GameGUIController {
         turn ++;
         location = exitButton2.getText();
         textArea.setText(m.getRoom(location).getDesc());
+        p.setLocation(location);
         this.updateButtons();
     }
 
@@ -152,6 +160,7 @@ public class GameGUIController {
         turn ++;
         location = exitButton3.getText();
         textArea.setText(m.getRoom(location).getDesc());
+        p.setLocation(location);
         this.updateButtons();
     }
 
@@ -160,11 +169,13 @@ public class GameGUIController {
         turn ++;
         location = exitButton4.getText();
         textArea.setText(m.getRoom(location).getDesc());
+        p.setLocation(location);
         this.updateButtons();
     }
 
     void updateButtons() {
         turnNumText.setText("Turn: " + turn);
+        greetButton.setText("Greet " + m.getRoom(p.getLocation()).getSuspects().get(0).getName());
         String[] array = m.getRoom(location).getExits();
         for(int i = 0; i < array.length; i++) {
             if(array[i] != null) {
@@ -510,6 +521,7 @@ public class GameGUIController {
         }
         actionButtonClicked=1;
         displayItemPrompt(toRemove);
+        this.updateButtons();
     }
 
     @FXML
@@ -525,6 +537,7 @@ public class GameGUIController {
         }
         actionButtonClicked=2;
         displayItemPrompt(toRemove);
+        this.updateButtons();
     }
 
     @FXML
@@ -540,6 +553,7 @@ public class GameGUIController {
         }
         actionButtonClicked=3;
         displayItemPrompt(toRemove);
+        this.updateButtons();
     }
 
     private void displayItemPrompt(Item toRemove) {
@@ -613,5 +627,11 @@ public class GameGUIController {
 
         //Update Action buttons
         this.updateButtons();
+    }
+
+    @FXML
+    void greetButtonPressed(ActionEvent event)
+    {
+        //Dialogue.greet(m.getRoom(location).getSuspects().get(0));
     }
 }

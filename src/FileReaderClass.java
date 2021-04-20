@@ -74,7 +74,7 @@ public class FileReaderClass
 
     // Read a file with Room names and descriptions, takes a file path, hash map of Items
     // Uses all that data to create Room Objects which are then put in a Mansion Object.
-    public ArrayList<Room> readRoomFile(String path, HashMap<String, Item> itemStringHashMap)
+    public ArrayList<Room> readRoomFile(String path, HashMap<String, Item> itemStringHashMap, ArrayList<Suspect> suspectsArrayList)
     {
         // Create an empty items arrayList to be populated
         ArrayList<Room> roomsArray = new ArrayList<>();
@@ -86,21 +86,32 @@ public class FileReaderClass
             while((e = fileReader.readLine()) != null)
             {
                 String[] info = e.split("/");
-                //Creates a new empty Room, itemArray, and exitArray every loop.
+                //Creates a new empty Room, itemArray, and exitArray every loop, and suspectArray that is specific to each room.
                 Room r = new Room();
                 ArrayList<Item> itemsArray = new ArrayList<>();
                 ArrayList<String> exitsArray = new ArrayList<>();
+                ArrayList<Suspect> suspectsArray = new ArrayList<>();
 
-                // For every item in the HashMap
+                // Loop to add items to rooms if item.location == room.getname
                 for(Item item : itemStringHashMap.values())
                 {
                     // If the RoomName(Info[0]) is also the location of the Item Object
-                    // If they are equal, add the Item to the Items Array
+                    // If they are equal, add the Item to the items in the room array.
                     if(info[0].equalsIgnoreCase(item.getRoomLocation()))
                     {
                         itemsArray.add(item);
                     }
 
+                }
+
+                //Takes the suspectArrayList of ALL suspects, add them to another suspect array specific to the room.
+                for(Suspect s : suspectsArrayList)
+                {
+                    // Checks suspect location, with room name to make sure suspects go in the right rooms.
+                    if(info[0].equalsIgnoreCase(s.getLocation()))
+                    {
+                        suspectsArray.add(s);
+                    }
                 }
 
                 // 2 Is the index where the room exits start on the file
@@ -113,8 +124,7 @@ public class FileReaderClass
                 r.setName(info[0]);
                 r.setDesc(info[1]);
                 r.setContents(itemsArray);
-
-
+                r.setSuspects(suspectsArray);
 
                 //Convert array list to array as that's what is used in Room class
                 String[] newArray = new String[exitsArray.size()];

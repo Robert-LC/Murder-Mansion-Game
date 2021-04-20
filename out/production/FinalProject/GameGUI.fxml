@@ -48,16 +48,22 @@
                               <Button fx:id="actionButton2" layoutX="14.0" layoutY="40.0" mnemonicParsing="false" onAction="#actionButton2Pressed" text="Button" />
                               <Button fx:id="actionButton3" layoutX="14.0" layoutY="77.0" mnemonicParsing="false" onAction="#actionButton3Pressed" text="Button" />
                               <Button fx:id="actionButton4" layoutX="14.0" layoutY="114.0" mnemonicParsing="false" onAction="#actionButton4Pressed" text="Button" />
+                              <Button fx:id="greetButton" layoutX="14.0" layoutY="151.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#greetButtonPressed" text="Greet" />
                            </children>
                         </AnchorPane>
                   </content>
                 </TitledPane>
                 <TitledPane animated="false" text="Inventory">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <VBox prefHeight="180.0" prefWidth="110.0">
+                              <VBox prefHeight="200.0" prefWidth="110.0">
                                  <children>
+                                    <Button fx:id="notepadButton" alignment="CENTER" mnemonicParsing="false" onAction="#notepadButtonPressed" text="Notepad" textAlignment="CENTER">
+                                       <VBox.margin>
+                                          <Insets bottom="5.0" top="5.0" />
+                                       </VBox.margin>
+                                    </Button>
                                     <Text fx:id="invSlot1" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot1" />
                                     <Text fx:id="invSlot2" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot2" />
                                     <Text fx:id="invSlot3" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot3" />
@@ -75,6 +81,7 @@
                 </TitledPane>
               </panes>
             </Accordion>
+            <Text fx:id="turnNumText" strokeType="OUTSIDE" strokeWidth="0.0" text="Turn: 1" />
          </children>
          <GridPane.margin>
             <Insets />
@@ -94,6 +101,8 @@
             <Button fx:id="exitButton2" mnemonicParsing="false" onAction="#exitButton2Pressed" text="Exit 2" />
             <Button fx:id="exitButton3" mnemonicParsing="false" onAction="#exitButton3Pressed" text="Exit 3" />
             <Button fx:id="exitButton4" mnemonicParsing="false" onAction="#exitButton4Pressed" text="Exit 4" />
+            <Button fx:id="contextButton1" mnemonicParsing="false" onAction="#contextButton1Pressed" text="context1" />
+            <Button fx:id="contextButton2" mnemonicParsing="false" onAction="#contextButton2Pressed" text="context2" />
          </children>
       </HBox>
    </children>
