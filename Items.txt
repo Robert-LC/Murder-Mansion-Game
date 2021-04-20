@@ -1,14 +1,14 @@
-Clue/Bloody Sheet/Crimson red./Bedroom
-Clue/Hastily Written Note/Looks like someone was in a hurry./Bedroom
-Consumable/Stack of Books/Looks dusty./Library
-Clue/Journal/Whose secrets are in here?/Library
-Clue/Broken Shelf/Flimsy old oak wood./Library
-Clue/Glove/If the glove don't fit you musta quit./Garden
-Utility/Dirty Shovel/Looks strong./Garden
-Utility/Rusty Musket/Damn this thing is rusty./Closet
-Clue/Tattered Cloth/Looks like someone was angry./Closet
-Utility/Map/The map of this place./Main Hall
-Utility/Rusty Key/This rusty key must open something.../Main Hall
-Clue/Broken Glass/Looks like someone is a little clumsy./Main Hall
-Clue/Piss Stained Note/People really love notes, but why in here?/Bathroom
-Clue/Poison Bottle/Vial filled with some greenish liquid, looks unhealthy./Dining Hall
+Clue/Bloody Sheet/A bedsheet stained red with blood. Maybe this was the crime scene./Bedroom
+Clue/Hastily Written Note/A note scrawled on a torn piece of paper. Looks like the victim's handwriting./Bedroom
+Consumable/Stack of Books/Heavy books piled up high./Library
+Clue/Journal/A leather bound book with a name embroidered on the front. It belonged to the victim./Library
+Clue/Broken Shelf/Cracked wooden shelf broken by the weight of many books. Could there have been a struggle here?/Library
+Clue/Glove/A dirty leather riding glove. Strange place to find this./Garden
+Utility/Dirty Shovel/Looks like it was used recently. Someone was digging here./Garden
+Utility/Rusty Musket/A trophy from a bygone era. I wonder if it still works?/Closet
+Clue/Tattered Cloth/Torn white linen tablecloth. A small piece is missing./Closet
+Utility/Map/A framed map of the manor/Main Hall
+Utility/Rusty Key/A skeleton key rusted from years of use by the manor's staff/Main Hall
+Clue/Broken Glass/Could be signs of a struggle/Main Hall
+Clue/Piss Stained Note/A yellow stained piece of paper. Could someone be trying to get rid of evidence?/Bathroom
+Clue/Poison Bottle/Vial filled with some greenish liquid. It says "Rat Away" on the side./Dining Hall
