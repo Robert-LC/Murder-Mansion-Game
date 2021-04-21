@@ -4,9 +4,10 @@ public class Suspect {
     private String name;
     private String location;
     private String description;
-    private ArrayList<String> dialogue;
+    private ArrayList<Clue> associatedClues;
     private int greetedCounter = 0; //Simple counter, that will be used to count how many times a Suspect has been talked to for dialogue options
     private Boolean guilty;
+
 
 
 
@@ -39,16 +40,6 @@ public class Suspect {
     public void setDescription(String description)
     {
         this.description = description;
-    }
-
-    public ArrayList<String> getDialogue()
-    {
-        return dialogue;
-    }
-
-    public void setDialogue(ArrayList<String> dialogue)
-    {
-        this.dialogue = dialogue;
     }
 
     public Boolean getGuilty()
@@ -84,5 +75,15 @@ public class Suspect {
     public void incrementGreetedCounter()
     {
         greetedCounter++;
+    }
+
+    public ArrayList<Clue> getAssociatedClues()
+    {
+        return associatedClues;
+    }
+
+    public void setAssociatedClues(ArrayList<Clue> associatedClues)
+    {
+        this.associatedClues = associatedClues;
     }
 }

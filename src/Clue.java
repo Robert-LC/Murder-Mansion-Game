@@ -30,7 +30,12 @@ public class Clue extends Item implements PointValue
     {
         return suspect;
     }
-    
+
+    public void setSuspect(Suspect suspect)
+    {
+        this.suspect = suspect;
+    }
+
     // DO NOT DELETE, NEED BLANK CONSTRUCTOR TO READ FROM FILE
     Clue(){}
 

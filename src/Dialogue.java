@@ -42,12 +42,12 @@ public class Dialogue
             greetMsg += "Hello Detective, my name is "  + s.getName() + ". What brings you to the " + s.getLocation() + "?";
             s.incrementGreetedCounter();
         }
-        else if(s.getGreetedCounter() >= 2 && s.getGreetedCounter() <= 5)
+        else if(s.getGreetedCounter() >= 1 && s.getGreetedCounter() <= 5)
         {
             greetMsg += "Hey Detective, nice to see you again. What can I do for you?";
             s.incrementGreetedCounter();
         }
-        else if(s.getGreetedCounter() > 6) // Once it gets to 6, the greet button will no longer open up the other dialogue options.
+        else if(s.getGreetedCounter() >= 6) // Once it gets to 6, the greet button will no longer open up the other dialogue options.
         {
             greetMsg += "Ive had enough of your annoying antics, don't talk to me again!";
             s.incrementGreetedCounter();
@@ -63,32 +63,63 @@ public class Dialogue
      * @param s - A Suspect Object, the Suspect that is being talked to.
      * @return - A String of dialogue
      */
-    public static String question(Suspect s)
+    public static String question(Suspect s, Mansion m)
     {
         Random rand = new Random();
+        Random rand2 = new Random();
         String questionMsg = "";
 
         //Returns a number between 0 and 99, then add 1, which makes it return a number between 1 and 100;
         int r = rand.nextInt(100) + 1;
+        int r2 = rand2.nextInt(7);
 
         // random number between 1-100. If number is between 1-20 AND suspect is NOT the murderer, give clue about actual murderer
         // else give useless statement.
         // 1 - 20 helpful clues, 21 - 100 useless.
         if(r <= 5 && s.getGuilty() == false)
         {
-            questionMsg += "I think I saw VARIABLE MURDERER.NAME acting strange.";
+            questionMsg += "I think I saw " + m.getCulprit().getName() + "acting suspicious.";
         }
         else if(r >= 6 && r <= 10 && s.getGuilty() == false)
         {
-            questionMsg += "I couldn't tell if it was VARIABLE MURDER.NAME or SUSPECT.NAME, but I saw one of them holding a CLUE.GETNAME";
+            // Switches if the person saw the guilty party with their matching clue or, just a dud clue.
+            if(r >= 8)
+            {
+                // 1. Culprit Name
+                // 2. Name of Random Suspect
+                // 3. First Clue associated to guilty suspect.
+                questionMsg += "I couldn't tell if it was " + m.getCulprit().getName() +
+                        " or " + m.getRooms().get(r2).getName() + ", but I saw one of them holding "
+                        + m.getCulprit().getAssociatedClues().get(0) + ".";
+            }
+            else
+            {
+                // 1. Name of Random Suspect
+                // 2. Culprit Name
+                // 3. Random Clue.
+                questionMsg += "I couldn't tell if it was " + m.getRooms().get(r2).getName() +
+                        " or " + m.getCulprit().getName() + ", but I saw one of them holding "
+                        + m.getRooms().get(r2).getContents().get(0).getName() + ".";
+            }
         }
         else if(r >= 11 && r <= 20 && s.getGuilty() == false)
         {
-            questionMsg += "I think I heard a weird noise near MURDERER.getLocation or randomSuspect.getLocation.";
+            // Switch the names based on number so the dialogue cant be cheated.
+            if(r >= 15)
+            {
+                questionMsg += "I think I heard a loud scream near " + m.getCulprit().getLocation() + " or " +
+                        m.getRooms().get(r2).getName() + " I can't really tell for sure though.";
+            }
+            else
+            {
+                questionMsg += "I think I heard a loud scream near " + m.getRooms().get(r2).getName()  + " or " +
+                        m.getCulprit().getLocation() + " I can't really tell for sure though.";
+            }
+
         }
         else
         {
-            questionMsg += "I haven't seen anything out of the ordinary.";
+            questionMsg += "I haven't seen anything out of the ordinary. I'll keep an eye out!";
         }
         return questionMsg;
     }

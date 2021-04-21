@@ -9,6 +9,8 @@
  * ==========================================================================================
  */
 
+import com.sun.source.tree.ArrayAccessTree;
+
 import java.util.Random; //used to generate a random number to assign an item to a room
 import java.util.ArrayList; //used to get roomnames from a collection of rooms
 import java.util.HashMap; //used to access HashMap methods
@@ -21,6 +23,7 @@ import java.util.HashMap; //used to access HashMap methods
  */
 public class Randomize
 {
+
     /**
      * Randomizes the clues in the items HashMap to room locations. Chooses the three that connect
      * to a randomly chosen suspect, and assigns those to different rooms. Then gets some dummy clues
@@ -42,19 +45,31 @@ public class Randomize
 
         for(Item item : items.values()) //iterates through the HashMap and adds all clue objects to a temp ArrayList
         {
-            if(item.getClass().getName().equals("Clue"))
+            //Only adds items that are Clues, and not consumables or utility.
+            if(item instanceof Clue)
             {
                 clues.add((Clue)item);
             }
         }
-        for(Clue myClue:clues) //gets the three clues that match with the guilty suspect and adds it to the ArrayList used for randomizing
+
+
+        /*for(Clue myClue:clues) //gets the three clues that match with the guilty suspect and adds it to the ArrayList used for randomizing
         {
+
             if((myClue.getSuspect().getName().equals(guiltyParty.getName())))
             {
-                finalClues.add((Clue)myClue);
+                finalClues.add(myClue);
             }
+        }*/
+
+        // Adds the first 3 clues in the clue array to be assigned to the guilty party, and the final clue array.
+        for(int i = 0; i < 3; i++)
+        {
+            finalClues.add(clues.get(i));
         }
-        Clue temp;
+
+
+        /*Clue temp;
         while(finalClues.size() != 6) //adds some dummy clues that aren't related to the guilty suspect. This amount is changable by changing the number in the while loop
         {
             temp = clues.get(rand.nextInt(clues.size()));
@@ -62,7 +77,7 @@ public class Randomize
             {
                 finalClues.add((Clue)temp);
             }
-        }
+        }*/
         ArrayList<Room> tempRooms = new ArrayList<>();
         for(Room room:rooms) //loops through the ArrayList of rooms to find all INACCESSABLE rooms
         {
@@ -73,12 +88,17 @@ public class Randomize
         }
         //Assigns the first clue that is important to the guilty suspect to an INACCESSABLE room
         //This is so at least one item that is neccessary to win is in a room you'll need to work for to get into
-        finalClues.get(0).setRoomLocation(tempRooms.get(rand.nextInt(tempRooms.size())).getName());
+        //finalClues.get(0).setRoomLocation(tempRooms.get(rand.nextInt(tempRooms.size())).getName());
+
 
         for(int loop = 1; loop < finalClues.size(); loop++) //Loops through the other randomly selected items and assigns them randomly to any room. This can cause duplicates but it's fine cause it's random
         {
             finalClues.get(loop).setRoomLocation(rooms.get(rand.nextInt(rooms.size())).getName());
         }
+        //Assign the list of clues to the guiltyParty;
+
         return guiltyParty;
     }//end randomize()
+
+
 }//end randomizeItems

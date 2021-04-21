@@ -1,17 +1,24 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Random;
 
 public class Mansion {
     private HashMap<String, Room> map;
     private ArrayList<Room> rooms;
-    private ArrayList<Suspect> suspects;
+    //private ArrayList<Suspect> suspects;
+    private Suspect culprit;
+    private Random rand = new Random();
 
     public Mansion() {
         map = new HashMap<>();
         rooms = new ArrayList<>();
-        suspects = new ArrayList<>();
         FileReaderClass reader = new FileReaderClass();
+        //Creates Rooms, adds items, and suspects to those rooms based on file.
         rooms = reader.readRoomFile("rooms.txt", reader.readItemsFile("Items.txt"), reader.readSuspectFile("suspects.txt"));
+
+
+        culprit = Randomize.randomize(reader.readItemsFile("Items.txt"), rooms, reader.readSuspectFile("suspects.txt"));
+
         this.build();
     }
 
@@ -41,13 +48,18 @@ public class Mansion {
         this.rooms = rooms;
     }
 
-    public ArrayList<Suspect> getSuspects()
+    public Suspect getCulprit()
     {
-        return suspects;
+        return culprit;
     }
 
-    public void setSuspects(ArrayList<Suspect> suspects)
-    {
-        this.suspects = suspects;
-    }
+    //public ArrayList<Suspect> getSuspects()
+    //{
+        //return suspects;
+    //}
+
+    //public void setSuspects(ArrayList<Suspect> suspects)
+    //{
+        //this.suspects = suspects;
+    //}
 }

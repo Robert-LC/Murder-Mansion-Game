@@ -43,6 +43,7 @@ public class FileReaderClass
                     clu.setDescription(info[2]);
                     clu.setRoomLocation(info[3]);
 
+
                     itemTypeHashMap.put(info[1], clu);
                 }
                 else if(info[0].equalsIgnoreCase("utility"))
@@ -170,9 +171,6 @@ public class FileReaderClass
                 //Didn't add guilty boolean from file - Instead all Suspects guilty = false.
                 //Then in Mansion constructor, we draw one random suspect from the arrayList and set their boolean
                 //Guilty = true;
-
-                //Either we have to dialogue individually for each character, or make another text file that can be
-                //used as a pool of dialogue that all characters share.
 
                 // Finally add the created Suspect to the suspectArray
                 suspectArray.add(s);

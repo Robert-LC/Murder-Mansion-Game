@@ -14,6 +14,7 @@ public class Main extends Application {
         Parent root = loader.load();
         primaryStage.setTitle("Murder Mansion");
         primaryStage.setScene(new Scene(root));
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 

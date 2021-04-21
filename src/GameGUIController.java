@@ -40,6 +40,9 @@ public class GameGUIController {
     private Button quitTalkButton;
 
     @FXML
+    private Button questionButton;
+
+    @FXML
     private Button notepadButton;
 
     @FXML
@@ -108,6 +111,7 @@ public class GameGUIController {
         invSlot8.managedProperty().bind(invSlot8.visibleProperty());
         invSlot9.managedProperty().bind(invSlot9.visibleProperty());
         quitTalkButton.managedProperty().bind(quitTalkButton.visibleProperty());
+        questionButton.managedProperty().bind(questionButton.visibleProperty());
         contextButton1.managedProperty().bind(contextButton1.visibleProperty());
         contextButton2.managedProperty().bind(contextButton2.visibleProperty());
         invSlot1.setVisible(false);
@@ -122,6 +126,7 @@ public class GameGUIController {
         contextButton1.setVisible(false);
         contextButton2.setVisible(false);
         quitTalkButton.setVisible(false);
+        questionButton.setVisible(false);
         exitButton1.setText("Kitchen");
         exitButton2.setText("Library");
         exitButton3.setText("Bedroom");
@@ -637,21 +642,37 @@ public class GameGUIController {
     {
         //Return dialogue to screen
         textArea.setText(Dialogue.greet(m.getRoom(location).getSuspects().get(0)));
-
         //Disable other buttons to prevent problems
-        actionButton1.setDisable(true);
-        actionButton2.setDisable(true);
-        actionButton3.setDisable(true);
-        actionButton4.setDisable(true);
-        exitButton1.setDisable(true);
-        exitButton2.setDisable(true);
-        exitButton3.setDisable(true);
-        exitButton4.setDisable(true);
-        contextButton1.setDisable(true);
-        contextButton1.setDisable(true);
+        disableAllButtons();
+
+        // If the user has greeted them 6 times do not re-enable the question button.
+        if(m.getRoom(location).getSuspects().get(0).getGreetedCounter() <= 6)
+        {
+            questionButton.setVisible(true);
+        }
+        else
+        {
+            questionButton.setVisible(false);
+        }
 
         quitTalkButton.setVisible(true);
+        turn++;
+        updateButtons();
     }
+
+    @FXML
+    void questionButtonPressed(ActionEvent event)
+    {
+        //Return question answer from suspect to screen
+        textArea.setText(Dialogue.question(m.getRoom(location).getSuspects().get(0), m));
+
+        //Disable other buttons to prevent problems
+        disableAllButtons();
+
+        talkButton.setDisable(true);
+        questionButton.setDisable(true);
+    }
+
 
     @FXML
     void quitTalkButtonPressed(ActionEvent event)
@@ -660,6 +681,17 @@ public class GameGUIController {
         textArea.setText(m.getRoom(location).getDesc());
 
         //Re-enable navigation and action buttons
+        enableAllButtons();
+
+        questionButton.setDisable(false);
+        questionButton.setVisible(false);
+        quitTalkButton.setVisible(false);
+    }
+
+
+    //Inside method used to disable all buttons.
+    void enableAllButtons()
+    {
         actionButton1.setDisable(false);
         actionButton2.setDisable(false);
         actionButton3.setDisable(false);
@@ -670,8 +702,22 @@ public class GameGUIController {
         exitButton4.setDisable(false);
         contextButton1.setDisable(false);
         contextButton1.setDisable(false);
+        talkButton.setDisable(false);
+    }
 
-        quitTalkButton.setVisible(false);
+    void disableAllButtons()
+    {
+        actionButton1.setDisable(true);
+        actionButton2.setDisable(true);
+        actionButton3.setDisable(true);
+        actionButton4.setDisable(true);
+        exitButton1.setDisable(true);
+        exitButton2.setDisable(true);
+        exitButton3.setDisable(true);
+        exitButton4.setDisable(true);
+        contextButton1.setDisable(true);
+        contextButton1.setDisable(true);
+        talkButton.setDisable(true);
     }
 
 }
