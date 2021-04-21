@@ -115,6 +115,7 @@ public class GameGUIController {
         invSlot7.managedProperty().bind(invSlot7.visibleProperty());
         invSlot8.managedProperty().bind(invSlot8.visibleProperty());
         invSlot9.managedProperty().bind(invSlot9.visibleProperty());
+        talkButton.managedProperty().bind(talkButton.visibleProperty());
         quitTalkButton.managedProperty().bind(quitTalkButton.visibleProperty());
         questionButton.managedProperty().bind(questionButton.visibleProperty());
         contextButton1.managedProperty().bind(contextButton1.visibleProperty());
@@ -142,6 +143,7 @@ public class GameGUIController {
         actionButton3.setText("Broken Glass");
         actionButton4.setVisible(false);
         turn = 1;
+        this.updateButtons(); //needs to be called so greet button will work on Butler Billy.
     }
 
     @FXML
@@ -159,6 +161,7 @@ public class GameGUIController {
         turn ++;
         location = exitButton1.getText();
         textArea.setText(m.getRoom(location).getDesc());
+        p.setLocation(location);
         this.updateButtons();
     }
 
@@ -167,6 +170,7 @@ public class GameGUIController {
         turn ++;
         location = exitButton2.getText();
         textArea.setText(m.getRoom(location).getDesc());
+        p.setLocation(location);
         this.updateButtons();
     }
 
@@ -175,6 +179,7 @@ public class GameGUIController {
         turn ++;
         location = exitButton3.getText();
         textArea.setText(m.getRoom(location).getDesc());
+        p.setLocation(location);
         this.updateButtons();
     }
 
@@ -183,6 +188,7 @@ public class GameGUIController {
         turn ++;
         location = exitButton4.getText();
         textArea.setText(m.getRoom(location).getDesc());
+        p.setLocation(location);
         this.updateButtons();
     }
 
@@ -688,6 +694,7 @@ public class GameGUIController {
         questionButton.setDisable(false);
         questionButton.setVisible(false);
         quitTalkButton.setVisible(false);
+        this.updateButtons();
     }
 
 
