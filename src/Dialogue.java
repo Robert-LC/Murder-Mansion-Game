@@ -76,11 +76,11 @@ public class Dialogue
         // random number between 1-100. If number is between 1-20 AND suspect is NOT the murderer, give clue about actual murderer
         // else give useless statement.
         // 1 - 50 helpful clues, 51 - 100 useless.
-        if(r <= 5 && s.getGuilty() == false)
+        if(r <= 5 && !s.getGuilty())
         {
             questionMsg += "I think I saw " + m.getCulprit().getName() + " running from the crime!";
         }
-        else if(r >= 6 && r <= 10 && s.getGuilty() == false)
+        else if(r >= 6 && r <= 10 && !s.getGuilty())
         {
             // Switches if the person saw the guilty party with their matching clue or, just a dud clue.
             if(r >= 8)
@@ -89,33 +89,30 @@ public class Dialogue
                 // 2. Name of Random Suspect
                 // 3. First Clue associated to guilty suspect.
                 questionMsg += "I couldn't tell if it was " + m.getCulprit().getName() +
-                        " or " + m.getRooms().get(r2).getName() + ", but I saw one of them holding "
-                        + m.getCulprit().getAssociatedClues().get(0) + ".";
+                        " or " + m.getRooms().get(r2).getSuspects().get(0).getName() + ", but I saw one of them sneaking around.";
             }
             else
             {
                 // 1. Name of Random Suspect
                 // 2. Culprit Name
                 // 3. Random Clue.
-                questionMsg += "I couldn't tell if it was " + m.getRooms().get(r2).getName() +
-                        " or " + m.getCulprit().getName() + ", but I saw one of them holding "
-                        + m.getRooms().get(r2).getContents().get(0).getName() + ".";
+                questionMsg += "I couldn't tell if it was " + m.getRooms().get(r2).getSuspects().get(0).getName() +
+                        " or " + m.getCulprit().getName() + ", but I saw one of them sneaking around.";
             }
         }
-        else if(r >= 11 && r <= 50 && s.getGuilty() == false)
+        else if(r >= 11 && r <= 50 && !s.getGuilty())
         {
             // Switch the names based on number so the dialogue cant be cheated.
             if(r >= 40)
             {
                 questionMsg += "I think I heard a loud scream near " + m.getCulprit().getLocation() + " or " +
-                        m.getRooms().get(r2).getName() + " I can't really tell for sure though.";
+                        m.getRooms().get(r2).getName() + ", I can't really tell for sure though.";
             }
             else
             {
                 questionMsg += "I think I heard a loud scream near " + m.getRooms().get(r2).getName()  + " or " +
                         m.getCulprit().getLocation() + " I can't really tell for sure though.";
             }
-
         }
         else
         {

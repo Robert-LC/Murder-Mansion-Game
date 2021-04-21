@@ -4,22 +4,12 @@ public class Suspect {
     private String name;
     private String location;
     private String description;
-    private ArrayList<Clue> associatedClues;
     private int greetedCounter = 0; //Simple counter, that will be used to count how many times a Suspect has been talked to for dialogue options
     private Boolean guilty;
-
-
-
 
     public Suspect()
     {
         //Read info from file
-    }
-
-    public String talk(int index) {
-        //Display the String kept in the Array List at index
-        //TODO: Build dialogue decision tree class?
-        return "";
     }
 
     public String getName()
@@ -75,15 +65,5 @@ public class Suspect {
     public void incrementGreetedCounter()
     {
         greetedCounter++;
-    }
-
-    public ArrayList<Clue> getAssociatedClues()
-    {
-        return associatedClues;
-    }
-
-    public void setAssociatedClues(ArrayList<Clue> associatedClues)
-    {
-        this.associatedClues = associatedClues;
     }
 }

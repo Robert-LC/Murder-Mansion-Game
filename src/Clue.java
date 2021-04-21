@@ -16,9 +16,9 @@
  * 
  * @author Megan Toth
  */
-public class Clue extends Item implements PointValue
+public class Clue extends Item
 {
-    private Suspect suspect;
+    private String associatedSuspect;
     
     // Constructor for Clues calls the Item Constructor.
     Clue(String name, String description, String roomLocation)
@@ -26,29 +26,16 @@ public class Clue extends Item implements PointValue
         super(name, description, roomLocation);
     }
     
-    public Suspect getSuspect()
+    public String getAssociatedSuspect()
     {
-        return suspect;
+        return associatedSuspect;
     }
 
-    public void setSuspect(Suspect suspect)
+    public void setAssociatedSuspect(String suspectName)
     {
-        this.suspect = suspect;
+        this.associatedSuspect = suspectName;
     }
 
     // DO NOT DELETE, NEED BLANK CONSTRUCTOR TO READ FROM FILE
     Clue(){}
-
-    public int calcPoints()
-    {
-        if(suspect.getGuilty())
-        {
-            return 1;
-        }
-        else
-        {
-            return 0;
-        }
-    }
-
 }

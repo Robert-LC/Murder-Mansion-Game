@@ -17,7 +17,7 @@ public class Mansion {
         rooms = reader.readRoomFile("rooms.txt", reader.readItemsFile("Items.txt"), reader.readSuspectFile("suspects.txt"));
 
 
-        culprit = Randomize.randomize(reader.readItemsFile("Items.txt"), rooms, reader.readSuspectFile("suspects.txt"));
+        culprit = Randomize.randomize(reader.readSuspectFile("suspects.txt"));
 
         this.build();
     }

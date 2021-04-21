@@ -42,7 +42,7 @@ public class FileReaderClass
                     clu.setName(info[1]);
                     clu.setDescription(info[2]);
                     clu.setRoomLocation(info[3]);
-
+                    clu.setAssociatedSuspect(info[4]);
 
                     itemTypeHashMap.put(info[1], clu);
                 }
@@ -166,6 +166,7 @@ public class FileReaderClass
                 s.setLocation(info[1]);
                 s.setDescription(info[2]);
                 s.setGuilty(false);
+
 
 
                 //Didn't add guilty boolean from file - Instead all Suspects guilty = false.
