@@ -1,9 +1,14 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class GameGUIController {
@@ -123,10 +128,10 @@ public class GameGUIController {
         invSlot7.setVisible(false);
         invSlot8.setVisible(false);
         invSlot9.setVisible(false);
-        contextButton1.setVisible(false);
-        contextButton2.setVisible(false);
         quitTalkButton.setVisible(false);
         questionButton.setVisible(false);
+        contextButton1.setVisible(false);
+        contextButton2.setVisible(false);
         exitButton1.setText("Kitchen");
         exitButton2.setText("Library");
         exitButton3.setText("Bedroom");
@@ -137,12 +142,16 @@ public class GameGUIController {
         actionButton3.setText("Broken Glass");
         actionButton4.setVisible(false);
         turn = 1;
-        this.updateButtons(); //needs to be called so greet button will work on Butler Billy.
     }
 
     @FXML
-    void notepadButtonPressed(ActionEvent event)
-    {
+    void notepadButtonPressed(ActionEvent event) throws IOException {
+        Stage thirdStage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("NotepadScreen.fxml"));
+        Parent root = loader.load();
+        thirdStage.setTitle("Murder Mansion - Notepad");
+        thirdStage.setScene(new Scene(root));
+        thirdStage.show();
     }
 
     @FXML
@@ -150,7 +159,6 @@ public class GameGUIController {
         turn ++;
         location = exitButton1.getText();
         textArea.setText(m.getRoom(location).getDesc());
-        p.setLocation(location);
         this.updateButtons();
     }
 
@@ -159,7 +167,6 @@ public class GameGUIController {
         turn ++;
         location = exitButton2.getText();
         textArea.setText(m.getRoom(location).getDesc());
-        p.setLocation(location);
         this.updateButtons();
     }
 
@@ -168,7 +175,6 @@ public class GameGUIController {
         turn ++;
         location = exitButton3.getText();
         textArea.setText(m.getRoom(location).getDesc());
-        p.setLocation(location);
         this.updateButtons();
     }
 
@@ -177,7 +183,6 @@ public class GameGUIController {
         turn ++;
         location = exitButton4.getText();
         textArea.setText(m.getRoom(location).getDesc());
-        p.setLocation(location);
         this.updateButtons();
     }
 
@@ -503,15 +508,15 @@ public class GameGUIController {
                 buttonClicked = -1;
             }
             else if (buttonClicked == 2) {
-            exitButton1.setVisible(true);
-            exitButton2.setVisible(true);
-            exitButton3.setVisible(true);
-            exitButton4.setVisible(true);
-            contextButton1.setVisible(false);
-            contextButton2.setVisible(false);
-            textArea.setText(m.getRoom(location).getDesc());
-            this.updateButtons();
-            buttonClicked = -1;
+                exitButton1.setVisible(true);
+                exitButton2.setVisible(true);
+                exitButton3.setVisible(true);
+                exitButton4.setVisible(true);
+                contextButton1.setVisible(false);
+                contextButton2.setVisible(false);
+                textArea.setText(m.getRoom(location).getDesc());
+                this.updateButtons();
+                buttonClicked = -1;
             }
         }
     }
@@ -529,7 +534,6 @@ public class GameGUIController {
         }
         actionButtonClicked=1;
         displayItemPrompt(toRemove);
-        this.updateButtons();
     }
 
     @FXML
@@ -545,7 +549,6 @@ public class GameGUIController {
         }
         actionButtonClicked=2;
         displayItemPrompt(toRemove);
-        this.updateButtons();
     }
 
     @FXML
@@ -561,7 +564,6 @@ public class GameGUIController {
         }
         actionButtonClicked=3;
         displayItemPrompt(toRemove);
-        this.updateButtons();
     }
 
     private void displayItemPrompt(Item toRemove) {
@@ -719,5 +721,4 @@ public class GameGUIController {
         contextButton1.setDisable(true);
         talkButton.setDisable(true);
     }
-
 }
