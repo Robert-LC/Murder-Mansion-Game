@@ -34,7 +34,10 @@ public class GameGUIController {
     private Button actionButton4;
 
     @FXML
-    private Button greetButton;
+    private Button talkButton;
+
+    @FXML
+    private Button quitTalkButton;
 
     @FXML
     private Button notepadButton;
@@ -104,7 +107,7 @@ public class GameGUIController {
         invSlot7.managedProperty().bind(invSlot7.visibleProperty());
         invSlot8.managedProperty().bind(invSlot8.visibleProperty());
         invSlot9.managedProperty().bind(invSlot9.visibleProperty());
-        //greetButton.managedProperty().bind(greetButton.visibleProperty());
+        quitTalkButton.managedProperty().bind(quitTalkButton.visibleProperty());
         contextButton1.managedProperty().bind(contextButton1.visibleProperty());
         contextButton2.managedProperty().bind(contextButton2.visibleProperty());
         invSlot1.setVisible(false);
@@ -116,9 +119,9 @@ public class GameGUIController {
         invSlot7.setVisible(false);
         invSlot8.setVisible(false);
         invSlot9.setVisible(false);
-        //greetButton.setVisible(false);
         contextButton1.setVisible(false);
         contextButton2.setVisible(false);
+        quitTalkButton.setVisible(false);
         exitButton1.setText("Kitchen");
         exitButton2.setText("Library");
         exitButton3.setText("Bedroom");
@@ -175,7 +178,7 @@ public class GameGUIController {
 
     void updateButtons() {
         turnNumText.setText("Turn: " + turn);
-        greetButton.setText("Greet " + m.getRoom(p.getLocation()).getSuspects().get(0).getName());
+        talkButton.setText("Greet " + m.getRoom(p.getLocation()).getSuspects().get(0).getName());
         String[] array = m.getRoom(location).getExits();
         for(int i = 0; i < array.length; i++) {
             if(array[i] != null) {
@@ -630,8 +633,45 @@ public class GameGUIController {
     }
 
     @FXML
-    void greetButtonPressed(ActionEvent event)
+    void talkButtonPressed(ActionEvent event)
     {
-        //Dialogue.greet(m.getRoom(location).getSuspects().get(0));
+        //Return dialogue to screen
+        textArea.setText(Dialogue.greet(m.getRoom(location).getSuspects().get(0)));
+
+        //Disable other buttons to prevent problems
+        actionButton1.setDisable(true);
+        actionButton2.setDisable(true);
+        actionButton3.setDisable(true);
+        actionButton4.setDisable(true);
+        exitButton1.setDisable(true);
+        exitButton2.setDisable(true);
+        exitButton3.setDisable(true);
+        exitButton4.setDisable(true);
+        contextButton1.setDisable(true);
+        contextButton1.setDisable(true);
+
+        quitTalkButton.setVisible(true);
     }
+
+    @FXML
+    void quitTalkButtonPressed(ActionEvent event)
+    {
+        //Return room description to screen
+        textArea.setText(m.getRoom(location).getDesc());
+
+        //Re-enable navigation and action buttons
+        actionButton1.setDisable(false);
+        actionButton2.setDisable(false);
+        actionButton3.setDisable(false);
+        actionButton4.setDisable(false);
+        exitButton1.setDisable(false);
+        exitButton2.setDisable(false);
+        exitButton3.setDisable(false);
+        exitButton4.setDisable(false);
+        contextButton1.setDisable(false);
+        contextButton1.setDisable(false);
+
+        quitTalkButton.setVisible(false);
+    }
+
 }

@@ -42,13 +42,14 @@
                 </TitledPane>
                 <TitledPane animated="false" text="Actions">
                   <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0">
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="220.0" prefWidth="107.0">
                            <children>
                               <Button fx:id="actionButton1" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#actionButton1Pressed" text="Button" AnchorPane.bottomAnchor="141.20000000000002" />
-                              <Button fx:id="actionButton2" layoutX="14.0" layoutY="40.0" mnemonicParsing="false" onAction="#actionButton2Pressed" text="Button" />
-                              <Button fx:id="actionButton3" layoutX="14.0" layoutY="77.0" mnemonicParsing="false" onAction="#actionButton3Pressed" text="Button" />
+                              <Button fx:id="actionButton2" layoutX="14.0" layoutY="9.0" mnemonicParsing="false" onAction="#actionButton2Pressed" text="Button" />
+                              <Button fx:id="actionButton3" layoutX="14.0" layoutY="79.0" mnemonicParsing="false" onAction="#actionButton3Pressed" text="Button" />
                               <Button fx:id="actionButton4" layoutX="14.0" layoutY="114.0" mnemonicParsing="false" onAction="#actionButton4Pressed" text="Button" />
-                              <Button fx:id="greetButton" layoutX="14.0" layoutY="151.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#greetButtonPressed" text="Greet" />
+                              <Button fx:id="talkButton" layoutX="14.0" layoutY="149.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#talkButtonPressed" text="Talk" />
+                              <Button fx:id="quitTalkButton" layoutX="14.0" layoutY="184.0" mnemonicParsing="false" onAction="#quitTalkButtonPressed" text="Quit Talking" />
                            </children>
                         </AnchorPane>
                   </content>

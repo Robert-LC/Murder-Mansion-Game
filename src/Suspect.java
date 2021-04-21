@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 
 public class Suspect {
-    String name;
-    String location;
-    String description;
-    ArrayList<String> dialogue;
-    int greetedCounter = 0; //Simple counter, that will be used to count how many times a Suspect has been talked to for dialogue options
-    Boolean guilty;
+    private String name;
+    private String location;
+    private String description;
+    private ArrayList<String> dialogue;
+    private int greetedCounter = 0; //Simple counter, that will be used to count how many times a Suspect has been talked to for dialogue options
+    private Boolean guilty;
 
 
 
@@ -79,5 +79,10 @@ public class Suspect {
     public void setGreetedCounter(int greetedCounter)
     {
         this.greetedCounter = greetedCounter;
+    }
+
+    public void incrementGreetedCounter()
+    {
+        greetedCounter++;
     }
 }

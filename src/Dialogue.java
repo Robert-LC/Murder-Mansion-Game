@@ -40,14 +40,17 @@ public class Dialogue
         if(s.getGreetedCounter() == 0)
         {
             greetMsg += "Hello Detective, my name is "  + s.getName() + ". What brings you to the " + s.getLocation() + "?";
+            s.incrementGreetedCounter();
         }
         else if(s.getGreetedCounter() >= 2 && s.getGreetedCounter() <= 5)
         {
             greetMsg += "Hey Detective, nice to see you again. What can I do for you?";
+            s.incrementGreetedCounter();
         }
         else if(s.getGreetedCounter() > 6) // Once it gets to 6, the greet button will no longer open up the other dialogue options.
         {
             greetMsg += "Ive had enough of your annoying antics, don't talk to me again!";
+            s.incrementGreetedCounter();
         }
 
         return greetMsg;
