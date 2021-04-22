@@ -16,7 +16,7 @@
  * 
  * @author Megan Toth
  */
-public class Clue extends Item
+public class Clue extends Item implements PointValue
 {
     private String associatedSuspect;
     
@@ -35,6 +35,8 @@ public class Clue extends Item
     {
         this.associatedSuspect = suspectName;
     }
+    
+    public void 
 
     // DO NOT DELETE, NEED BLANK CONSTRUCTOR TO READ FROM FILE
     Clue(){}
