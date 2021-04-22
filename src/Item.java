@@ -1,12 +1,14 @@
 public abstract class Item
 {
     private String name, description, roomLocation;
+    private int points;
 
-    public Item(String name, String description, String roomLocation)
+    public Item(String name, String description, String roomLocation, int points)
     {
         this.name = name;
         this.description = description;
         this.roomLocation = roomLocation;
+        this.points = 10;
     }
 
     // DO NOT DELETE, NEED BLANK CONSTRUCTOR TO READ FROM FILE
@@ -40,5 +42,15 @@ public abstract class Item
     public void setRoomLocation(String roomLocation)
     {
         this.roomLocation = roomLocation;
+    }
+    
+    public void setPoints(int points)
+    {
+        this.points = 10;
+    }
+    
+    public int getPoints()
+    {
+        return points;
     }
 }
