@@ -23,7 +23,7 @@ public class Consumable extends Item implements PointValue
     // Constructor for consumable calls the Item Constructor.
     Consumable(String name, String description, String roomLocation, int points)
     {
-        super(name, description, roomLocation);
+        super(name, description, roomLocation, points);
     }
     
     public int calcPoints()
