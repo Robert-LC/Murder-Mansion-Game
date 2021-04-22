@@ -16,7 +16,7 @@
  * 
  * @author Megan Toth
  */
-public class Consumable extends Item
+public class Consumable extends Item implements PointValue
 {
     private String type;
     
@@ -26,9 +26,10 @@ public class Consumable extends Item
         super(name, description, roomLocation);
     }
     
-    public void consume()
+    public int calcPoints(points)
     {
-
+        int points = 5;
+        return points;
     }
 
     // DO NOT DELETE, NEED BLANK CONSTRUCTOR TO READ FROM FILE
