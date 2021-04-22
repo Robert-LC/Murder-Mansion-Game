@@ -114,7 +114,10 @@ public class GameGUIController
     private Button exitButton4;
 
     @FXML
-    private AnchorPane chooseSuspectCluePane;
+    private AnchorPane chooseSuspectPane;
+
+    @FXML
+    private AnchorPane chooseCluePane;
 
     @FXML
     private Button exitGuessButton;
@@ -142,6 +145,34 @@ public class GameGUIController
 
     @FXML
     private Button accuseMotherButton;
+
+
+    @FXML
+    private Button clue1Button;
+
+    @FXML
+    private Button clue5Button;
+
+    @FXML
+    private Button clue2Button;
+
+    @FXML
+    private Button clue6Button;
+
+    @FXML
+    private Button clue3Button;
+
+    @FXML
+    private Button clue7Button;
+
+    @FXML
+    private Button clue4Button;
+
+    @FXML
+    private Button clue8Button;
+
+    @FXML
+    private Button exitGuessButton2;
 
 
     public void initialize()
@@ -176,7 +207,8 @@ public class GameGUIController
         invSlot7.setVisible(false);
         invSlot8.setVisible(false);
         invSlot9.setVisible(false);
-        chooseSuspectCluePane.setVisible(false);
+        chooseSuspectPane.setVisible(false);
+        chooseCluePane.setVisible(false);
         quitTalkButton.setVisible(false);
         questionButton.setVisible(false);
         contextButton1.setVisible(false);
@@ -251,11 +283,10 @@ public class GameGUIController
     {
         turnNumText.setText("Turn: " + turn);
         talkButton.setText("Greet " + m.getRoom(p.getLocation()).getSuspects().get(0).getName());
-        if(!p.getLocation().equalsIgnoreCase("main hall"))
+        if (!p.getLocation().equalsIgnoreCase("main hall"))
         {
             guessCulpritButton.setVisible(false);
-        }
-        else
+        } else
         {
             guessCulpritButton.setVisible(true);
         }
@@ -816,8 +847,10 @@ public class GameGUIController
     void guessCulpritButtonPressed(ActionEvent event)
     {
         disableAllButtons();
-        chooseSuspectCluePane.setVisible(true);
-        textArea.setText("Greetings Detective, I appreciate you meeting with me. So who did it and what clues indite them?");
+        chooseSuspectPane.setVisible(true);
+        showSuspectButtons();
+        enableAllSuspectButtons();
+        textArea.setText("Greetings Detective, I appreciate you meeting with me. So who did it, and what clues indite them?");
     }
 
     //Inside method used to disable most buttons except for a select few.
@@ -881,7 +914,6 @@ public class GameGUIController
         textArea.setText("So the Butler is the murderer! How can you be so sure?");
         confirmCulpritChoice();
         disableAllSuspectButtons();
-        ;
     }
 
     @FXML
@@ -926,7 +958,6 @@ public class GameGUIController
         textArea.setText("So the Gardener is the murderer! How can you be so sure?");
         confirmCulpritChoice();
         disableAllSuspectButtons();
-        ;
     }
 
     @FXML
@@ -935,7 +966,6 @@ public class GameGUIController
         textArea.setText("So the Librarian is the murderer! How can you be so sure?");
         confirmCulpritChoice();
         disableAllSuspectButtons();
-        ;
     }
 
     @FXML
@@ -950,19 +980,29 @@ public class GameGUIController
     void exitGuessButtonPressed(ActionEvent event)
     {
         enableAllButtons();
-        chooseSuspectCluePane.setVisible(false);
+        chooseSuspectPane.setVisible(false);
         textArea.setText(m.getRoom(location).getDesc());
         guessCluesButton.setVisible(false);
         nevermindButton.setVisible(false);
         updateButtons();
     }
 
-    @FXML void guessCluesButtonPressed(ActionEvent event)
+
+    @FXML
+    void guessCluesButtonPressed(ActionEvent event)
     {
-        ;
+        hideSuspectButtons();
+        nevermindButton.setDisable(false);
+        exitGuessButton.setDisable(false);
+        exitGuessButton.setVisible(false);
+        guessCluesButton.setVisible(false);
+        nevermindButton.setVisible(false);
+        chooseCluePane.setVisible(true);
+        textArea.setText("Ok, so what clue proves it was them?");
     }
 
-    @FXML void nevermindButtonPressed(ActionEvent event)
+    @FXML
+    void nevermindButtonPressed(ActionEvent event)
     {
         enableAllSuspectButtons();
         nevermindButton.setVisible(false);
@@ -974,6 +1014,31 @@ public class GameGUIController
         textArea.setText("Ok, then who was it?");
     }
 
+    @FXML
+    void hideSuspectButtons()
+    {
+        accuseButlerButton.setVisible(false);
+        accuseChefButton.setVisible(false);
+        accuseFatherButton.setVisible(false);
+        accuseGardenerButton.setVisible(false);
+        accuseDaughterButton.setVisible(false);
+        accuseMotherButton.setVisible(false);
+        accuseLibrarianButton.setVisible(false);
+        accuseSonButton.setVisible(false);
+    }
+
+    @FXML
+    void showSuspectButtons()
+    {
+        accuseButlerButton.setVisible(true);
+        accuseChefButton.setVisible(true);
+        accuseFatherButton.setVisible(true);
+        accuseGardenerButton.setVisible(true);
+        accuseDaughterButton.setVisible(true);
+        accuseMotherButton.setVisible(true);
+        accuseLibrarianButton.setVisible(true);
+        accuseSonButton.setVisible(true);
+    }
 
 
     @FXML
@@ -987,6 +1052,67 @@ public class GameGUIController
         nevermindButton.setVisible(true);
         guessCluesButton.setText("Choose Clues");
         nevermindButton.setText("Never mind, I think it was someone else.");
+    }
+
+    @FXML
+    void clue1ButtonPressed(ActionEvent event)
+    {
+
+    }
+
+    @FXML
+    void clue2ButtonPressed(ActionEvent event)
+    {
+
+    }
+
+    @FXML
+    void clue3ButtonPressed(ActionEvent event)
+    {
+
+    }
+
+    @FXML
+    void clue4ButtonPressed(ActionEvent event)
+    {
+
+    }
+
+    @FXML
+    void clue5ButtonPressed(ActionEvent event)
+    {
+
+    }
+
+    @FXML
+    void clue6ButtonPressed(ActionEvent event)
+    {
+
+    }
+
+    @FXML
+    void clue7ButtonPressed(ActionEvent event)
+    {
+
+    }
+
+    @FXML
+    void clue8ButtonPressed(ActionEvent event)
+    {
+
+    }
+
+    @FXML
+    void exitGuessButton2Pressed(ActionEvent event)
+    {
+        enableAllButtons();
+        chooseCluePane.setVisible(false);
+        textArea.setText(m.getRoom(location).getDesc());
+        exitGuessButton.setVisible(true);
+        chooseSuspectPane.setVisible(false);
+        guessCluesButton.setVisible(false);
+        nevermindButton.setVisible(false);
+        updateButtons();
     }
 
 }
