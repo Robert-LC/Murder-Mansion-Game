@@ -19,6 +19,8 @@ public class GameGUIController
     //Set starting location to Main Hall
     private String location = "Main Hall";
 
+    public Suspect accused = new Suspect();
+
     public Mansion m = new Mansion();
 
     public Player p = new Player();
@@ -282,13 +284,18 @@ public class GameGUIController
     void updateButtons()
     {
         turnNumText.setText("Turn: " + turn);
-        talkButton.setText("Greet " + m.getRoom(p.getLocation()).getSuspects().get(0).getName());
-        if (!p.getLocation().equalsIgnoreCase("main hall"))
-        {
-            guessCulpritButton.setVisible(false);
-        } else
-        {
-            guessCulpritButton.setVisible(true);
+        if(m.getRoom(location).getName().equalsIgnoreCase("Closet")) {
+            talkButton.setVisible(false);
+        } else {
+            talkButton.setVisible(true);
+        }
+        if (m.getRoom(location).getSuspects().size()>0) {
+            talkButton.setText("Greet " + m.getRoom(p.getLocation()).getSuspects().get(0).getName());
+            if (!p.getLocation().equalsIgnoreCase("main hall")) {
+                guessCulpritButton.setVisible(false);
+            } else {
+                guessCulpritButton.setVisible(true);
+            }
         }
         String[] array = m.getRoom(location).getExits();
         for (int i = 0; i < array.length; i++)
@@ -422,7 +429,7 @@ public class GameGUIController
             Item toRemove = null;
             for (Item i : m.getRoom(location).getContents())
             {
-                if (i.getName().equalsIgnoreCase(actionButton1.getText()))
+                if (i.getName().equalsIgnoreCase(actionButton1.getText()) && buttonClicked == 1)
                 {
                     //Add item to player inventory
                     p.addItem(i);
@@ -495,13 +502,14 @@ public class GameGUIController
                 textArea.setText(m.getRoom(location).getDesc());
                 this.updateButtons();
                 buttonClicked = -1;
+                System.out.println("HERE");
             }
         } else if (actionButtonClicked == 2)
         {
             Item toRemove = null;
             for (Item i : m.getRoom(location).getContents())
             {
-                if (i.getName().equalsIgnoreCase(actionButton2.getText()))
+                if (i.getName().equalsIgnoreCase(actionButton2.getText()) && buttonClicked == 1)
                 {
                     //Add item to player inventory
                     p.addItem(i);
@@ -580,7 +588,7 @@ public class GameGUIController
             Item toRemove = null;
             for (Item i : m.getRoom(location).getContents())
             {
-                if (i.getName().equalsIgnoreCase(actionButton3.getText()))
+                if (i.getName().equalsIgnoreCase(actionButton3.getText()) && buttonClicked == 1)
                 {
                     //Add item to player inventory
                     p.addItem(i);
@@ -914,6 +922,7 @@ public class GameGUIController
         textArea.setText("So the Butler is the murderer! How can you be so sure?");
         confirmCulpritChoice();
         disableAllSuspectButtons();
+        accused = m.getRoom("Main Hall").suspects.get(0);
     }
 
     @FXML
@@ -922,7 +931,7 @@ public class GameGUIController
         textArea.setText("So the Chef is the murderer! How can you be so sure?");
         confirmCulpritChoice();
         disableAllSuspectButtons();
-        ;
+        accused = m.getRoom("Kitchen").suspects.get(0);
     }
 
     @FXML
@@ -931,7 +940,7 @@ public class GameGUIController
         textArea.setText("So the Son is the murderer! How can you be so sure?");
         confirmCulpritChoice();
         disableAllSuspectButtons();
-        ;
+        accused = m.getRoom("Bedroom").suspects.get(0);
     }
 
     @FXML
@@ -940,7 +949,7 @@ public class GameGUIController
         textArea.setText("So the Daughter is the murderer! How can you be so sure?");
         confirmCulpritChoice();
         disableAllSuspectButtons();
-        ;
+        accused = m.getRoom("Basement").suspects.get(0);
     }
 
     @FXML
@@ -949,7 +958,7 @@ public class GameGUIController
         textArea.setText("So the Father is the murderer! How can you be so sure?");
         confirmCulpritChoice();
         disableAllSuspectButtons();
-        ;
+        accused = m.getRoom("Dining Hall").suspects.get(0);
     }
 
     @FXML
@@ -958,6 +967,7 @@ public class GameGUIController
         textArea.setText("So the Gardener is the murderer! How can you be so sure?");
         confirmCulpritChoice();
         disableAllSuspectButtons();
+        accused = m.getRoom("Garden").suspects.get(0);
     }
 
     @FXML
@@ -966,6 +976,7 @@ public class GameGUIController
         textArea.setText("So the Librarian is the murderer! How can you be so sure?");
         confirmCulpritChoice();
         disableAllSuspectButtons();
+        accused = m.getRoom("Library").suspects.get(0);
     }
 
     @FXML
@@ -974,6 +985,7 @@ public class GameGUIController
         textArea.setText("So the Mother is the murderer! How can you be so sure?");
         confirmCulpritChoice();
         disableAllSuspectButtons();
+        accused = m.getRoom("Bathroom").suspects.get(0);
     }
 
     @FXML
@@ -999,6 +1011,7 @@ public class GameGUIController
         nevermindButton.setVisible(false);
         chooseCluePane.setVisible(true);
         textArea.setText("Ok, so what clue proves it was them?");
+        this.updateClueButtons();
     }
 
     @FXML
@@ -1054,51 +1067,235 @@ public class GameGUIController
         nevermindButton.setText("Never mind, I think it was someone else.");
     }
 
+    void updateClueButtons() {
+        int counter = 0;
+        if(p.getInventory().size() == 0) {
+            textArea.setText("You don't have any clues! Try harder!");
+            nevermindButton.setDisable(false);
+            exitGuessButton.setDisable(false);
+            exitGuessButton.setVisible(false);
+            guessCluesButton.setVisible(false);
+            nevermindButton.setVisible(false);
+            chooseCluePane.setVisible(false);
+            exitButton1.setVisible(true);
+            exitButton2.setVisible(true);
+            exitButton3.setVisible(true);
+            exitButton4.setVisible(true);
+            this.enableAllButtons();
+        }
+        for(int i = 0; i < p.getInventory().size(); i++) {
+            if(p.getInventory().get(i) instanceof Clue) {
+                switch (counter) {
+                    case 0:
+                        clue1Button.setText(p.getInventory().get(i).getName());
+                        break;
+                    case 1:
+                        clue2Button.setText(p.getInventory().get(i).getName());
+                        break;
+                    case 2:
+                        clue3Button.setText(p.getInventory().get(i).getName());
+                        break;
+                    case 3:
+                        clue4Button.setText(p.getInventory().get(i).getName());
+                        break;
+                    case 4:
+                        clue5Button.setText(p.getInventory().get(i).getName());
+                        break;
+                    case 5:
+                        clue6Button.setText(p.getInventory().get(i).getName());
+                        break;
+                    case 6:
+                        clue7Button.setText(p.getInventory().get(i).getName());
+                        break;
+                    case 7:
+                        clue8Button.setText(p.getInventory().get(i).getName());
+                        break;
+                }
+                counter++;
+            }
+        }
+        switch (counter) {
+            case 0:
+                break;
+            case 1:
+                setAllCluesInvisible();
+                clue1Button.setVisible(true);
+                break;
+            case 2:
+                setAllCluesInvisible();
+                clue1Button.setVisible(true);
+                clue2Button.setVisible(true);
+                break;
+            case 3:
+                setAllCluesInvisible();
+                clue1Button.setVisible(true);
+                clue2Button.setVisible(true);
+                clue3Button.setVisible(true);
+                break;
+            case 4:
+                setAllCluesInvisible();
+                clue1Button.setVisible(true);
+                clue2Button.setVisible(true);
+                clue3Button.setVisible(true);
+                clue4Button.setVisible(true);
+                break;
+            case 5:
+                clue8Button.setVisible(true);
+                clue7Button.setVisible(true);
+                clue6Button.setVisible(true);
+                break;
+            case 6:
+                clue8Button.setVisible(false);
+                clue7Button.setVisible(false);
+                break;
+            case 7:
+                clue8Button.setVisible(false);
+                break;
+            case 8:
+                break;
+        }
+    }
+
+    void setAllCluesInvisible() {
+        clue1Button.setVisible(false);
+        clue2Button.setVisible(false);
+        clue3Button.setVisible(false);
+        clue4Button.setVisible(false);
+        clue5Button.setVisible(false);
+        clue6Button.setVisible(false);
+        clue7Button.setVisible(false);
+        clue8Button.setVisible(false);
+    }
+
     @FXML
     void clue1ButtonPressed(ActionEvent event)
     {
+        //Picked a suspect
+        //Picked an item
+        //Suspect we picked, to the actual guilty suspect and also the item that you picked
+        //culprit, clue, accused
+        Clue c = new Clue();
+        for(int i = 0; i < p.getInventory().size(); i++) {
+            if(clue1Button.getText().equals(p.getInventory().get(i).getName())) {
+                c = (Clue) p.getInventory().get(i);
+            }
+        }
+        if(Ending.accuse(p,m.getCulprit(), c, accused)) {
+            System.out.println("WIN");
+        } else
+            System.out.println("LOSE");
 
     }
 
     @FXML
     void clue2ButtonPressed(ActionEvent event)
     {
+        Clue c = new Clue();
+        for(int i = 0; i < p.getInventory().size(); i++) {
+            if(clue2Button.getText().equals(p.getInventory().get(i).getName())) {
+                c = (Clue) p.getInventory().get(i);
+            }
+        }
+        if(Ending.accuse(p,m.getCulprit(), c, accused)) {
+            System.out.println("WIN");
+        } else
+            System.out.println("LOSE");
 
     }
 
     @FXML
     void clue3ButtonPressed(ActionEvent event)
     {
+        Clue c = new Clue();
+        for(int i = 0; i < p.getInventory().size(); i++) {
+            if(clue3Button.getText().equals(p.getInventory().get(i).getName())) {
+                c = (Clue) p.getInventory().get(i);
+            }
+        }
+        if(Ending.accuse(p,m.getCulprit(), c, accused)) {
+            System.out.println("WIN");
+        } else
+            System.out.println("LOSE");
 
     }
 
     @FXML
     void clue4ButtonPressed(ActionEvent event)
     {
+        Clue c = new Clue();
+        for(int i = 0; i < p.getInventory().size(); i++) {
+            if(clue4Button.getText().equals(p.getInventory().get(i).getName())) {
+                c = (Clue) p.getInventory().get(i);
+            }
+        }
+        if(Ending.accuse(p,m.getCulprit(), c, accused)) {
+            System.out.println("WIN");
+        } else
+            System.out.println("LOSE");
 
     }
 
     @FXML
     void clue5ButtonPressed(ActionEvent event)
     {
+        Clue c = new Clue();
+        for(int i = 0; i < p.getInventory().size(); i++) {
+            if(clue5Button.getText().equals(p.getInventory().get(i).getName())) {
+                c = (Clue) p.getInventory().get(i);
+            }
+        }
+        if(Ending.accuse(p,m.getCulprit(), c, accused)) {
+            System.out.println("WIN");
+        } else
+            System.out.println("LOSE");
 
     }
 
     @FXML
     void clue6ButtonPressed(ActionEvent event)
     {
+        Clue c = new Clue();
+        for(int i = 0; i < p.getInventory().size(); i++) {
+            if(clue6Button.getText().equals(p.getInventory().get(i).getName())) {
+                c = (Clue) p.getInventory().get(i);
+            }
+        }
+        if(Ending.accuse(p,m.getCulprit(), c, accused)) {
+            System.out.println("WIN");
+        } else
+            System.out.println("LOSE");
 
     }
 
     @FXML
     void clue7ButtonPressed(ActionEvent event)
     {
+        Clue c = new Clue();
+        for(int i = 0; i < p.getInventory().size(); i++) {
+            if(clue7Button.getText().equals(p.getInventory().get(i).getName())) {
+                c = (Clue) p.getInventory().get(i);
+            }
+        }
+        if(Ending.accuse(p,m.getCulprit(), c, accused)) {
+            System.out.println("WIN");
+        } else
+            System.out.println("LOSE");
 
     }
 
     @FXML
     void clue8ButtonPressed(ActionEvent event)
     {
+        Clue c = new Clue();
+        for(int i = 0; i < p.getInventory().size(); i++) {
+            if(clue8Button.getText().equals(p.getInventory().get(i).getName())) {
+                c = (Clue) p.getInventory().get(i);
+            }
+        }
+        if(Ending.accuse(p,m.getCulprit(), c, accused)) {
+            System.out.println("WIN");//call win method
+        } else
+            System.out.println("LOSE");//call lose method
 
     }
 
