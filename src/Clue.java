@@ -36,7 +36,11 @@ public class Clue extends Item implements PointValue
         this.associatedSuspect = suspectName;
     }
     
-    public void 
+    public int calcPoints(points)
+    {
+        int points = 10;
+        return points;
+    }
 
     // DO NOT DELETE, NEED BLANK CONSTRUCTOR TO READ FROM FILE
     Clue(){}
