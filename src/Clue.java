@@ -21,9 +21,9 @@ public class Clue extends Item implements PointValue
     private String associatedSuspect;
     
     // Constructor for Clues calls the Item Constructor.
-    Clue(String name, String description, String roomLocation)
+    Clue(String name, String description, String roomLocation, int points)
     {
-        super(name, description, roomLocation);
+        super(name, description, roomLocation, points);
     }
     
     public String getAssociatedSuspect()
@@ -36,10 +36,9 @@ public class Clue extends Item implements PointValue
         this.associatedSuspect = suspectName;
     }
     
-    public int calcPoints(points)
+    public int calcPoints()
     {
-        int points = 10;
-        return points;
+        
     }
 
     // DO NOT DELETE, NEED BLANK CONSTRUCTOR TO READ FROM FILE
