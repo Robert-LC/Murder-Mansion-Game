@@ -21,15 +21,14 @@ public class Utility extends Item implements PointValue
     private Room usableIn;
     
     // Constructor for Utility calls the Item Constructor.
-    Utility(String name, String description, String roomLocation)
+    Utility(String name, String description, String roomLocation, int points)
     {
-        super(name, description, roomLocation);
+        super(name, description, roomLocation, points);
     }
     
-    public int calcPoints(points)
+    public int calcPoints()
     {
-        int points = 10;
-        return points;
+        
     }
     
     // DO NOT DELETE, NEED BLANK CONSTRUCTOR TO READ FROM FILE
