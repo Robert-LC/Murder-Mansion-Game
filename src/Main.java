@@ -8,13 +8,10 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Mansion m = new Mansion();
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("GameGUI.fxml"));
-        loader.setControllerFactory(GameGUIController -> new GameGUIController());
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("TitleScreen.fxml"));
         Parent root = loader.load();
         primaryStage.setTitle("Murder Mansion");
         primaryStage.setScene(new Scene(root));
-        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
