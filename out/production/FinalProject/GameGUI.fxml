@@ -51,6 +51,7 @@
                               <Button fx:id="talkButton" layoutX="14.0" layoutY="166.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#talkButtonPressed" text="Talk" />
                               <Button fx:id="quitTalkButton" layoutX="13.0" layoutY="235.0" mnemonicParsing="false" onAction="#quitTalkButtonPressed" text="Quit Talking" />
                               <Button fx:id="questionButton" layoutX="14.0" layoutY="200.0" mnemonicParsing="false" onAction="#questionButtonPressed" text="Question" />
+                              <Button fx:id="guessCulpritButton" layoutX="13.0" layoutY="235.0" mnemonicParsing="false" onAction="#guessCulpritButtonPressed" text="Guess Culprit" />
                            </children>
                         </AnchorPane>
                   </content>

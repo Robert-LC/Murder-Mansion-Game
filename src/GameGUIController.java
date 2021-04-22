@@ -48,6 +48,9 @@ public class GameGUIController {
     private Button questionButton;
 
     @FXML
+    private Button guessCulpritButton;
+
+    @FXML
     private Button notepadButton;
 
     @FXML
@@ -117,6 +120,7 @@ public class GameGUIController {
         invSlot9.managedProperty().bind(invSlot9.visibleProperty());
         talkButton.managedProperty().bind(talkButton.visibleProperty());
         quitTalkButton.managedProperty().bind(quitTalkButton.visibleProperty());
+        guessCulpritButton.managedProperty().bind(guessCulpritButton.visibleProperty());
         questionButton.managedProperty().bind(questionButton.visibleProperty());
         contextButton1.managedProperty().bind(contextButton1.visibleProperty());
         contextButton2.managedProperty().bind(contextButton2.visibleProperty());
@@ -290,6 +294,7 @@ public class GameGUIController {
         if(contextButton1.getText().equalsIgnoreCase("Yes")) {
             buttonClicked = 1;
             this.itemHandler(actionButtonClicked);
+            enableAllButtons();
         }
     }
 
@@ -298,6 +303,7 @@ public class GameGUIController {
         if(contextButton2.getText().equalsIgnoreCase("No")) {
             buttonClicked = 2;
             this.itemHandler(actionButtonClicked);
+            enableAllButtons();
         }
     }
 
@@ -582,6 +588,7 @@ public class GameGUIController {
         contextButton2.setText("No");
         contextButton1.setVisible(true);
         contextButton2.setVisible(true);
+        disableAllButtons();
     }
 
     @FXML
@@ -652,6 +659,7 @@ public class GameGUIController {
         textArea.setText(Dialogue.greet(m.getRoom(location).getSuspects().get(0)));
         //Disable other buttons to prevent problems
         disableAllButtons();
+        guessCulpritButton.setVisible(false); //make the endGame button invisible to make room for the talking options.
 
         // If the user has greeted them 6 times do not re-enable the question button.
         if(m.getRoom(location).getSuspects().get(0).getGreetedCounter() <= 6)
@@ -694,11 +702,17 @@ public class GameGUIController {
         questionButton.setDisable(false);
         questionButton.setVisible(false);
         quitTalkButton.setVisible(false);
+        guessCulpritButton.setVisible(true);
         this.updateButtons();
     }
 
+    @FXML
+    void guessCulpritButtonPressed(ActionEvent event)
+    {
 
-    //Inside method used to disable all buttons.
+    }
+
+    //Inside method used to disable most buttons except for a select few.
     void enableAllButtons()
     {
         actionButton1.setDisable(false);
@@ -709,9 +723,8 @@ public class GameGUIController {
         exitButton2.setDisable(false);
         exitButton3.setDisable(false);
         exitButton4.setDisable(false);
-        contextButton1.setDisable(false);
-        contextButton1.setDisable(false);
         talkButton.setDisable(false);
+        guessCulpritButton.setDisable(false);
     }
 
     void disableAllButtons()
@@ -724,8 +737,7 @@ public class GameGUIController {
         exitButton2.setDisable(true);
         exitButton3.setDisable(true);
         exitButton4.setDisable(true);
-        contextButton1.setDisable(true);
-        contextButton1.setDisable(true);
         talkButton.setDisable(true);
+        guessCulpritButton.setDisable(true);
     }
 }
