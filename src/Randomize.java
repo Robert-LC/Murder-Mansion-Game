@@ -20,18 +20,17 @@ import java.util.ArrayList; //used to select from the suspects
  */
 public class Randomize
 {
-
     /**
      * Selects a suspect at random from an arraylist that will be the culprit in a game.
 	 * 
-     * @param suspects
+     * @param suspects - a list of suspects to be chosen randomly
      * @return Suspect that is guilty
      */
     public static Suspect randomize(ArrayList<Suspect> suspects)
     {
-        Random rand = new Random(); 
+        Random rand = new Random(); //used to select a random int
         Suspect culprit = suspects.get(rand.nextInt(suspects.size())); //selects a random suspect that will be the guilty party throughout the game
         culprit.setGuilty(true);
         return culprit;
     }//end randomize()
-}//end randomizeItems
+}//end Randomize
