@@ -16,7 +16,7 @@
  * 
  * @author Megan Toth
  */
-public class Utility extends Item
+public class Utility extends Item implements PointValue
 {
     private Room usableIn;
     
@@ -26,10 +26,11 @@ public class Utility extends Item
         super(name, description, roomLocation);
     }
     
-    //public Room getRoom()
-    //{
-        //return Room;
-    //}
+    public int calcPoints(points)
+    {
+        int points = 10;
+        return points;
+    }
     
     // DO NOT DELETE, NEED BLANK CONSTRUCTOR TO READ FROM FILE
     Utility(){}
