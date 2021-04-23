@@ -1324,17 +1324,16 @@ public class GameGUIController
                 c = (Clue) p.getInventory().get(i);
             }
         }
-        if (Ending.accuse(p, m.getCulprit(), c, accused))
+        if(Ending.accuse(p, m.getCulprit(), c, accused))
         {
             System.out.println("WIN");//call win method
-            textArea.setText("Congratulations! You found the culprit!\n" + m.getCulprit.getName() + " was the culprit.\n" + "You got " + p.getPoints() + " points!");
-            TextFileWriter.textFileWriter(turn, p, m.getCulprit(), "Game_Details.txt")
+            textArea.setText("Congratulations! You found the culprit!\n" + m.getCulprit().getName() + " was the culprit.\n" + "You got " + p.getPoints() + " points!");
         } else
         {
             System.out.println("LOSE");//call lose method
-            textArea.setText("You guessed wrong, too bad!\n" + m.getCulprit.getName() + " was the culprit.\n" + "You got " + p.getPoints() + " points!");
-            TextFileWriter.textFileWriter(turn, p, m.getCulprit(), "Game_Details.txt")
+            textArea.setText("You guessed wrong, too bad!\n" + m.getCulprit().getName() + " was the culprit.\n" + "You got " + p.getPoints() + " points!");
         }
+        TextFileWriter.textFileWriter(turn, p, m.getCulprit(), "Game_Details.txt");
     }
 }
 
