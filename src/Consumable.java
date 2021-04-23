@@ -28,7 +28,7 @@ public class Consumable extends Item implements PointValue
     
     public int calcPoints()
     {
-       
+       return points;
     }
 
     // DO NOT DELETE, NEED BLANK CONSTRUCTOR TO READ FROM FILE
