@@ -92,6 +92,18 @@ public class GameGUIController
     private Text invSlot9;
 
     @FXML
+    private Text invSlot10;
+
+    @FXML
+    private Text invSlot11;
+
+    @FXML
+    private Text invSlot12;
+
+    @FXML
+    private Text invSlot13;
+
+    @FXML
     private Text turnNumText;
 
     @FXML
@@ -192,6 +204,10 @@ public class GameGUIController
         invSlot7.managedProperty().bind(invSlot7.visibleProperty());
         invSlot8.managedProperty().bind(invSlot8.visibleProperty());
         invSlot9.managedProperty().bind(invSlot9.visibleProperty());
+        invSlot10.managedProperty().bind(invSlot10.visibleProperty());
+        invSlot11.managedProperty().bind(invSlot11.visibleProperty());
+        invSlot12.managedProperty().bind(invSlot12.visibleProperty());
+        invSlot13.managedProperty().bind(invSlot13.visibleProperty());
         talkButton.managedProperty().bind(talkButton.visibleProperty());
         quitTalkButton.managedProperty().bind(quitTalkButton.visibleProperty());
         guessCulpritButton.managedProperty().bind(guessCulpritButton.visibleProperty());
@@ -209,6 +225,10 @@ public class GameGUIController
         invSlot7.setVisible(false);
         invSlot8.setVisible(false);
         invSlot9.setVisible(false);
+        invSlot10.setVisible(false);
+        invSlot11.setVisible(false);
+        invSlot12.setVisible(false);
+        invSlot13.setVisible(false);
         chooseSuspectPane.setVisible(false);
         chooseCluePane.setVisible(false);
         quitTalkButton.setVisible(false);
@@ -477,6 +497,22 @@ public class GameGUIController
                         invSlot9.setVisible(true);
                         invSlot9.setText(actionButton1.getText());
                         break;
+                    case 9:
+                        invSlot10.setVisible(true);
+                        invSlot10.setText(actionButton1.getText());
+                        break;
+                    case 10:
+                        invSlot11.setVisible(true);
+                        invSlot11.setText(actionButton1.getText());
+                        break;
+                    case 11:
+                        invSlot12.setVisible(true);
+                        invSlot12.setText(actionButton1.getText());
+                        break;
+                    case 12:
+                        invSlot13.setVisible(true);
+                        invSlot13.setText(actionButton1.getText());
+                        break;
                 }
 
                 if (toRemove != null)
@@ -557,6 +593,22 @@ public class GameGUIController
                         invSlot9.setVisible(true);
                         invSlot9.setText(actionButton2.getText());
                         break;
+                    case 9:
+                        invSlot10.setVisible(true);
+                        invSlot10.setText(actionButton2.getText());
+                        break;
+                    case 10:
+                        invSlot11.setVisible(true);
+                        invSlot11.setText(actionButton2.getText());
+                        break;
+                    case 11:
+                        invSlot12.setVisible(true);
+                        invSlot12.setText(actionButton2.getText());
+                        break;
+                    case 12:
+                        invSlot13.setVisible(true);
+                        invSlot13.setText(actionButton2.getText());
+                        break;
                 }
 
                 if (toRemove != null)
@@ -634,6 +686,22 @@ public class GameGUIController
                     case 8:
                         invSlot9.setVisible(true);
                         invSlot9.setText(actionButton3.getText());
+                        break;
+                    case 9:
+                        invSlot10.setVisible(true);
+                        invSlot10.setText(actionButton3.getText());
+                        break;
+                    case 10:
+                        invSlot11.setVisible(true);
+                        invSlot11.setText(actionButton3.getText());
+                        break;
+                    case 11:
+                        invSlot12.setVisible(true);
+                        invSlot12.setText(actionButton3.getText());
+                        break;
+                    case 12:
+                        invSlot13.setVisible(true);
+                        invSlot13.setText(actionButton3.getText());
                         break;
                 }
 
@@ -774,6 +842,22 @@ public class GameGUIController
             case 8:
                 invSlot9.setVisible(true);
                 invSlot9.setText(actionButton4.getText());
+                break;
+            case 9:
+                invSlot10.setVisible(true);
+                invSlot10.setText(actionButton4.getText());
+                break;
+            case 10:
+                invSlot11.setVisible(true);
+                invSlot11.setText(actionButton4.getText());
+                break;
+            case 11:
+                invSlot12.setVisible(true);
+                invSlot12.setText(actionButton4.getText());
+                break;
+            case 12:
+                invSlot13.setVisible(true);
+                invSlot13.setText(actionButton4.getText());
                 break;
         }
 
