@@ -1327,9 +1327,13 @@ public class GameGUIController
         if (Ending.accuse(p, m.getCulprit(), c, accused))
         {
             System.out.println("WIN");//call win method
+            textArea.setText("Congratulations! You found the culprit!\n" + m.getCulprit.getName() + " was the culprit.\n" + "You got " + p.getPoints() + " points!");
+            TextFileWriter.textFileWriter(turn, p, m.getCulprit(), "Game_Details.txt")
         } else
         {
             System.out.println("LOSE");//call lose method
+            textArea.setText("You guessed wrong, too bad!\n" + m.getCulprit.getName() + " was the culprit.\n" + "You got " + p.getPoints() + " points!");
+            TextFileWriter.textFileWriter(turn, p, m.getCulprit(), "Game_Details.txt")
         }
     }
 }
