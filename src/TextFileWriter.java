@@ -32,8 +32,9 @@ public class TextFileWriter
     {
         try(FileWriter myWriter = new FileWriter(fileName))
         {
-            myWriter.write(turn + "\n");
-            myWriter.write(culprit.getName() + "\n");
+            myWriter.write("Turn: " + turn + "\n");
+            myWriter.write("Culprit: " + culprit.getName() + "\n");
+            myWriter.write("Points: " + player.getPoints() + "\n");
 
             String temp = "";
             for(Item item:player.getInventory()) //iterates through player's inventory to get all items
@@ -41,7 +42,7 @@ public class TextFileWriter
                 temp += item.getName() + ","; //seperates items by commas
             }
             temp = temp.substring(0, temp.length() - 1); //removes final comma from the last item
-            myWriter.write(temp);
+            myWriter.write("Inventory:\n" + temp);
         }
         catch(IOException ex)
         {
