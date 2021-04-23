@@ -29,6 +29,7 @@ public class TitleScreenController {
         secondStage.setTitle("Murder Mansion");
         secondStage.setScene(new Scene(root));
         secondStage.show();
+        secondStage.setResizable(false); //Makes it so it cant be resized so user cant see the bad
         Stage thisWindow = (Stage) newGameButton.getScene().getWindow();
         thisWindow.close();
     }

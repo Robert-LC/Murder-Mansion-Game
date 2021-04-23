@@ -39,12 +39,12 @@ public class Dialogue
         String greetMsg = "";
         if(s.getGreetedCounter() == 0)
         {
-            greetMsg += "Hello Detective, my name is "  + s.getName() + ". What brings you to the " + s.getLocation() + "?";
+            greetMsg += s.getDescription()+ "\nHello Detective, my name is "  + s.getName() + ". What brings you to the " + s.getLocation() + "?";
             s.incrementGreetedCounter();
         }
         else if(s.getGreetedCounter() >= 1 && s.getGreetedCounter() <= 5)
         {
-            greetMsg += "Hey Detective, nice to see you again. What can I do for you?";
+            greetMsg += s.getDescription() + "\nHey Detective, nice to see you again. What can I do for you?";
             s.incrementGreetedCounter();
         }
         else if(s.getGreetedCounter() >= 6) // Once it gets to 6, the greet button will no longer open up the other dialogue options.
@@ -55,7 +55,6 @@ public class Dialogue
 
         return greetMsg;
     }
-
 
     /**
      * Allows the player to question a suspect, will be opened after greeting them.
@@ -71,7 +70,7 @@ public class Dialogue
 
         //Returns a number between 0 and 99, then add 1, which makes it return a number between 1 and 100;
         int r = rand.nextInt(100) + 1;
-        int r2 = rand2.nextInt(7);
+        int r2 = rand2.nextInt(7); // 8 Suspects, picks one of their indexes randomly.
 
         // random number between 1-100. If number is between 1-20 AND suspect is NOT the murderer, give clue about actual murderer
         // else give useless statement.
@@ -87,28 +86,31 @@ public class Dialogue
             {
                 // 1. Culprit Name
                 // 2. Name of Random Suspect
-                // 3. First Clue associated to guilty suspect.
+                // 3. Clue associated with the guilty suspect
                 questionMsg += "I couldn't tell if it was " + m.getCulprit().getName() +
-                        " or " + m.getRooms().get(r2).getSuspects().get(0).getName() + ", but I saw one of them sneaking around.";
+                        " or " + m.getRooms().get(r2).getSuspects().get(0).getName() + ", but I saw one of them holding a"
+                        + m.getCulprit().getAssociatedClue() + ".";
             }
             else
             {
                 // 1. Name of Random Suspect
                 // 2. Culprit Name
-                // 3. Random Clue.
+                // 3. Finds a random suspect, and returns their associated clue, which is a dud clue
+                // because the associated clue only works when the suspect is guilty.
                 questionMsg += "I couldn't tell if it was " + m.getRooms().get(r2).getSuspects().get(0).getName() +
-                        " or " + m.getCulprit().getName() + ", but I saw one of them sneaking around.";
+                        " or " + m.getCulprit().getName() + ", but I saw one of them holding a "
+                        + m.getRooms().get(r2).getSuspects().get(0).getAssociatedClue();
             }
         }
         else if(r >= 11 && r <= 50 && !s.getGuilty())
         {
-            // Switch the names based on number so the dialogue cant be cheated.
-            if(r >= 40)
+            // Switch the names based on RNG so the dialogue cant be cheated.
+            if(r >= 40) // Culprit name said first
             {
                 questionMsg += "I think I heard a loud scream near " + m.getCulprit().getLocation() + " or " +
                         m.getRooms().get(r2).getName() + ", I can't really tell for sure though.";
             }
-            else
+            else //Random suspect name said first
             {
                 questionMsg += "I think I heard a loud scream near " + m.getRooms().get(r2).getName()  + " or " +
                         m.getCulprit().getLocation() + " I can't really tell for sure though.";
@@ -121,5 +123,9 @@ public class Dialogue
         return questionMsg;
     }
 
-
+    // Helper function to stop you from leaving the conversation and then hopping right back in.
+    private void preventButtonSpam()
+    {
+        ;
+    }
 }

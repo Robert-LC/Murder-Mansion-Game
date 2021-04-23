@@ -1,7 +1,7 @@
 public abstract class Item
 {
     private String name, description, roomLocation;
-    private int points;
+    int points;
 
     public Item(String name, String description, String roomLocation, int points)
     {

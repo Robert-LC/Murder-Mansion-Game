@@ -6,6 +6,7 @@ public class Suspect {
     private String description;
     private int greetedCounter = 0; //Simple counter, that will be used to count how many times a Suspect has been talked to for dialogue options
     private Boolean guilty;
+    private String associatedClue; // Clue that is used to indite them if they are the guilty party.
 
     public Suspect()
     {
@@ -65,5 +66,15 @@ public class Suspect {
     public void incrementGreetedCounter()
     {
         greetedCounter++;
+    }
+
+    public String getAssociatedClue()
+    {
+        return associatedClue;
+    }
+
+    public void setAssociatedClue(String associatedClue)
+    {
+        this.associatedClue = associatedClue;
     }
 }

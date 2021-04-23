@@ -1151,6 +1151,7 @@ public class GameGUIController
         nevermindButton.setText("Never mind, I think it was someone else.");
     }
 
+    //Changes the buttons on the clue guess screen based on whats in your inventory
     void updateClueButtons() {
         int counter = 0;
         if(p.getInventory().size() == 0) {
@@ -1254,133 +1255,49 @@ public class GameGUIController
     @FXML
     void clue1ButtonPressed(ActionEvent event)
     {
-        //Picked a suspect
-        //Picked an item
-        //Suspect we picked, to the actual guilty suspect and also the item that you picked
-        //culprit, clue, accused
-        Clue c = new Clue();
-        for(int i = 0; i < p.getInventory().size(); i++) {
-            if(clue1Button.getText().equals(p.getInventory().get(i).getName())) {
-                c = (Clue) p.getInventory().get(i);
-            }
-        }
-        if(Ending.accuse(p,m.getCulprit(), c, accused)) {
-            System.out.println("WIN");
-        } else
-            System.out.println("LOSE");
-
+        clueCheckMethod(clue1Button);
     }
 
     @FXML
     void clue2ButtonPressed(ActionEvent event)
     {
-        Clue c = new Clue();
-        for(int i = 0; i < p.getInventory().size(); i++) {
-            if(clue2Button.getText().equals(p.getInventory().get(i).getName())) {
-                c = (Clue) p.getInventory().get(i);
-            }
-        }
-        if(Ending.accuse(p,m.getCulprit(), c, accused)) {
-            System.out.println("WIN");
-        } else
-            System.out.println("LOSE");
-
+        clueCheckMethod(clue2Button);
     }
 
     @FXML
     void clue3ButtonPressed(ActionEvent event)
     {
-        Clue c = new Clue();
-        for(int i = 0; i < p.getInventory().size(); i++) {
-            if(clue3Button.getText().equals(p.getInventory().get(i).getName())) {
-                c = (Clue) p.getInventory().get(i);
-            }
-        }
-        if(Ending.accuse(p,m.getCulprit(), c, accused)) {
-            System.out.println("WIN");
-        } else
-            System.out.println("LOSE");
-
+        clueCheckMethod(clue3Button);
     }
 
     @FXML
     void clue4ButtonPressed(ActionEvent event)
     {
-        Clue c = new Clue();
-        for(int i = 0; i < p.getInventory().size(); i++) {
-            if(clue4Button.getText().equals(p.getInventory().get(i).getName())) {
-                c = (Clue) p.getInventory().get(i);
-            }
-        }
-        if(Ending.accuse(p,m.getCulprit(), c, accused)) {
-            System.out.println("WIN");
-        } else
-            System.out.println("LOSE");
-
+        clueCheckMethod(clue4Button);
     }
 
     @FXML
     void clue5ButtonPressed(ActionEvent event)
     {
-        Clue c = new Clue();
-        for(int i = 0; i < p.getInventory().size(); i++) {
-            if(clue5Button.getText().equals(p.getInventory().get(i).getName())) {
-                c = (Clue) p.getInventory().get(i);
-            }
-        }
-        if(Ending.accuse(p,m.getCulprit(), c, accused)) {
-            System.out.println("WIN");
-        } else
-            System.out.println("LOSE");
-
+        clueCheckMethod(clue5Button);
     }
 
     @FXML
     void clue6ButtonPressed(ActionEvent event)
     {
-        Clue c = new Clue();
-        for(int i = 0; i < p.getInventory().size(); i++) {
-            if(clue6Button.getText().equals(p.getInventory().get(i).getName())) {
-                c = (Clue) p.getInventory().get(i);
-            }
-        }
-        if(Ending.accuse(p,m.getCulprit(), c, accused)) {
-            System.out.println("WIN");
-        } else
-            System.out.println("LOSE");
-
+        clueCheckMethod(clue6Button);
     }
 
     @FXML
     void clue7ButtonPressed(ActionEvent event)
     {
-        Clue c = new Clue();
-        for(int i = 0; i < p.getInventory().size(); i++) {
-            if(clue7Button.getText().equals(p.getInventory().get(i).getName())) {
-                c = (Clue) p.getInventory().get(i);
-            }
-        }
-        if(Ending.accuse(p,m.getCulprit(), c, accused)) {
-            System.out.println("WIN");
-        } else
-            System.out.println("LOSE");
-
+        clueCheckMethod(clue7Button);
     }
 
     @FXML
     void clue8ButtonPressed(ActionEvent event)
     {
-        Clue c = new Clue();
-        for(int i = 0; i < p.getInventory().size(); i++) {
-            if(clue8Button.getText().equals(p.getInventory().get(i).getName())) {
-                c = (Clue) p.getInventory().get(i);
-            }
-        }
-        if(Ending.accuse(p,m.getCulprit(), c, accused)) {
-            System.out.println("WIN");//call win method
-        } else
-            System.out.println("LOSE");//call lose method
-
+        clueCheckMethod(clue8Button);
     }
 
     @FXML
@@ -1396,4 +1313,25 @@ public class GameGUIController
         updateButtons();
     }
 
+    //Helper method that checks if you have the right clue based on the clue button you press
+    void clueCheckMethod(Button b)
+    {
+        Clue c = new Clue();
+        for (int i = 0; i < p.getInventory().size(); i++)
+        {
+            if (b.getText().equals(p.getInventory().get(i).getName()))
+            {
+                c = (Clue) p.getInventory().get(i);
+            }
+        }
+        if (Ending.accuse(p, m.getCulprit(), c, accused))
+        {
+            System.out.println("WIN");//call win method
+        } else
+        {
+            System.out.println("LOSE");//call lose method
+        }
+    }
 }
+
+

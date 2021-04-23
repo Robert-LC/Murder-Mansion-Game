@@ -9,6 +9,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("TitleScreen.fxml"));
+        primaryStage.setResizable(false);
         Parent root = loader.load();
         primaryStage.setTitle("Murder Mansion");
         primaryStage.setScene(new Scene(root));

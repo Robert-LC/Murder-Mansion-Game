@@ -15,126 +15,126 @@
 <?import javafx.scene.text.Text?>
 
 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GameGUIController">
-  <columnConstraints>
-    <ColumnConstraints />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.199951171875" minWidth="10.0" prefWidth="111.2" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="496.800048828125" minWidth="10.0" prefWidth="489.6000000000001" />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints />
-    <RowConstraints maxHeight="358.8000122070313" minHeight="10.0" prefHeight="358.8000122070313" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="199.9999877929687" minHeight="10.0" prefHeight="40.79998779296875" vgrow="SOMETIMES" />
-  </rowConstraints>
-   <children>
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" style="-fx-border-width: 1; -fx-border-style: hidden solid hidden hidden; -fx-border-color: BLACK;" styleClass="Border Right" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2147483647">
-         <children>
-            <Accordion>
-              <panes>
-                <TitledPane animated="false" maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefWidth="106.0" text="Menu">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="80.0">
-                           <children>
-                              <Button layoutX="14.0" layoutY="1.0" mnemonicParsing="false" text="Save" AnchorPane.topAnchor="1.0" />
-                              <Button layoutX="14.0" layoutY="41.0" mnemonicParsing="false" text="New Game" AnchorPane.bottomAnchor="1.0" />
-                           </children>
-                        </AnchorPane>
-                  </content>
-                </TitledPane>
-                <TitledPane animated="false" prefWidth="109.0" text="Actions">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="270.0" prefWidth="107.0">
-                           <children>
-                              <Button fx:id="actionButton1" layoutX="14.0" layoutY="26.0" mnemonicParsing="false" onAction="#actionButton1Pressed" text="Button" AnchorPane.bottomAnchor="225.0" />
-                              <Button fx:id="actionButton2" layoutX="14.0" layoutY="46.0" mnemonicParsing="false" onAction="#actionButton2Pressed" text="Button" />
-                              <Button fx:id="actionButton3" layoutX="14.0" layoutY="80.0" mnemonicParsing="false" onAction="#actionButton3Pressed" text="Button" />
-                              <Button fx:id="actionButton4" layoutX="14.0" layoutY="114.0" mnemonicParsing="false" onAction="#actionButton4Pressed" text="Button" />
-                              <Button fx:id="talkButton" layoutX="14.0" layoutY="166.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#talkButtonPressed" text="Talk" />
-                              <Button fx:id="quitTalkButton" layoutX="13.0" layoutY="235.0" mnemonicParsing="false" onAction="#quitTalkButtonPressed" text="Quit Talking" />
-                              <Button fx:id="questionButton" layoutX="14.0" layoutY="200.0" mnemonicParsing="false" onAction="#questionButtonPressed" text="Question" />
-                              <Button fx:id="guessCulpritButton" layoutX="13.0" layoutY="235.0" mnemonicParsing="false" onAction="#guessCulpritButtonPressed" text="Guess Culprit" />
-                           </children>
-                        </AnchorPane>
-                  </content>
-                </TitledPane>
-                <TitledPane animated="false" text="Inventory">
-                  <content>
-                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
-                           <children>
-                              <VBox prefHeight="200.0" prefWidth="110.0">
-                                 <children>
-                                    <Button fx:id="notepadButton" alignment="CENTER" mnemonicParsing="false" onAction="#notepadButtonPressed" text="Notepad" textAlignment="CENTER">
-                                       <VBox.margin>
-                                          <Insets bottom="5.0" top="5.0" />
-                                       </VBox.margin>
-                                    </Button>
-                                    <Text fx:id="invSlot1" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot1" />
-                                    <Text fx:id="invSlot2" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot2" />
-                                    <Text fx:id="invSlot3" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot3" />
-                                    <Text fx:id="invSlot4" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot4" />
-                                    <Text fx:id="invSlot5" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot5" />
-                                    <Text fx:id="invSlot6" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot6" />
-                                    <Text fx:id="invSlot7" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot7" />
-                                    <Text fx:id="invSlot8" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot8" />
-                                    <Text fx:id="invSlot9" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot9" />
-                                 </children>
-                              </VBox>
-                           </children>
-                        </AnchorPane>
-                  </content>
-                </TitledPane>
-              </panes>
-            </Accordion>
-            <Text fx:id="turnNumText" strokeType="OUTSIDE" strokeWidth="0.0" text="Turn: 1" />
-         </children>
-         <GridPane.margin>
-            <Insets />
-         </GridPane.margin>
-         <padding>
-            <Insets top="15.0" />
-         </padding>
-      </VBox>
-      <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-         <children>
-            <TextArea fx:id="textArea" editable="false" prefHeight="359.0" prefWidth="490.0" style="-fx-border-color: BLACK; -fx-border-width: 1;" wrapText="true" />
-            <AnchorPane fx:id="chooseSuspectPane" layoutY="274.0" prefHeight="85.0" prefWidth="490.0">
-               <children>
-                  <Button fx:id="accuseButlerButton" layoutX="11.0" layoutY="10.0" mnemonicParsing="false" onAction="#accuseButlerButtonPressed" prefHeight="25.0" prefWidth="69.0" text="Butler" />
-                  <Button fx:id="accuseGardenerButton" layoutX="11.0" layoutY="49.0" mnemonicParsing="false" onAction="#accuseGardenerButtonPressed" prefHeight="25.0" prefWidth="69.0" text="Gardener" />
-                  <Button fx:id="accuseChefButton" layoutX="89.0" layoutY="10.0" mnemonicParsing="false" onAction="#accuseChefButtonPressed" prefHeight="25.0" prefWidth="69.0" text="Chef" />
-                  <Button fx:id="accuseLibrarianButton" layoutX="89.0" layoutY="49.0" mnemonicParsing="false" onAction="#accuseLibrarianButtonPressed" prefHeight="25.0" prefWidth="69.0" text="Librarian" />
-                  <Button fx:id="accuseDaughterButton" layoutX="167.0" layoutY="10.0" mnemonicParsing="false" onAction="#accuseDaughterButtonPressed" prefHeight="25.0" prefWidth="69.0" text="Daughter" />
-                  <Button fx:id="accuseMotherButton" layoutX="168.0" layoutY="49.0" mnemonicParsing="false" onAction="#accuseMotherButtonPressed" prefHeight="25.0" prefWidth="69.0" text="Mother" />
-                  <Button fx:id="accuseFatherButton" layoutX="246.0" layoutY="10.0" mnemonicParsing="false" onAction="#accuseFatherButtonPressed" prefHeight="25.0" prefWidth="69.0" text="Father" />
-                  <Button fx:id="accuseSonButton" layoutX="246.0" layoutY="49.0" mnemonicParsing="false" onAction="#accuseSonButtonPressed" prefHeight="25.0" prefWidth="69.0" text="Son" />
-                  <Button fx:id="exitGuessButton" layoutX="389.0" layoutY="49.0" mnemonicParsing="false" onAction="#exitGuessButtonPressed" prefHeight="25.0" prefWidth="90.0" text="Exit Guess" />
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="chooseCluePane" layoutY="274.0" prefHeight="85.0" prefWidth="490.0">
-               <children>
-                  <Button fx:id="clue1Button" layoutX="11.0" layoutY="10.0" mnemonicParsing="false" onAction="#clue1ButtonPressed" prefHeight="25.0" prefWidth="69.0" text="Clue 1" />
-                  <Button fx:id="clue5Button" layoutX="11.0" layoutY="49.0" mnemonicParsing="false" onAction="#clue5ButtonPressed" prefHeight="25.0" prefWidth="69.0" text="Clue 5" />
-                  <Button fx:id="clue2Button" layoutX="89.0" layoutY="10.0" mnemonicParsing="false" onAction="#clue2ButtonPressed" prefHeight="25.0" prefWidth="69.0" text="Clue 2" />
-                  <Button fx:id="clue6Button" layoutX="89.0" layoutY="49.0" mnemonicParsing="false" onAction="#clue6ButtonPressed" prefHeight="25.0" prefWidth="69.0" text="Clue 6" />
-                  <Button fx:id="clue3Button" layoutX="167.0" layoutY="10.0" mnemonicParsing="false" onAction="#clue3ButtonPressed" prefHeight="25.0" prefWidth="69.0" text="Clue 3" />
-                  <Button fx:id="clue7Button" layoutX="168.0" layoutY="49.0" mnemonicParsing="false" onAction="#clue7ButtonPressed" prefHeight="25.0" prefWidth="69.0" text="Clue 7" />
-                  <Button fx:id="clue4Button" layoutX="246.0" layoutY="10.0" mnemonicParsing="false" onAction="#clue4ButtonPressed" prefHeight="25.0" prefWidth="69.0" text="Clue 4" />
-                  <Button fx:id="clue8Button" layoutX="246.0" layoutY="49.0" mnemonicParsing="false" onAction="#clue8ButtonPressed" prefHeight="25.0" prefWidth="69.0" text="Clue 8" />
-                  <Button fx:id="exitGuessButton2" layoutX="389.0" layoutY="49.0" mnemonicParsing="false" onAction="#exitGuessButton2Pressed" prefHeight="25.0" prefWidth="90.0" text="Exit Guess" />
-               </children>
-            </AnchorPane>
-         </children>
-      </Pane>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" style="-fx-border-color: BLACK; -fx-border-width: 1; -fx-border-style: solid hidden hidden solid;" GridPane.columnIndex="2" GridPane.rowIndex="2">
-         <children>
-            <Button fx:id="exitButton1" mnemonicParsing="false" onAction="#exitButton1Pressed" text="Exit 1" />
-            <Button fx:id="exitButton2" mnemonicParsing="false" onAction="#exitButton2Pressed" text="Exit 2" />
-            <Button fx:id="exitButton3" mnemonicParsing="false" onAction="#exitButton3Pressed" text="Exit 3" />
-            <Button fx:id="guessCluesButton" mnemonicParsing="false" onAction="#guessCluesButtonPressed" text="Guess Clues" />
-            <Button fx:id="nevermindButton" mnemonicParsing="false" onAction="#nevermindButtonPressed" text="Nevermind" />
-            <Button fx:id="exitButton4" mnemonicParsing="false" onAction="#exitButton4Pressed" text="Exit 4" />
-            <Button fx:id="contextButton1" mnemonicParsing="false" onAction="#contextButton1Pressed" text="context1" />
-            <Button fx:id="contextButton2" mnemonicParsing="false" onAction="#contextButton2Pressed" text="context2" />
-         </children>
-      </HBox>
-   </children>
+    <columnConstraints>
+        <ColumnConstraints />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.199951171875" minWidth="10.0" prefWidth="111.2" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="496.800048828125" minWidth="10.0" prefWidth="489.6000000000001" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints />
+        <RowConstraints maxHeight="358.8000122070313" minHeight="10.0" prefHeight="358.8000122070313" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="199.9999877929687" minHeight="10.0" prefHeight="40.79998779296875" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" style="-fx-border-width: 1; -fx-border-style: hidden solid hidden hidden; -fx-border-color: BLACK;" styleClass="Border Right" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2147483647">
+            <children>
+                <Accordion>
+                    <panes>
+                        <TitledPane animated="false" maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefWidth="106.0" text="Menu">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="80.0">
+                                    <children>
+                                        <Button layoutX="14.0" layoutY="1.0" mnemonicParsing="false" text="Save" AnchorPane.topAnchor="1.0" />
+                                        <Button layoutX="14.0" layoutY="41.0" mnemonicParsing="false" text="New Game" AnchorPane.bottomAnchor="1.0" />
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </TitledPane>
+                        <TitledPane animated="false" prefWidth="109.0" text="Actions">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="270.0" prefWidth="107.0">
+                                    <children>
+                                        <Button fx:id="actionButton1" layoutX="14.0" layoutY="26.0" mnemonicParsing="false" onAction="#actionButton1Pressed" text="Button" AnchorPane.bottomAnchor="225.0" />
+                                        <Button fx:id="actionButton2" layoutX="14.0" layoutY="46.0" mnemonicParsing="false" onAction="#actionButton2Pressed" text="Button" />
+                                        <Button fx:id="actionButton3" layoutX="14.0" layoutY="80.0" mnemonicParsing="false" onAction="#actionButton3Pressed" text="Button" />
+                                        <Button fx:id="actionButton4" layoutX="14.0" layoutY="114.0" mnemonicParsing="false" onAction="#actionButton4Pressed" text="Button" />
+                                        <Button fx:id="talkButton" layoutX="14.0" layoutY="166.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#talkButtonPressed" text="Talk" />
+                                        <Button fx:id="quitTalkButton" layoutX="13.0" layoutY="235.0" mnemonicParsing="false" onAction="#quitTalkButtonPressed" text="Quit Talking" />
+                                        <Button fx:id="questionButton" layoutX="14.0" layoutY="200.0" mnemonicParsing="false" onAction="#questionButtonPressed" text="Question" />
+                                        <Button fx:id="guessCulpritButton" layoutX="13.0" layoutY="235.0" mnemonicParsing="false" onAction="#guessCulpritButtonPressed" text="Guess Culprit" />
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </TitledPane>
+                        <TitledPane animated="false" text="Inventory">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
+                                    <children>
+                                        <VBox prefHeight="200.0" prefWidth="110.0">
+                                            <children>
+                                                <Button fx:id="notepadButton" alignment="CENTER" mnemonicParsing="false" onAction="#notepadButtonPressed" text="Notepad" textAlignment="CENTER">
+                                                    <VBox.margin>
+                                                        <Insets bottom="5.0" top="5.0" />
+                                                    </VBox.margin>
+                                                </Button>
+                                                <Text fx:id="invSlot1" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot1" />
+                                                <Text fx:id="invSlot2" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot2" />
+                                                <Text fx:id="invSlot3" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot3" />
+                                                <Text fx:id="invSlot4" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot4" />
+                                                <Text fx:id="invSlot5" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot5" />
+                                                <Text fx:id="invSlot6" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot6" />
+                                                <Text fx:id="invSlot7" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot7" />
+                                                <Text fx:id="invSlot8" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot8" />
+                                                <Text fx:id="invSlot9" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot9" />
+                                            </children>
+                                        </VBox>
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </TitledPane>
+                    </panes>
+                </Accordion>
+                <Text fx:id="turnNumText" strokeType="OUTSIDE" strokeWidth="0.0" text="Turn: 1" />
+            </children>
+            <GridPane.margin>
+                <Insets />
+            </GridPane.margin>
+            <padding>
+                <Insets top="15.0" />
+            </padding>
+        </VBox>
+        <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <children>
+                <TextArea fx:id="textArea" editable="false" prefHeight="359.0" prefWidth="490.0" style="-fx-border-color: BLACK; -fx-border-width: 1;" wrapText="true" />
+                <AnchorPane fx:id="chooseSuspectPane" layoutY="274.0" prefHeight="85.0" prefWidth="490.0">
+                    <children>
+                        <Button fx:id="accuseButlerButton" layoutX="11.0" layoutY="10.0" mnemonicParsing="false" onAction="#accuseButlerButtonPressed" prefHeight="25.0" prefWidth="69.0" text="Butler" />
+                        <Button fx:id="accuseGardenerButton" layoutX="11.0" layoutY="49.0" mnemonicParsing="false" onAction="#accuseGardenerButtonPressed" prefHeight="25.0" prefWidth="69.0" text="Gardener" />
+                        <Button fx:id="accuseChefButton" layoutX="89.0" layoutY="10.0" mnemonicParsing="false" onAction="#accuseChefButtonPressed" prefHeight="25.0" prefWidth="69.0" text="Chef" />
+                        <Button fx:id="accuseLibrarianButton" layoutX="89.0" layoutY="49.0" mnemonicParsing="false" onAction="#accuseLibrarianButtonPressed" prefHeight="25.0" prefWidth="69.0" text="Librarian" />
+                        <Button fx:id="accuseDaughterButton" layoutX="167.0" layoutY="10.0" mnemonicParsing="false" onAction="#accuseDaughterButtonPressed" prefHeight="25.0" prefWidth="69.0" text="Daughter" />
+                        <Button fx:id="accuseMotherButton" layoutX="168.0" layoutY="49.0" mnemonicParsing="false" onAction="#accuseMotherButtonPressed" prefHeight="25.0" prefWidth="69.0" text="Mother" />
+                        <Button fx:id="accuseFatherButton" layoutX="246.0" layoutY="10.0" mnemonicParsing="false" onAction="#accuseFatherButtonPressed" prefHeight="25.0" prefWidth="69.0" text="Father" />
+                        <Button fx:id="accuseSonButton" layoutX="246.0" layoutY="49.0" mnemonicParsing="false" onAction="#accuseSonButtonPressed" prefHeight="25.0" prefWidth="69.0" text="Son" />
+                        <Button fx:id="exitGuessButton" layoutX="389.0" layoutY="49.0" mnemonicParsing="false" onAction="#exitGuessButtonPressed" prefHeight="25.0" prefWidth="90.0" text="Exit Guess" />
+                    </children>
+                </AnchorPane>
+                <AnchorPane fx:id="chooseCluePane" layoutY="274.0" prefHeight="85.0" prefWidth="490.0">
+                    <children>
+                        <Button fx:id="clue1Button" layoutX="11.0" layoutY="10.0" mnemonicParsing="false" onAction="#clue1ButtonPressed" prefHeight="25.0" prefWidth="90.0" text="Clue 1" wrapText="true" />
+                        <Button fx:id="clue5Button" layoutX="11.0" layoutY="49.0" mnemonicParsing="false" onAction="#clue5ButtonPressed" prefHeight="25.0" prefWidth="90.0" text="Clue 5" wrapText="true" />
+                        <Button fx:id="clue2Button" layoutX="101.0" layoutY="10.0" mnemonicParsing="false" onAction="#clue2ButtonPressed" prefHeight="25.0" prefWidth="90.0" text="Clue 2" wrapText="true" />
+                        <Button fx:id="clue6Button" layoutX="101.0" layoutY="49.0" mnemonicParsing="false" onAction="#clue6ButtonPressed" prefHeight="25.0" prefWidth="90.0" text="Clue 6" wrapText="true" />
+                        <Button fx:id="clue3Button" layoutX="191.0" layoutY="10.0" mnemonicParsing="false" onAction="#clue3ButtonPressed" prefHeight="25.0" prefWidth="90.0" text="Clue 3" wrapText="true" />
+                        <Button fx:id="clue7Button" layoutX="191.0" layoutY="49.0" mnemonicParsing="false" onAction="#clue7ButtonPressed" prefHeight="25.0" prefWidth="90.0" text="Clue 7" wrapText="true" />
+                        <Button fx:id="clue4Button" layoutX="281.0" layoutY="10.0" mnemonicParsing="false" onAction="#clue4ButtonPressed" prefHeight="25.0" prefWidth="90.0" text="Clue 4" wrapText="true" />
+                        <Button fx:id="clue8Button" layoutX="281.0" layoutY="49.0" mnemonicParsing="false" onAction="#clue8ButtonPressed" prefHeight="25.0" prefWidth="90.0" text="Clue 8" wrapText="true" />
+                        <Button fx:id="exitGuessButton2" layoutX="389.0" layoutY="49.0" mnemonicParsing="false" onAction="#exitGuessButton2Pressed" prefHeight="25.0" prefWidth="90.0" text="Exit Guess" />
+                    </children>
+                </AnchorPane>
+            </children>
+        </Pane>
+        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0" style="-fx-border-color: BLACK; -fx-border-width: 1; -fx-border-style: solid hidden hidden solid;" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <children>
+                <Button fx:id="exitButton1" mnemonicParsing="false" onAction="#exitButton1Pressed" text="Exit 1" />
+                <Button fx:id="exitButton2" mnemonicParsing="false" onAction="#exitButton2Pressed" text="Exit 2" />
+                <Button fx:id="exitButton3" mnemonicParsing="false" onAction="#exitButton3Pressed" text="Exit 3" />
+                <Button fx:id="guessCluesButton" mnemonicParsing="false" onAction="#guessCluesButtonPressed" text="Guess Clues" />
+                <Button fx:id="nevermindButton" mnemonicParsing="false" onAction="#nevermindButtonPressed" text="Nevermind" />
+                <Button fx:id="exitButton4" mnemonicParsing="false" onAction="#exitButton4Pressed" text="Exit 4" />
+                <Button fx:id="contextButton1" mnemonicParsing="false" onAction="#contextButton1Pressed" text="context1" />
+                <Button fx:id="contextButton2" mnemonicParsing="false" onAction="#contextButton2Pressed" text="context2" />
+            </children>
+        </HBox>
+    </children>
 </GridPane>
