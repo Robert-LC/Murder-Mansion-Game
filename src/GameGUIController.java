@@ -1,3 +1,14 @@
+/**
+ * ======================================================================
+ * File Name: GameGUIController.java
+ * Project Name: Final Game Project
+ * ======================================================================
+ * Creators: Group 1
+ * Date Created: 
+ * Course: CSCI-1260-942
+ * ======================================================================
+ */
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,11 +19,15 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Controller class for the GameGUI.fxml file.
+ * 
+ * @since 04/24/2021
+ */
 public class GameGUIController
 {
 
@@ -160,7 +175,6 @@ public class GameGUIController
     @FXML
     private Button accuseMotherButton;
 
-
     @FXML
     private Button clue1Button;
 
@@ -189,6 +203,9 @@ public class GameGUIController
     private Button exitGuessButton2;
 
 
+    /**
+     * Sets up the gui objects so empty inventory spots won't be showing and sets up the visable exits and other buttons.
+     */
     public void initialize()
     {
         exitButton1.managedProperty().bind(exitButton1.visibleProperty());
@@ -250,6 +267,9 @@ public class GameGUIController
         this.updateButtons(); //needs to be called so greet button will work on Butler Billy.
     }
 
+    /**
+     * loads a seperate window for the notepad screen
+     */
     @FXML
     void notepadButtonPressed(ActionEvent event) throws IOException
     {
@@ -264,46 +284,47 @@ public class GameGUIController
     @FXML
     void exitButton1Pressed(ActionEvent event)
     {
-        turn++;
+        turn++; //increments turn by going to a different room
         location = exitButton1.getText();
         textArea.setText(m.getRoom(location).getDesc());
         p.setLocation(location);
-        this.updateButtons();
+        this.updateButtons(); //updates buttons to display new exits and items to pick up
     }
 
     @FXML
     void exitButton2Pressed(ActionEvent event)
     {
-        turn++;
+        turn++; //increments turn by going to a different room
         location = exitButton2.getText();
         textArea.setText(m.getRoom(location).getDesc());
         p.setLocation(location);
-        this.updateButtons();
+        this.updateButtons(); //updates buttons to display new exits and items to pick up
     }
 
     @FXML
     void exitButton3Pressed(ActionEvent event)
     {
-        turn++;
+        turn++; //increments turn by going to a different room
         location = exitButton3.getText();
         textArea.setText(m.getRoom(location).getDesc());
         p.setLocation(location);
-        this.updateButtons();
+        this.updateButtons(); //updates buttons to display new exits and items to pick up
     }
 
     @FXML
     void exitButton4Pressed(ActionEvent event)
     {
-        turn++;
+        turn++; //increments turn by going to a different room
         location = exitButton4.getText();
         textArea.setText(m.getRoom(location).getDesc());
         p.setLocation(location);
-        this.updateButtons();
+        this.updateButtons(); //updates buttons to display new exits and items to pick up
     }
 
     void updateButtons()
     {
         turnNumText.setText("Turn: " + turn);
+        //only the Closet has no suspects to talk to
         if(m.getRoom(location).getName().equalsIgnoreCase("Closet")) {
             talkButton.setVisible(false);
         } else {
@@ -311,6 +332,7 @@ public class GameGUIController
         }
         if (m.getRoom(location).getSuspects().size()>0) {
             talkButton.setText("Greet " + m.getRoom(p.getLocation()).getSuspects().get(0).getName());
+            //you can only guess the culprit from the dining hall
             if (!p.getLocation().equalsIgnoreCase("main hall")) {
                 guessCulpritButton.setVisible(false);
             } else {
@@ -322,7 +344,7 @@ public class GameGUIController
         {
             if (array[i] != null)
             {
-                switch (i)
+                switch (i) //sets the exit button's text if there is a exit for that number
                 {
                     case 0:
                         exitButton1.setText(array[i]);
@@ -338,6 +360,7 @@ public class GameGUIController
                 }
             }
         }
+        //if logic to set buttons visable if there are the right number of exits, and set it to false if it doesn't need all the buttons
         if (array.length == 4)
         {
             exitButton2.setVisible(true);
@@ -366,7 +389,7 @@ public class GameGUIController
         ArrayList<Item> contents = m.getRoom(location).getContents();
         for (int i = 0; i < contents.size(); i++)
         {
-            switch (i)
+            switch (i) //same logic as with the exit buttons, sets the text to the item's name
             {
                 case 0:
                     actionButton1.setText(contents.get(i).getName());
@@ -382,7 +405,7 @@ public class GameGUIController
                     break;
             }
         }
-        switch (contents.size())
+        switch (contents.size()) //same logic with the exit buttons, makes buttons visable when needed
         {
             case 0:
                 actionButton1.setVisible(false);
@@ -415,6 +438,7 @@ public class GameGUIController
                 actionButton4.setVisible(true);
                 break;
         }
+        //these buttons are used for picking yes or no for picking up an item, since you aren't picking up an item during this method, they are set to not visable
         contextButton1.setVisible(false);
         contextButton2.setVisible(false);
     }
@@ -425,7 +449,7 @@ public class GameGUIController
         if (contextButton1.getText().equalsIgnoreCase("Yes"))
         {
             buttonClicked = 1;
-            this.itemHandler(actionButtonClicked);
+            this.itemHandler(actionButtonClicked); //calls method to pick up item
             enableAllButtons();
         }
     }
@@ -436,7 +460,7 @@ public class GameGUIController
         if (contextButton2.getText().equalsIgnoreCase("No"))
         {
             buttonClicked = 2;
-            this.itemHandler(actionButtonClicked);
+            this.itemHandler(actionButtonClicked); //calls method to leave item
             enableAllButtons();
         }
     }
@@ -525,7 +549,7 @@ public class GameGUIController
                 contextButton1.setVisible(false);
                 contextButton2.setVisible(false);
                 textArea.setText(m.getRoom(location).getDesc());
-                this.updateButtons();
+                this.updateButtons(); //updates buttons to show you have picked up the item
                 buttonClicked = -1;
             } else if (buttonClicked == 2)
             {
@@ -538,7 +562,7 @@ public class GameGUIController
                 textArea.setText(m.getRoom(location).getDesc());
                 this.updateButtons();
                 buttonClicked = -1;
-                System.out.println("HERE");
+                //System.out.println("HERE");
             }
         } else if (actionButtonClicked == 2)
         {
@@ -621,7 +645,7 @@ public class GameGUIController
                 contextButton1.setVisible(false);
                 contextButton2.setVisible(false);
                 textArea.setText(m.getRoom(location).getDesc());
-                this.updateButtons();
+                this.updateButtons(); //updates buttons to show you have picked up the item
                 buttonClicked = -1;
             } else if (buttonClicked == 2)
             {
@@ -715,7 +739,7 @@ public class GameGUIController
                 contextButton1.setVisible(false);
                 contextButton2.setVisible(false);
                 textArea.setText(m.getRoom(location).getDesc());
-                this.updateButtons();
+                this.updateButtons(); //updates buttons to show you have picked up the item
                 buttonClicked = -1;
             } else if (buttonClicked == 2)
             {
