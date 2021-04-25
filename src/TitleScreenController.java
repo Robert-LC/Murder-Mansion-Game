@@ -14,14 +14,6 @@ public class TitleScreenController {
     private Button newGameButton;
 
     @FXML
-    private Button loadGameButton;
-
-    @FXML
-    void loadGamePressed(ActionEvent event) {
-
-    }
-
-    @FXML
     void newGamePressed(ActionEvent event) throws IOException {
         Stage secondStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("GameGUI.fxml"));
