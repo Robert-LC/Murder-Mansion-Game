@@ -42,5 +42,5 @@ public class Clue extends Item implements PointValue
     }
 
     // DO NOT DELETE, NEED BLANK CONSTRUCTOR TO READ FROM FILE
-    Clue(points){this.points = 10;}
+    Clue(int points){this.points = 10;}
 }
