@@ -77,9 +77,9 @@ public class Player
     
     public int calcPoints()
     {
-        for(i = 0; i < inventory; i++)
+        for(i = 0; i < inventory.size(); i++)
         {
-            return inventory * 10;
+            return inventory.size() * 10;
         }
     }
 }
