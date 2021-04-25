@@ -75,6 +75,7 @@ public class Player
         return "Error -- Invalid point classification";
     }
     
+    //calculates total number of points by multiplying number of items by 10
     public int calcPoints()
     {
        return inventory.size() * 10;
