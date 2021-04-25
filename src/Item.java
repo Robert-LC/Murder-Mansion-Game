@@ -1,4 +1,4 @@
-public abstract class Item
+public abstract class Item implements PointValue
 {
     private String name, description, roomLocation;
     int points;
@@ -8,7 +8,7 @@ public abstract class Item
         this.name = name;
         this.description = description;
         this.roomLocation = roomLocation;
-        this.points = 10;
+        this.points = points;
     }
 
     // DO NOT DELETE, NEED BLANK CONSTRUCTOR TO READ FROM FILE
