@@ -41,11 +41,6 @@ public class Player
         inventory.add(item);
     }
 
-    public void removeItem(int index)
-    {
-        inventory.remove(index);
-    }
-
     public int getPoints()
     {
         return points;
@@ -78,5 +73,13 @@ public class Player
             return ("Classification: " + Classification.EXPERT);
         }
         return "Error -- Invalid point classification";
+    }
+    
+    public int calcPoints()
+    {
+        for(i = 0; i < inventory; i++)
+        {
+            return inventory * 10;
+        }
     }
 }
