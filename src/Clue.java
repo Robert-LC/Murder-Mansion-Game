@@ -10,7 +10,7 @@
 */
 
 /**
- * Implements Clue subclass of Item
+ * Creates Clue subclass of Item and implements PointValue
  *
  * Date created: April 8, 2021
  * 
@@ -26,16 +26,19 @@ public class Clue extends Item implements PointValue
         super(name, description, roomLocation, points);
     }
     
+    //getter for AssociatedSuspect
     public String getAssociatedSuspect()
     {
         return associatedSuspect;
     }
 
+    //setter for AssociatedSuspect
     public void setAssociatedSuspect(String suspectName)
     {
         this.associatedSuspect = suspectName;
     }
     
+    //interface method from PointValue
     public int calcPoints()
     {
         return points;
