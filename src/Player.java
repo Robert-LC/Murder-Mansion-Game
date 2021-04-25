@@ -64,17 +64,19 @@ public class Player
     //logic to determine the player's classification based on the points earned
     public String getClassification()
     {
+
         if (points <= 60)
         {
-            System.out.println("Classification: " + Classification.BEGINNER);
+            return ("Classification: " + Classification.BEGINNER);
         }
-        else if (points > 60 && points <= 110)
+        else if (points > 60 && points <= 120)
         {
-            System.out.println("Classification: " + Classification.INTERMEDIATE);
+            return ("Classification: " + Classification.INTERMEDIATE);
         }
-        else if (points > 110)
+        else if (points > 120)
         {
-            System.out.println("Classification: " + Classification.EXPERT);
+            return ("Classification: " + Classification.EXPERT);
         }
+        return "Error -- Invalid point classification";
     }
 }
