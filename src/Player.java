@@ -64,15 +64,15 @@ public class Player
     //logic to determine the player's classification based on the points earned
     public String getClassification()
     {
-        if (points <= 20)
+        if (points <= 60)
         {
             System.out.println("Classification: " + Classification.BEGINNER);
         }
-        else if (points > 20 && points <= 40)
+        else if (points > 60 && points <= 110)
         {
             System.out.println("Classification: " + Classification.INTERMEDIATE);
         }
-        else if (points > 40)
+        else if (points > 110)
         {
             System.out.println("Classification: " + Classification.EXPERT);
         }
