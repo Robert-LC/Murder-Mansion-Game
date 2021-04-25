@@ -32,7 +32,7 @@ public class Consumable extends Item implements PointValue
     }
 
     // DO NOT DELETE, NEED BLANK CONSTRUCTOR TO READ FROM FILE
-    Consumable(int points){this.points = 10;}
+    Consumable(){this.points = 10;}
 
 
     
