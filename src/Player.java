@@ -66,15 +66,15 @@ public class Player
     {
         if (points <= 20)
         {
-            System.out.println("Classification: " + BEGINNER);
+            System.out.println("Classification: " + Classification.BEGINNER);
         }
         else if (points > 20 && points <= 40)
         {
-            System.out.println("Classification: " + INTERMEDIATE);
+            System.out.println("Classification: " + Classification.INTERMEDIATE);
         }
         else if (points > 40)
         {
-            System.out.println("Classification: " + EXPERT);
+            System.out.println("Classification: " + Classification.EXPERT);
         }
     }
 }
