@@ -60,5 +60,21 @@ public class Player
     {
         return inventory;
     }
-
+    
+    //logic to determine the player's classification based on the points earned
+    public String getClassification()
+    {
+        if (points <= 20)
+        {
+            System.out.println("Classification: " + BEGINNER);
+        }
+        else if (points > 20 && points <= 40)
+        {
+            System.out.println("Classification: " + INTERMEDIATE);
+        }
+        else if (points > 40)
+        {
+            System.out.println("Classification: " + EXPERT);
+        }
+    }
 }
