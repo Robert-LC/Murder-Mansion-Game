@@ -10,7 +10,7 @@
 */
 
 /**
- * Implements Utility subclass of Item
+ * Creates Utility subclass of Item and implements PointValue
  *
  * Date created: April 8, 2021
  * 
@@ -18,7 +18,6 @@
  */
 public class Utility extends Item implements PointValue
 {
-    private Room usableIn;
     
     // Constructor for Utility calls the Item Constructor.
     Utility(String name, String description, String roomLocation, int points)
@@ -26,6 +25,7 @@ public class Utility extends Item implements PointValue
         super(name, description, roomLocation, points);
     }
     
+    //interface method from PointValue
     public int calcPoints()
     {
         return points;
