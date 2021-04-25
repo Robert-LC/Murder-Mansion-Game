@@ -32,7 +32,7 @@ public class Utility extends Item implements PointValue
     }
     
     // DO NOT DELETE, NEED BLANK CONSTRUCTOR TO READ FROM FILE
-    Utility(){}
+    Utility(points){this.points = 10;}
 
 
 }
