@@ -42,6 +42,8 @@ public class GameGUIController
 
     public int turn;
 
+    private boolean firstGuess;
+
     int buttonClicked = -1;
 
     int actionButtonClicked = -1;
@@ -264,6 +266,7 @@ public class GameGUIController
         actionButton3.setText("Broken Glass");
         actionButton4.setVisible(false);
         turn = 1;
+        firstGuess = true;
         this.updateButtons(); //needs to be called so greet button will work on Butler Billy.
     }
 
@@ -1350,15 +1353,20 @@ public class GameGUIController
         }
         if(Ending.accuse(p, m.getCulprit(), c, accused))
         {
-            System.out.println("WIN");//call win method
-            textArea.setText("Congratulations! You found the culprit!\n" + m.getCulprit().getName() + " was the culprit.\n" + "You got " + p.getPoints() + " points!");
-        } else
+            if(firstGuess)
+            {
+                p.setPoints(p.getPoints() + 50);
+            }
+            System.out.println("WIN"); //call win method
+            textArea.setText("Congratulations! You found the culprit!\n" + m.getCulprit().getName() + " was the culprit.\n" + "You got " + p.getPoints() + " points!\n" + p.getClassification());
+        }
+        else
         {
+            firstGuess = false;
+            p.setPoints(p.getPoints() - 50);
             System.out.println("LOSE");//call lose method
-            textArea.setText("You guessed wrong, too bad!\n" + m.getCulprit().getName() + " was the culprit.\n" + "You got " + p.getPoints() + " points!");
+            textArea.setText("You guessed wrong, too bad!\n" + m.getCulprit().getName() + " was the culprit.\n" + "You got " + p.getPoints() + " points!\n" + p.getClassification());
         }
         TextFileWriter.textFileWriter(turn, p, m.getCulprit(), "Game_Details.txt");
     }
 }
-
-

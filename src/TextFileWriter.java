@@ -35,6 +35,7 @@ public class TextFileWriter
             myWriter.write("Turn: " + turn + "\n");
             myWriter.write("Culprit: " + culprit.getName() + "\n");
             myWriter.write("Points: " + player.getPoints() + "\n");
+            mrWriter.write(p.getClassification() + "\n");
 
             String temp = "";
             for(Item item:player.getInventory()) //iterates through player's inventory to get all items
