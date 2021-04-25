@@ -10,7 +10,7 @@
 */
 
 /**
- * Implements Consumable subclass of Item
+ * Creates Consumable subclass of Item and implements PointValue
  *
  * Date created: April 8, 2021
  * 
@@ -18,7 +18,6 @@
  */
 public class Consumable extends Item implements PointValue
 {
-    private String type;
     
     // Constructor for consumable calls the Item Constructor.
     Consumable(String name, String description, String roomLocation, int points)
@@ -26,6 +25,7 @@ public class Consumable extends Item implements PointValue
         super(name, description, roomLocation, points);
     }
     
+    //interface method from PointValue
     public int calcPoints()
     {
        return points;
