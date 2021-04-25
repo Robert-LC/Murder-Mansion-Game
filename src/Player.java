@@ -59,7 +59,7 @@ public class Player
     //logic to determine the player's classification based on the points earned
     public String getClassification()
     {
-
+        
         if (points <= 60)
         {
             return ("Classification: " + Classification.BEGINNER);
