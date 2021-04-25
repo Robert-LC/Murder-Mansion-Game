@@ -10,6 +10,7 @@
 */
 enum Classification
 {
+    //classification levels for player based on total points earned
     BEGINNER,
     INTERMEDIATE,
     EXPERT
