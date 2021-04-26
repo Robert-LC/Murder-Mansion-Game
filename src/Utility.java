@@ -37,6 +37,7 @@ public class Utility extends Item implements PointValue
     }
 
     public boolean checkKey() {
+        //If this instance of Utility is the key returns true
         if (this.getName().equalsIgnoreCase("Rusty key"))
             return true;
         return false;
