@@ -25,17 +25,20 @@ public class Clue extends Item implements PointValue
     {
         super(name, description, roomLocation, points);
     }
-
+    
+    //getter for associated suspect
     public String getAssociatedSuspect()
     {
         return associatedSuspect;
     }
-
+    
+    //setter for associated suspect
     public void setAssociatedSuspect(String suspectName)
     {
         this.associatedSuspect = suspectName;
     }
-
+    
+    //method from interface
     public int calcPoints()
     {
         return points;
