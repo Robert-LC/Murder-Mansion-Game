@@ -7,35 +7,37 @@
  * Course:  CSCI 1260
  * Creation Date: April 8, 2021
  * ---------------------------------------------------------------------------
-*/
+ */
 
 /**
- * Creates Consumable subclass of Item and implements PointValue
+ * Implements Consumable subclass of Item
  *
  * Date created: April 8, 2021
- * 
+ *
  * @author Megan Toth
  */
 public class Consumable extends Item implements PointValue
 {
-    
+    private String type;
+
     // Constructor for consumable calls the Item Constructor.
     Consumable(String name, String description, String roomLocation, int points)
     {
         super(name, description, roomLocation, points);
     }
-    
-    //interface method from PointValue
+
     public int calcPoints()
     {
-       return points;
+        return points;
     }
 
     // DO NOT DELETE, NEED BLANK CONSTRUCTOR TO READ FROM FILE
-    Consumable(){this.points = 10;}
+    Consumable(){
+        this.points = 10;
+    }
 
 
-    
+
 
 
 }

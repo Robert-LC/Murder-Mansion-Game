@@ -14,7 +14,7 @@ import java.io.IOException;
 
 /**
  * Creates a txt file using game data
- * 
+ *
  * @since 04/22/2021
  * @author Chris Seals
  */
@@ -22,7 +22,7 @@ public class TextFileWriter
 {
     /**
      * Writes a text file with information about a game
-     * 
+     *
      * @param turn - the turn number the player was on
      * @param player - player object used to get inventory
      * @param culprit - the culprit of the game
@@ -35,7 +35,6 @@ public class TextFileWriter
             myWriter.write("Turn: " + turn + "\n");
             myWriter.write("Culprit: " + culprit.getName() + "\n");
             myWriter.write("Points: " + player.getPoints() + "\n");
-            myWriter.write(player.getClassification() + "\n");
 
             String temp = "";
             for(Item item:player.getInventory()) //iterates through player's inventory to get all items

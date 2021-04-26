@@ -1,0 +1,5 @@
+Turn: 4
+Culprit: Daughter
+Points: -150
+Inventory:
+Map,Rusty Key,Broken Glass,Broken Shelf,Journal

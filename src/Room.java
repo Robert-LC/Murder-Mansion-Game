@@ -1,20 +1,35 @@
+/**
+ * ---------------------------------------------------------------------------
+ * File name: Room.java
+ * Project name: Murder Mansion Game
+ * ---------------------------------------------------------------------------
+ * Creator's name and email: Sam Compson, compson@etsu.edu
+ * Course:  CSCI 1260
+ * Creation Date: April 8, 2021
+ * ---------------------------------------------------------------------------
+ */
+
+/**
+ * Rooms contain contents, descriptions, suspects, etc.
+ *
+ * Date created: April 8, 2021
+ *
+ * @author Sam Compson
+ */
 import java.util.ArrayList;
 
 public class Room {
     String name;
     String desc;
     String[] exits;
+    RoomType type;
     ArrayList<Item> contents;
-    ArrayList<Suspect> suspects; // A room can have no suspects, it will just be an emtpy arrayList. This will save a lot of hassle.
+    ArrayList<Suspect> suspects;
 
 
     public Room() {
+        type = RoomType.OCCUPIED;
         contents = new ArrayList<>();
-    }
-    
-    //adds item to contents ArrayList
-    public void addItem(Item i) {
-        contents.add(i);
     }
 
     public String getName() {
@@ -57,5 +72,15 @@ public class Room {
     public void setSuspects(ArrayList<Suspect> suspects)
     {
         this.suspects = suspects;
+    }
+
+    public void setType(RoomType type)
+    {
+        this.type = type;
+    }
+
+    public RoomType getType()
+    {
+        return type;
     }
 }

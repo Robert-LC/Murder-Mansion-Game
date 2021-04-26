@@ -14,7 +14,7 @@ import java.util.ArrayList; //used to select from the suspects
 
 /**
  * Randomizes the suspect so it's different suspect when you play.
- * 
+ *
  * @author Chris Seals
  * @since 04/21/2021
  */
@@ -22,7 +22,7 @@ public class Randomize
 {
     /**
      * Selects a suspect at random from an arraylist that will be the culprit in a game.
-	 * 
+     *
      * @param suspects - a list of suspects to be chosen randomly
      * @return Suspect that is guilty
      */

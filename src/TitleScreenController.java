@@ -1,3 +1,21 @@
+/**
+ * ---------------------------------------------------------------------------
+ * File name: TitleScreenController.java
+ * Project name: Murder Mansion Game
+ * ---------------------------------------------------------------------------
+ * Creator's name and email: Sam Compson, compson@etsu.edu
+ * Course:  CSCI 1260
+ * Creation Date: April 8, 2021
+ * ---------------------------------------------------------------------------
+ */
+
+/**
+ * Creates the title screen GUI
+ *
+ * Date created: April 8, 2021
+ *
+ * @author Sam Compson
+ */
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +39,6 @@ public class TitleScreenController {
         secondStage.setTitle("Murder Mansion");
         secondStage.setScene(new Scene(root));
         secondStage.show();
-        secondStage.setResizable(false); //Makes it so it cant be resized so user cant see the bad
         Stage thisWindow = (Stage) newGameButton.getScene().getWindow();
         thisWindow.close();
     }

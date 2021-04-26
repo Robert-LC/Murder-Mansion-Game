@@ -150,7 +150,7 @@ public class FileReaderClass
     }
 
     // Reads from a creates a Suspect, then adds it to an arrayList of Suspects
-    public ArrayList<Suspect> readSuspectFile(String path, HashMap<String, Item> itemStringHashMap)
+    public ArrayList<Suspect> readSuspectFile(String path)
     {
         // Create an arrayList to be populated with suspects
         ArrayList<Suspect> suspectArray = new ArrayList<>();
@@ -166,17 +166,7 @@ public class FileReaderClass
                 s.setLocation(info[1]);
                 s.setDescription(info[2]);
                 s.setGuilty(false);
-                // Loops through the items hash map, find the ones that are instance of clues
-                // and uses its name to set the suspects associated clue
-                for(Item item : itemStringHashMap.values())
-                {
-                    //If the clues associated suspect is the same as suspect name, set the clue name as associated Clue.
-                    if(item instanceof Clue && ((Clue) item).getAssociatedSuspect().equalsIgnoreCase(s.getName()))
-                    {
-                        s.setAssociatedClue(item.getName());
-                    }
 
-                }
 
 
                 //Didn't add guilty boolean from file - Instead all Suspects guilty = false.
@@ -195,11 +185,3 @@ public class FileReaderClass
         return suspectArray;
     }
 }
-
-
-
-
-
-
-
-

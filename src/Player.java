@@ -23,8 +23,7 @@ public class Player
         inventory = new ArrayList<Item>();
 
     }
-    
-    //setter for points
+
     public void setPoints(int points)
     {
         this.points = points;
@@ -36,35 +35,32 @@ public class Player
         this.location = location;
     }
 
-    //adds item to inventory Arraylist
+
     public void addItem(Item item)
     {
         inventory.add(item);
         points += item.calcPoints();
     }
-    
-    //getter for points
+
     public int getPoints()
     {
         return points;
     }
-    
-    //setter for points
+
     public String getLocation()
     {
         return location;
     }
-    
-    //returns inventory Arraylist
+
     public ArrayList<Item> getInventory()
     {
         return inventory;
     }
-    
+
     //logic to determine the player's classification based on the points earned
     public String getClassification()
     {
-        
+
         if (points <= 60)
         {
             return ("Classification: " + Classification.BEGINNER);
@@ -79,10 +75,11 @@ public class Player
         }
         return "Error -- Invalid point classification";
     }
-    
+
     //returns 10
     public int calcPoints()
     {
-       return 10;
+        return 10;
     }
+
 }

@@ -3,13 +3,13 @@
  * File Name: GameGUIController.java
  * Project Name: Final Game Project
  * ======================================================================
- * Creators: Group 1
- * Date Created: 
+ * Creators: Primary Author: Sam Compson
+ * Would not have finished without great contributions from all the rest of Group 1
+ * Date Created:
  * Course: CSCI-1260-942
  * ======================================================================
  */
 
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +26,7 @@ import java.util.ArrayList;
 
 /**
  * Controller class for the GameGUI.fxml file.
- * 
+ *
  * @since 04/24/2021
  */
 public class GameGUIController
@@ -45,9 +45,11 @@ public class GameGUIController
 
     private boolean firstGuess;
 
+    //Usage explained below
     int buttonClicked = -1;
 
-    int actionButtonClicked = -1;
+    @FXML
+    private Button newGameButton;
 
     @FXML
     private Button actionButton1;
@@ -58,8 +60,8 @@ public class GameGUIController
     @FXML
     private Button actionButton3;
 
-    @FXML
-    private Button actionButton4;
+
+    public Button actionButtonClicked;
 
     @FXML
     private Button talkButton;
@@ -78,9 +80,6 @@ public class GameGUIController
 
     @FXML
     private Button guessCulpritButton;
-
-    @FXML
-    private Button notepadButton;
 
     @FXML
     private Text invSlot1;
@@ -202,35 +201,40 @@ public class GameGUIController
     @FXML
     private Button clue8Button;
 
-    @FXML
-    private Button exitGuessButton2;
-
-    @FXML
-    private Button newGameButton;
-
     private Stage notepadStage;
+
+    //Array of all exit buttons
+    public Button[] exitButtonArray;
+
+    //Array of all inv buttons
+    public Text[] invSlots;
+
+    //Array of action buttons
+    public Button[] actionButtons;
+
     /**
-     * Sets up the gui objects so empty inventory spots won't be showing and sets up the visable exits and other buttons.
+     * Sets up the gui objects so empty inventory spots won't be showing and sets up the visable exits and other buttons
      */
     public void initialize()
     {
-        exitButton1.managedProperty().bind(exitButton1.visibleProperty());
-        exitButton2.managedProperty().bind(exitButton2.visibleProperty());
-        exitButton3.managedProperty().bind(exitButton3.visibleProperty());
-        exitButton4.managedProperty().bind(exitButton4.visibleProperty());
-        invSlot1.managedProperty().bind(invSlot1.visibleProperty());
-        invSlot2.managedProperty().bind(invSlot2.visibleProperty());
-        invSlot3.managedProperty().bind(invSlot3.visibleProperty());
-        invSlot4.managedProperty().bind(invSlot4.visibleProperty());
-        invSlot5.managedProperty().bind(invSlot5.visibleProperty());
-        invSlot6.managedProperty().bind(invSlot6.visibleProperty());
-        invSlot7.managedProperty().bind(invSlot7.visibleProperty());
-        invSlot8.managedProperty().bind(invSlot8.visibleProperty());
-        invSlot9.managedProperty().bind(invSlot9.visibleProperty());
-        invSlot10.managedProperty().bind(invSlot10.visibleProperty());
-        invSlot11.managedProperty().bind(invSlot11.visibleProperty());
-        invSlot12.managedProperty().bind(invSlot12.visibleProperty());
-        invSlot13.managedProperty().bind(invSlot13.visibleProperty());
+        /**
+         * The command b.managedProperty().bind(b.visibleProperty()); makes it so that whatever boolean value is in
+         * visible property, managedProperty also becomes that value. What managed property does is it tells the GUI
+         * whether or not a button should be considered when formatting other GUI elements. So by binding the values
+         * I am telling the GUI that when I make a button invisible remove it from formatting, this allows the other
+         * elements to reposition nicely in the GUI.
+         */
+        exitButtonArray = new Button[]{this.exitButton1, this.exitButton2, this.exitButton3, this.exitButton4};
+        for(Button b: exitButtonArray)
+            b.managedProperty().bind(b.visibleProperty());
+        //We have to populate these arrays inside the method as the buttons/text areas are null until initialize is called
+        invSlots = new Text[]{invSlot1, invSlot2, invSlot3, invSlot4, invSlot5, invSlot6, invSlot7, invSlot8, invSlot9, invSlot10, invSlot11, invSlot12, invSlot13};
+        for(Text t: invSlots) {
+            t.managedProperty().bind(t.visibleProperty());
+            //On top of doing the above also sets all inventory spaces to be invisible.
+            t.setVisible(false);
+        }
+        //More binding
         talkButton.managedProperty().bind(talkButton.visibleProperty());
         quitTalkButton.managedProperty().bind(quitTalkButton.visibleProperty());
         guessCulpritButton.managedProperty().bind(guessCulpritButton.visibleProperty());
@@ -239,19 +243,6 @@ public class GameGUIController
         questionButton.managedProperty().bind(questionButton.visibleProperty());
         contextButton1.managedProperty().bind(contextButton1.visibleProperty());
         contextButton2.managedProperty().bind(contextButton2.visibleProperty());
-        invSlot1.setVisible(false);
-        invSlot2.setVisible(false);
-        invSlot3.setVisible(false);
-        invSlot4.setVisible(false);
-        invSlot5.setVisible(false);
-        invSlot6.setVisible(false);
-        invSlot7.setVisible(false);
-        invSlot8.setVisible(false);
-        invSlot9.setVisible(false);
-        invSlot10.setVisible(false);
-        invSlot11.setVisible(false);
-        invSlot12.setVisible(false);
-        invSlot13.setVisible(false);
         chooseSuspectPane.setVisible(false);
         chooseCluePane.setVisible(false);
         quitTalkButton.setVisible(false);
@@ -260,22 +251,24 @@ public class GameGUIController
         contextButton2.setVisible(false);
         guessCluesButton.setVisible(false);
         nevermindButton.setVisible(false);
+        //Add action buttons to an array
+        actionButtons = new Button[]{actionButton1, actionButton2, actionButton3};
+        //Sets the starting room text
         exitButton1.setText("Kitchen");
         exitButton2.setText("Library");
         exitButton3.setText("Bedroom");
         exitButton4.setText("Basement");
+        //Displays the description of the starting room
         textArea.setText(m.getRoom("Main Hall").getDesc());
         actionButton1.setText("Map");
         actionButton2.setText("Rusty Key");
         actionButton3.setText("Broken Glass");
-        actionButton4.setVisible(false);
         turn = 1;
-        firstGuess = true;
         this.updateButtons(); //needs to be called so greet button will work on Butler Billy.
     }
+
     @FXML
-    void newGamePressed(ActionEvent event) throws IOException
-    {
+    void newGamePressed(ActionEvent event) throws IOException {
         Stage secondStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("TitleScreen.fxml"));
         Parent root = loader.load();
@@ -284,7 +277,8 @@ public class GameGUIController
         secondStage.show();
         Stage thisWindow = (Stage) newGameButton.getScene().getWindow();
         thisWindow.close();
-        notepadStage.close();
+        if(notepadStage != null)
+            notepadStage.close();
     }
 
     /**
@@ -304,161 +298,85 @@ public class GameGUIController
     @FXML
     void exitButton1Pressed(ActionEvent event)
     {
-        turn++; //increments turn by going to a different room
-        location = exitButton1.getText();
-        textArea.setText(m.getRoom(location).getDesc());
-        p.setLocation(location);
-        this.updateButtons(); //updates buttons to display new exits and items to pick up
+        exit(exitButton1);
     }
+
+    /**
+     * An important thing to note here, is that due to the way GUIs work in javafx, we have to repeat code for each
+     * individual button so we will not be going over what each button does as there is significant overlap.
+     */
 
     @FXML
     void exitButton2Pressed(ActionEvent event)
     {
-        turn++; //increments turn by going to a different room
-        location = exitButton2.getText();
-        textArea.setText(m.getRoom(location).getDesc());
-        p.setLocation(location);
-        this.updateButtons(); //updates buttons to display new exits and items to pick up
+        exit(exitButton2);
     }
 
     @FXML
     void exitButton3Pressed(ActionEvent event)
     {
-        turn++; //increments turn by going to a different room
-        location = exitButton3.getText();
-        textArea.setText(m.getRoom(location).getDesc());
-        p.setLocation(location);
-        this.updateButtons(); //updates buttons to display new exits and items to pick up
+        exit(exitButton3);
     }
 
     @FXML
     void exitButton4Pressed(ActionEvent event)
     {
+        exit(exitButton4);
+    }
+
+    void exit(Button b) {
         turn++; //increments turn by going to a different room
-        location = exitButton4.getText();
-        textArea.setText(m.getRoom(location).getDesc());
-        p.setLocation(location);
+        location = b.getText(); //The location variable keeps track of where the player is located in the map
+        //The location is always a string name of a room, and we use a hash map to access room methods.
+        textArea.setText(m.getRoom(location).getDesc()); //Display room locations description
+        p.setLocation(location); //Set the players location
         this.updateButtons(); //updates buttons to display new exits and items to pick up
     }
 
     void updateButtons()
     {
+        //Show updated turn counter
         turnNumText.setText("Turn: " + turn);
-        //only the Closet has no suspects to talk to
+        //only the Closet has no suspects to talk to, so if we are in the closet, hide the talk button
         if(m.getRoom(location).getName().equalsIgnoreCase("Closet")) {
             talkButton.setVisible(false);
-        } else {
+        } else { //If we are anywhere else, make the talk button visible
             talkButton.setVisible(true);
         }
-        if (m.getRoom(location).getSuspects().size()>0) {
+        //Use an if statement below to make sure we get no array index out of bounds errors.
+        if (m.getRoom(location).getSuspects().size()>0) { //If a room has suspects
+            //Display "Greet 'SUSPECT NAME'"
+            //We used an array for suspects before we knew how many suspects we would have per room, it ended up being only
+            //1 suspect per room
             talkButton.setText("Greet " + m.getRoom(p.getLocation()).getSuspects().get(0).getName());
-            //you can only guess the culprit from the dining hall
-            if (!p.getLocation().equalsIgnoreCase("main hall")) {
-                guessCulpritButton.setVisible(false);
+            //you can only guess the culprit from the main hall
+            if (!p.getLocation().equalsIgnoreCase("main hall")) { //If player is not in main hall
+                guessCulpritButton.setVisible(false); //They cannot click the guess culprit button
             } else {
-                guessCulpritButton.setVisible(true);
+                guessCulpritButton.setVisible(true); //If they are in main hall, they can click it
             }
         }
+        //Create an array with the players current locations exits to other rooms
         String[] array = m.getRoom(location).getExits();
-        for (int i = 0; i < array.length; i++)
-        {
-            if (array[i] != null)
-            {
-                switch (i) //sets the exit button's text if there is a exit for that number
-                {
-                    case 0:
-                        exitButton1.setText(array[i]);
-                    case 1:
-                        exitButton2.setText(array[i]);
-                        break;
-                    case 2:
-                        exitButton3.setText(array[i]);
-                        break;
-                    case 3:
-                        exitButton4.setText(array[i]);
-                        break;
-                }
-            }
-        }
-        //if logic to set buttons visable if there are the right number of exits, and set it to false if it doesn't need all the buttons
-        if (array.length == 4)
-        {
-            exitButton2.setVisible(true);
-            exitButton3.setVisible(true);
-            exitButton4.setVisible(true);
-        }
-        if (array.length == 3)
-        {
-            exitButton2.setVisible(true);
-            exitButton3.setVisible(true);
-            exitButton4.setVisible(false);
-        }
-        if (array.length == 2)
-        {
-            exitButton2.setVisible(true);
-            exitButton3.setVisible(false);
-            exitButton4.setVisible(false);
-        }
-        if (array.length == 1)
-        {
-            exitButton2.setVisible(false);
-            exitButton3.setVisible(false);
-            exitButton4.setVisible(false);
+        //First loop sets all exit buttons to invisible
+        for(Button b: exitButtonArray)
+            b.setVisible(false);
+        //Second loop sets only the buttons for as many exits as there are visible
+        for(int i = 0; i < array.length; i++) {
+            exitButtonArray[i].setVisible(true);
+            exitButtonArray[i].setText(array[i]);
         }
 
+        //Exact same logic as above
         ArrayList<Item> contents = m.getRoom(location).getContents();
-        for (int i = 0; i < contents.size(); i++)
-        {
-            switch (i) //same logic as with the exit buttons, sets the text to the item's name
-            {
-                case 0:
-                    actionButton1.setText(contents.get(i).getName());
-                    break;
-                case 1:
-                    actionButton2.setText(contents.get(i).getName());
-                    break;
-                case 2:
-                    actionButton3.setText(contents.get(i).getName());
-                    break;
-                case 3:
-                    actionButton4.setText(contents.get(i).getName());
-                    break;
-            }
+        for(Button b: actionButtons)
+            b.setVisible(false);
+        for(int i = 0; i < contents.size(); i++) {
+            actionButtons[i].setVisible(true);
+            actionButtons[i].setText(contents.get(i).getName());
         }
-        switch (contents.size()) //same logic with the exit buttons, makes buttons visable when needed
-        {
-            case 0:
-                actionButton1.setVisible(false);
-                actionButton2.setVisible(false);
-                actionButton3.setVisible(false);
-                actionButton4.setVisible(false);
-                break;
-            case 1:
-                actionButton1.setVisible(true);
-                actionButton2.setVisible(false);
-                actionButton3.setVisible(false);
-                actionButton4.setVisible(false);
-                break;
-            case 2:
-                actionButton1.setVisible(true);
-                actionButton2.setVisible(true);
-                actionButton3.setVisible(false);
-                actionButton4.setVisible(false);
-                break;
-            case 3:
-                actionButton1.setVisible(true);
-                actionButton2.setVisible(true);
-                actionButton3.setVisible(true);
-                actionButton4.setVisible(false);
-                break;
-            case 4:
-                actionButton1.setVisible(true);
-                actionButton2.setVisible(true);
-                actionButton3.setVisible(true);
-                actionButton4.setVisible(true);
-                break;
-        }
-        //these buttons are used for picking yes or no for picking up an item, since you aren't picking up an item during this method, they are set to not visable
+
+        //these buttons are used for picking yes or no for picking up an item, since you aren't picking up an item during this method, they are set to not visible
         contextButton1.setVisible(false);
         contextButton2.setVisible(false);
     }
@@ -466,8 +384,11 @@ public class GameGUIController
     @FXML
     void contextButton1Pressed(ActionEvent event)
     {
+        //Originally we were going to use these buttons for more than just yes/no prompts, hence the if statement
+        //That ended up not happening
         if (contextButton1.getText().equalsIgnoreCase("Yes"))
         {
+            //buttonClicked tracks whether or not you pressed yes or no across the methods
             buttonClicked = 1;
             this.itemHandler(actionButtonClicked); //calls method to pick up item
             enableAllButtons();
@@ -485,349 +406,86 @@ public class GameGUIController
         }
     }
 
-    void itemHandler(int button)
+    void itemHandler(Button button)
     {
-        //take this logic, duplicate 4 times once for each button
-        if (actionButtonClicked == 1)
+        //Loop through contents and find the right item
+        Item toRemove = null;
+        for (Item i : m.getRoom(location).getContents())
         {
-            Item toRemove = null;
-            for (Item i : m.getRoom(location).getContents())
+            if (i.getName().equalsIgnoreCase(button.getText()) && buttonClicked == 1)
             {
-                if (i.getName().equalsIgnoreCase(actionButton1.getText()) && buttonClicked == 1)
-                {
-                    //Add item to player inventory
-                    p.addItem(i);
-                    toRemove = i;
-                }
-            }
-            if (buttonClicked == 1)
-            {
-                //Find first empty inv slot -- Should be equal to Inventory size + 1
-                switch (p.getInventory().size())
-                {
-                    case 0:
-                        invSlot1.setVisible(true);
-                        invSlot1.setText(actionButton1.getText());
-                        break;
-                    case 1:
-                        invSlot2.setVisible(true);
-                        invSlot2.setText(actionButton1.getText());
-                        break;
-                    case 2:
-                        invSlot3.setVisible(true);
-                        invSlot3.setText(actionButton1.getText());
-                        break;
-                    case 3:
-                        invSlot4.setVisible(true);
-                        invSlot4.setText(actionButton1.getText());
-                        break;
-                    case 4:
-                        invSlot5.setVisible(true);
-                        invSlot5.setText(actionButton1.getText());
-                        break;
-                    case 5:
-                        invSlot6.setVisible(true);
-                        invSlot6.setText(actionButton1.getText());
-                        break;
-                    case 6:
-                        invSlot7.setVisible(true);
-                        invSlot7.setText(actionButton1.getText());
-                        break;
-                    case 7:
-                        invSlot8.setVisible(true);
-                        invSlot8.setText(actionButton1.getText());
-                        break;
-                    case 8:
-                        invSlot9.setVisible(true);
-                        invSlot9.setText(actionButton1.getText());
-                        break;
-                    case 9:
-                        invSlot10.setVisible(true);
-                        invSlot10.setText(actionButton1.getText());
-                        break;
-                    case 10:
-                        invSlot11.setVisible(true);
-                        invSlot11.setText(actionButton1.getText());
-                        break;
-                    case 11:
-                        invSlot12.setVisible(true);
-                        invSlot12.setText(actionButton1.getText());
-                        break;
-                    case 12:
-                        invSlot13.setVisible(true);
-                        invSlot13.setText(actionButton1.getText());
-                        break;
-                }
-
-                if (toRemove != null)
-                    m.getRoom(location).getContents().remove(toRemove);
-
-                exitButton1.setVisible(true);
-                exitButton2.setVisible(true);
-                exitButton3.setVisible(true);
-                exitButton4.setVisible(true);
-                contextButton1.setVisible(false);
-                contextButton2.setVisible(false);
-                textArea.setText(m.getRoom(location).getDesc());
-                this.updateButtons(); //updates buttons to show you have picked up the item
-                buttonClicked = -1;
-            } else if (buttonClicked == 2)
-            {
-                exitButton1.setVisible(true);
-                exitButton2.setVisible(true);
-                exitButton3.setVisible(true);
-                exitButton4.setVisible(true);
-                contextButton1.setVisible(false);
-                contextButton2.setVisible(false);
-                textArea.setText(m.getRoom(location).getDesc());
-                this.updateButtons();
-                buttonClicked = -1;
-                //System.out.println("HERE");
-            }
-        } else if (actionButtonClicked == 2)
-        {
-            Item toRemove = null;
-            for (Item i : m.getRoom(location).getContents())
-            {
-                if (i.getName().equalsIgnoreCase(actionButton2.getText()) && buttonClicked == 1)
-                {
-                    //Add item to player inventory
-                    p.addItem(i);
-                    toRemove = i;
-                }
-            }
-            if (buttonClicked == 1)
-            {
-                //Find first empty inv slot -- Should be equal to Inventory size + 1
-                switch (p.getInventory().size())
-                {
-                    case 0:
-                        invSlot1.setVisible(true);
-                        invSlot1.setText(actionButton2.getText());
-                        break;
-                    case 1:
-                        invSlot2.setVisible(true);
-                        invSlot2.setText(actionButton2.getText());
-                        break;
-                    case 2:
-                        invSlot3.setVisible(true);
-                        invSlot3.setText(actionButton2.getText());
-                        break;
-                    case 3:
-                        invSlot4.setVisible(true);
-                        invSlot4.setText(actionButton2.getText());
-                        break;
-                    case 4:
-                        invSlot5.setVisible(true);
-                        invSlot5.setText(actionButton2.getText());
-                        break;
-                    case 5:
-                        invSlot6.setVisible(true);
-                        invSlot6.setText(actionButton2.getText());
-                        break;
-                    case 6:
-                        invSlot7.setVisible(true);
-                        invSlot7.setText(actionButton2.getText());
-                        break;
-                    case 7:
-                        invSlot8.setVisible(true);
-                        invSlot8.setText(actionButton2.getText());
-                        break;
-                    case 8:
-                        invSlot9.setVisible(true);
-                        invSlot9.setText(actionButton2.getText());
-                        break;
-                    case 9:
-                        invSlot10.setVisible(true);
-                        invSlot10.setText(actionButton2.getText());
-                        break;
-                    case 10:
-                        invSlot11.setVisible(true);
-                        invSlot11.setText(actionButton2.getText());
-                        break;
-                    case 11:
-                        invSlot12.setVisible(true);
-                        invSlot12.setText(actionButton2.getText());
-                        break;
-                    case 12:
-                        invSlot13.setVisible(true);
-                        invSlot13.setText(actionButton2.getText());
-                        break;
-                }
-
-                if (toRemove != null)
-                    m.getRoom(location).getContents().remove(toRemove);
-
-                exitButton1.setVisible(true);
-                exitButton2.setVisible(true);
-                exitButton3.setVisible(true);
-                exitButton4.setVisible(true);
-                contextButton1.setVisible(false);
-                contextButton2.setVisible(false);
-                textArea.setText(m.getRoom(location).getDesc());
-                this.updateButtons(); //updates buttons to show you have picked up the item
-                buttonClicked = -1;
-            } else if (buttonClicked == 2)
-            {
-                exitButton1.setVisible(true);
-                exitButton2.setVisible(true);
-                exitButton3.setVisible(true);
-                exitButton4.setVisible(true);
-                contextButton1.setVisible(false);
-                contextButton2.setVisible(false);
-                textArea.setText(m.getRoom(location).getDesc());
-                this.updateButtons();
-                buttonClicked = -1;
-            }
-        } else if (actionButtonClicked == 3)
-        {
-            Item toRemove = null;
-            for (Item i : m.getRoom(location).getContents())
-            {
-                if (i.getName().equalsIgnoreCase(actionButton3.getText()) && buttonClicked == 1)
-                {
-                    //Add item to player inventory
-                    p.addItem(i);
-                    toRemove = i;
-                }
-            }
-            if (buttonClicked == 1)
-            {
-                switch (p.getInventory().size())
-                {
-                    case 0:
-                        invSlot1.setVisible(true);
-                        invSlot1.setText(actionButton3.getText());
-                        break;
-                    case 1:
-                        invSlot2.setVisible(true);
-                        invSlot2.setText(actionButton3.getText());
-                        break;
-                    case 2:
-                        invSlot3.setVisible(true);
-                        invSlot3.setText(actionButton3.getText());
-                        break;
-                    case 3:
-                        invSlot4.setVisible(true);
-                        invSlot4.setText(actionButton3.getText());
-                        break;
-                    case 4:
-                        invSlot5.setVisible(true);
-                        invSlot5.setText(actionButton3.getText());
-                        break;
-                    case 5:
-                        invSlot6.setVisible(true);
-                        invSlot6.setText(actionButton3.getText());
-                        break;
-                    case 6:
-                        invSlot7.setVisible(true);
-                        invSlot7.setText(actionButton3.getText());
-                        break;
-                    case 7:
-                        invSlot8.setVisible(true);
-                        invSlot8.setText(actionButton3.getText());
-                        break;
-                    case 8:
-                        invSlot9.setVisible(true);
-                        invSlot9.setText(actionButton3.getText());
-                        break;
-                    case 9:
-                        invSlot10.setVisible(true);
-                        invSlot10.setText(actionButton3.getText());
-                        break;
-                    case 10:
-                        invSlot11.setVisible(true);
-                        invSlot11.setText(actionButton3.getText());
-                        break;
-                    case 11:
-                        invSlot12.setVisible(true);
-                        invSlot12.setText(actionButton3.getText());
-                        break;
-                    case 12:
-                        invSlot13.setVisible(true);
-                        invSlot13.setText(actionButton3.getText());
-                        break;
-                }
-
-                if (toRemove != null)
-                    m.getRoom(location).getContents().remove(toRemove);
-
-                exitButton1.setVisible(true);
-                exitButton2.setVisible(true);
-                exitButton3.setVisible(true);
-                exitButton4.setVisible(true);
-                contextButton1.setVisible(false);
-                contextButton2.setVisible(false);
-                textArea.setText(m.getRoom(location).getDesc());
-                this.updateButtons(); //updates buttons to show you have picked up the item
-                buttonClicked = -1;
-            } else if (buttonClicked == 2)
-            {
-                exitButton1.setVisible(true);
-                exitButton2.setVisible(true);
-                exitButton3.setVisible(true);
-                exitButton4.setVisible(true);
-                contextButton1.setVisible(false);
-                contextButton2.setVisible(false);
-                textArea.setText(m.getRoom(location).getDesc());
-                this.updateButtons();
-                buttonClicked = -1;
+                //Add item to player inventory
+                p.addItem(i);
+                toRemove = i;
             }
         }
+        //If you hit yes on the context menu
+        if (buttonClicked == 1)
+        {
+            //Find first empty inv slot -- Should be equal to Inventory size
+            invSlots[p.getInventory().size()].setVisible(true);
+            invSlots[p.getInventory().size()].setText(button.getText());
+
+            //Remove that item from the rooms contents
+            m.getRoom(location).getContents().remove(toRemove);
+
+            //Make other buttons visible/invisible
+            exitButton1.setVisible(true);
+            exitButton2.setVisible(true);
+            exitButton3.setVisible(true);
+            exitButton4.setVisible(true);
+            contextButton1.setVisible(false);
+            contextButton2.setVisible(false);
+            textArea.setText(m.getRoom(location).getDesc());
+            this.updateButtons(); //updates buttons to show you have picked up the item
+            buttonClicked = -1; //Reset the context menu button pressed
+        } else if (buttonClicked == 2)
+        {
+            //All of this just returns you to the default display
+            exitButton1.setVisible(true);
+            exitButton2.setVisible(true);
+            exitButton3.setVisible(true);
+            exitButton4.setVisible(true);
+            contextButton1.setVisible(false);
+            contextButton2.setVisible(false);
+            textArea.setText(m.getRoom(location).getDesc());
+            this.updateButtons();
+            buttonClicked = -1;
+        }
+    }
+
+    void actionLogic(Button b) {
+        //Add an if here to check if button relates to an item or to an NPC
+        //Need extra variable to avoid ConcurrentModificationException
+        Item toRemove = null;
+        //Use loop to find item in room.contents
+        for (Item i : m.getRoom(location).getContents())
+        {
+            if (i.getName().equalsIgnoreCase(b.getText()))
+            {
+                toRemove = i;
+            }
+        }
+        actionButtonClicked = b;
+        displayItemPrompt(toRemove);
     }
 
     @FXML
     void actionButton1Pressed(ActionEvent event)
     {
-        //Add an if here to check if button relates to an item or to an NPC
-        //Need extra variable to avoid ConcurrentModificationException
-        Item toRemove = null;
-        //Use loop to find item in room.contents
-        for (Item i : m.getRoom(location).getContents())
-        {
-            if (i.getName().equalsIgnoreCase(actionButton1.getText()))
-            {
-                toRemove = i;
-            }
-        }
-        actionButtonClicked = 1;
-        displayItemPrompt(toRemove);
+        actionLogic(actionButton1);
     }
 
     @FXML
     void actionButton2Pressed(ActionEvent event)
     {
-        //Add an if here to check if button relates to an item or to an NPC
-        //Need extra variable to avoid ConcurrentModificationException
-        Item toRemove = null;
-        //Use loop to find item in room.contents
-        for (Item i : m.getRoom(location).getContents())
-        {
-            if (i.getName().equalsIgnoreCase(actionButton2.getText()))
-            {
-                toRemove = i;
-            }
-        }
-        actionButtonClicked = 2;
-        displayItemPrompt(toRemove);
+        actionLogic(actionButton2);
     }
 
     @FXML
     void actionButton3Pressed(ActionEvent event)
     {
-        //Add an if here to check if button relates to an item or to an NPC
-        //Need extra variable to avoid ConcurrentModificationException
-        Item toRemove = null;
-        //Use loop to find item in room.contents
-        for (Item i : m.getRoom(location).getContents())
-        {
-            if (i.getName().equalsIgnoreCase(actionButton3.getText()))
-            {
-                toRemove = i;
-            }
-        }
-        actionButtonClicked = 3;
-        displayItemPrompt(toRemove);
+        actionLogic(actionButton3);
     }
 
     private void displayItemPrompt(Item toRemove)
@@ -845,91 +503,12 @@ public class GameGUIController
     }
 
     @FXML
-    void actionButton4Pressed(ActionEvent event)
-    {
-        //Add an if here to check if button relates to an item or to an NPC
-        //Find first empty inv slot -- Should be equal to Inventory size + 1
-        switch (p.getInventory().size())
-        {
-            case 0:
-                invSlot1.setVisible(true);
-                invSlot1.setText(actionButton4.getText());
-                break;
-            case 1:
-                invSlot2.setVisible(true);
-                invSlot2.setText(actionButton4.getText());
-                break;
-            case 2:
-                invSlot3.setVisible(true);
-                invSlot3.setText(actionButton4.getText());
-                break;
-            case 3:
-                invSlot4.setVisible(true);
-                invSlot4.setText(actionButton4.getText());
-                break;
-            case 4:
-                invSlot5.setVisible(true);
-                invSlot5.setText(actionButton4.getText());
-                break;
-            case 5:
-                invSlot6.setVisible(true);
-                invSlot6.setText(actionButton4.getText());
-                break;
-            case 6:
-                invSlot7.setVisible(true);
-                invSlot7.setText(actionButton4.getText());
-                break;
-            case 7:
-                invSlot8.setVisible(true);
-                invSlot8.setText(actionButton4.getText());
-                break;
-            case 8:
-                invSlot9.setVisible(true);
-                invSlot9.setText(actionButton4.getText());
-                break;
-            case 9:
-                invSlot10.setVisible(true);
-                invSlot10.setText(actionButton4.getText());
-                break;
-            case 10:
-                invSlot11.setVisible(true);
-                invSlot11.setText(actionButton4.getText());
-                break;
-            case 11:
-                invSlot12.setVisible(true);
-                invSlot12.setText(actionButton4.getText());
-                break;
-            case 12:
-                invSlot13.setVisible(true);
-                invSlot13.setText(actionButton4.getText());
-                break;
-        }
-
-        //Need extra variable to avoid ConcurrentModificationException
-        Item toRemove = null;
-        //Use loop to find item in room.contents
-        for (Item i : m.getRoom(location).getContents())
-        {
-            if (i.getName().equalsIgnoreCase(actionButton4.getText()))
-            {
-                //Add item to player inventory
-                p.addItem(i);
-                //Remove item from room.contents
-                toRemove = i;
-            }
-        }
-        if (toRemove != null)
-            m.getRoom(location).getContents().remove(toRemove);
-
-        //Update Action buttons
-        this.updateButtons();
-    }
-
-    @FXML
     void talkButtonPressed(ActionEvent event)
     {
         //Return dialogue to screen
-        textArea.setText(Dialogue.greet(m.getRoom(location).getSuspects().get(0)));
+        String text = Dialogue.greet(m.getRoom(location).getSuspects().get(0));
+        text += "\n\n" + m.getRoom(location).getSuspects().get(0).getDescription();
+        textArea.setText(text);
         //Disable other buttons to prevent problems
         disableAllButtons();
         guessCulpritButton.setVisible(false); //make the endGame button invisible to make room for the talking options.
@@ -995,7 +574,6 @@ public class GameGUIController
         actionButton1.setDisable(false);
         actionButton2.setDisable(false);
         actionButton3.setDisable(false);
-        actionButton4.setDisable(false);
         exitButton1.setDisable(false);
         exitButton2.setDisable(false);
         exitButton3.setDisable(false);
@@ -1009,7 +587,6 @@ public class GameGUIController
         actionButton1.setDisable(true);
         actionButton2.setDisable(true);
         actionButton3.setDisable(true);
-        actionButton4.setDisable(true);
         exitButton1.setDisable(true);
         exitButton2.setDisable(true);
         exitButton3.setDisable(true);
@@ -1198,6 +775,8 @@ public class GameGUIController
     //Changes the buttons on the clue guess screen based on whats in your inventory
     void updateClueButtons() {
         int counter = 0;
+        //If the player has no clues in their inventory
+        //Tell them to return to find more, and reset the display
         if(p.getInventory().size() == 0) {
             textArea.setText("You don't have any clues! Try harder!");
             nevermindButton.setDisable(false);
@@ -1212,8 +791,11 @@ public class GameGUIController
             exitButton4.setVisible(true);
             this.enableAllButtons();
         }
+        //For every item in the players inventory
         for(int i = 0; i < p.getInventory().size(); i++) {
-            if(p.getInventory().get(i) instanceof Clue) {
+            //If that item is a clue
+            if(p.getInventory().get(i) instanceof Clue) { //This loop ensures only as many clue buttons as you have clues will be shown
+                //Take the counter and sets what button num equal to counter num as that clue
                 switch (counter) {
                     case 0:
                         clue1Button.setText(p.getInventory().get(i).getName());
@@ -1240,48 +822,15 @@ public class GameGUIController
                         clue8Button.setText(p.getInventory().get(i).getName());
                         break;
                 }
-                counter++;
+                counter++; //Increment counter
             }
         }
-        switch (counter) {
-            case 0:
-                break;
-            case 1:
-                setAllCluesInvisible();
-                clue1Button.setVisible(true);
-                break;
-            case 2:
-                setAllCluesInvisible();
-                clue1Button.setVisible(true);
-                clue2Button.setVisible(true);
-                break;
-            case 3:
-                setAllCluesInvisible();
-                clue1Button.setVisible(true);
-                clue2Button.setVisible(true);
-                clue3Button.setVisible(true);
-                break;
-            case 4:
-                setAllCluesInvisible();
-                clue1Button.setVisible(true);
-                clue2Button.setVisible(true);
-                clue3Button.setVisible(true);
-                clue4Button.setVisible(true);
-                break;
-            case 5:
-                clue8Button.setVisible(true);
-                clue7Button.setVisible(true);
-                clue6Button.setVisible(true);
-                break;
-            case 6:
-                clue8Button.setVisible(false);
-                clue7Button.setVisible(false);
-                break;
-            case 7:
-                clue8Button.setVisible(false);
-                break;
-            case 8:
-                break;
+        //Based on the size of the counter, set visible/Invisible that many buttons
+        setAllCluesInvisible();
+        Button array[] = new Button[]{clue1Button, clue2Button, clue3Button, clue4Button, clue5Button, clue6Button, clue7Button, clue8Button};
+        //FYI -- we have 8 clue buttons because there are only 8 clues in game
+        for(int i = 0; i < counter; i++) {
+            array[i].setVisible(true);
         }
     }
 

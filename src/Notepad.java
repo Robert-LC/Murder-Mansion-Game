@@ -54,7 +54,7 @@ public class Notepad
     {
         notes.add(playerNote);
     }
-    
+
     // Returns the notes as an ArrayList not sure if it will be utilized.
     public ArrayList<String> getNotes()
     {
