@@ -9,6 +9,7 @@
  * ======================================================================
  */
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -204,7 +205,10 @@ public class GameGUIController
     @FXML
     private Button exitGuessButton2;
 
+    @FXML
+    private Button newGameButton;
 
+    private Stage notepadStage;
     /**
      * Sets up the gui objects so empty inventory spots won't be showing and sets up the visable exits and other buttons.
      */
@@ -269,6 +273,19 @@ public class GameGUIController
         firstGuess = true;
         this.updateButtons(); //needs to be called so greet button will work on Butler Billy.
     }
+    @FXML
+    void newGamePressed(ActionEvent event) throws IOException
+    {
+        Stage secondStage = new Stage();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("TitleScreen.fxml"));
+        Parent root = loader.load();
+        secondStage.setTitle("Murder Mansion");
+        secondStage.setScene(new Scene(root));
+        secondStage.show();
+        Stage thisWindow = (Stage) newGameButton.getScene().getWindow();
+        thisWindow.close();
+        notepadStage.close();
+    }
 
     /**
      * loads a seperate window for the notepad screen
@@ -276,12 +293,12 @@ public class GameGUIController
     @FXML
     void notepadButtonPressed(ActionEvent event) throws IOException
     {
-        Stage thirdStage = new Stage();
+        notepadStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("NotepadScreen.fxml"));
         Parent root = loader.load();
-        thirdStage.setTitle("Murder Mansion - Notepad");
-        thirdStage.setScene(new Scene(root));
-        thirdStage.show();
+        notepadStage.setTitle("Murder Mansion - Notepad");
+        notepadStage.setScene(new Scene(root));
+        notepadStage.show();
     }
 
     @FXML

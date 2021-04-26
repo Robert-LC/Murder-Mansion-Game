@@ -40,6 +40,7 @@ public class Player
     public void addItem(Item item)
     {
         inventory.add(item);
+        points += item.calcPoints();
     }
     
     //getter for points
@@ -79,9 +80,9 @@ public class Player
         return "Error -- Invalid point classification";
     }
     
-    //calculates total number of points by multiplying number of items by 10
+    //returns 10
     public int calcPoints()
     {
-       return inventory.size() * 10;
+       return 10;
     }
 }
