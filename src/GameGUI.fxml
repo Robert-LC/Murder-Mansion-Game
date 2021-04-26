@@ -34,8 +34,7 @@
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="80.0">
                                     <children>
-                                        <Button layoutX="14.0" layoutY="1.0" mnemonicParsing="false" text="Save" AnchorPane.topAnchor="1.0" />
-                                        <Button layoutX="14.0" layoutY="74.0" mnemonicParsing="false" text="New Game" AnchorPane.bottomAnchor="156.0" />
+                                        <Button fx:id="newGameButton" layoutX="14.0" layoutY="74.0" mnemonicParsing="false" onAction="#newGamePressed" text="New Game" AnchorPane.bottomAnchor="156.0" />
                                     </children>
                                 </AnchorPane>
                             </content>
