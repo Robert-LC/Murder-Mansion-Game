@@ -275,16 +275,19 @@ public class GameGUIController
 
     @FXML
     void puzzleBoxButtonPressed(ActionEvent event) throws IOException {
+        //Determines if you have the puzzle box item in your inventory
         Boolean run = false;
         for(Item i: p.getInventory()) {
             if(i.getName().equalsIgnoreCase("puzzle box") && !run)
                 run = true;
         }
+        //Loads up the fxml file and passes it some arguments
         FXMLLoader loader = new FXMLLoader(getClass().getResource("PuzzleGUI.fxml"));
         Stage puzzleStage = new Stage(StageStyle.DECORATED);
         puzzleStage.setScene(new Scene(loader.load()));
         PuzzleGUIController controller = loader.getController();
         controller.initialize(m, p);
+        //If you do have the puzzle box show the GUI, if not don't show it
         if(run)
             puzzleStage.show();
         if(!run)
@@ -293,6 +296,7 @@ public class GameGUIController
 
     @FXML
     void newGamePressed(ActionEvent event) throws IOException {
+        //Closes the current window and reopens the title screen GUI
         Stage secondStage = new Stage();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("TitleScreen.fxml"));
         Parent root = loader.load();
