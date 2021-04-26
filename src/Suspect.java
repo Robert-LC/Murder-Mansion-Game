@@ -1,5 +1,22 @@
+/**
+ * ============================================================
+ * File Name: Suspect.java
+ * Project Name: Final Game Project
+ * ============================================================
+ * Creators Name: Robert LoCicero and Sam Compson
+ * Date Created: 04/26/2021
+ * Course: CSCI-1260-942
+ * ============================================================
+ */
+
 import java.util.ArrayList;
 
+/**
+ * Suspects that the player will meet in the game.
+ * 
+ * @author Robert LoCicero and Sam Compson
+ * @since 04/26/2021
+ */
 public class Suspect {
     private String name;
     private String location;
