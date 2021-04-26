@@ -3,8 +3,7 @@
  * File Name: GameGUIController.java
  * Project Name: Final Game Project
  * ======================================================================
- * Creators: Primary Author: Sam Compson
- * Would not have finished without great contributions from all the rest of Group 1
+ * Creators: Group 1
  * Date Created:
  * Course: CSCI-1260-942
  * ======================================================================
@@ -20,6 +19,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
 import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -47,6 +48,9 @@ public class GameGUIController
 
     //Usage explained below
     int buttonClicked = -1;
+
+    @FXML
+    private Button puzzleBoxButton;
 
     @FXML
     private Button newGameButton;
@@ -243,6 +247,8 @@ public class GameGUIController
         questionButton.managedProperty().bind(questionButton.visibleProperty());
         contextButton1.managedProperty().bind(contextButton1.visibleProperty());
         contextButton2.managedProperty().bind(contextButton2.visibleProperty());
+        puzzleBoxButton.managedProperty().bind(puzzleBoxButton.visibleProperty());
+        puzzleBoxButton.setVisible(false);
         chooseSuspectPane.setVisible(false);
         chooseCluePane.setVisible(false);
         quitTalkButton.setVisible(false);
@@ -265,6 +271,24 @@ public class GameGUIController
         actionButton3.setText("Broken Glass");
         turn = 1;
         this.updateButtons(); //needs to be called so greet button will work on Butler Billy.
+    }
+
+    @FXML
+    void puzzleBoxButtonPressed(ActionEvent event) throws IOException {
+        Boolean run = false;
+        for(Item i: p.getInventory()) {
+            if(i.getName().equalsIgnoreCase("puzzle box") && !run)
+                run = true;
+        }
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("PuzzleGUI.fxml"));
+        Stage puzzleStage = new Stage(StageStyle.DECORATED);
+        puzzleStage.setScene(new Scene(loader.load()));
+        PuzzleGUIController controller = loader.getController();
+        controller.initialize(m, p);
+        if(run)
+            puzzleStage.show();
+        if(!run)
+            textArea.setText("You've already opened this box!");
     }
 
     @FXML
@@ -325,16 +349,41 @@ public class GameGUIController
     }
 
     void exit(Button b) {
+        Boolean locked;
         turn++; //increments turn by going to a different room
-        location = b.getText(); //The location variable keeps track of where the player is located in the map
+        //If the room is not inaccessible
+        if(m.getRoom(b.getText()).getType() != RoomType.INACCESSIBLE) {
+            location = b.getText(); //The location variable keeps track of where the player is located in the map
+            locked = false;
+        } else
+            locked = true;
         //The location is always a string name of a room, and we use a hash map to access room methods.
-        textArea.setText(m.getRoom(location).getDesc()); //Display room locations description
+        //If room not locked display it's description
+        if(!locked)
+            textArea.setText(m.getRoom(location).getDesc()); //Display room locations description
+        else //If room was locked, say so
+            textArea.setText("You try the door but it doesn't budge, maybe you need a key?");
         p.setLocation(location); //Set the players location
         this.updateButtons(); //updates buttons to display new exits and items to pick up
     }
 
+    void updateSlots() {
+        for(int i = 0; i < p.getInventory().size(); i++) {
+            invSlots[i].setText(p.getInventory().get(i).getName());
+        }
+    }
+
     void updateButtons()
     {
+        //Update inv slots
+        updateSlots();
+        //Check if the player still has puzzle box
+        Boolean puzzleCheck = false;
+        for(Item i: p.getInventory()) {
+            if(i.getName().equalsIgnoreCase("puzzle box") && !puzzleCheck)
+                puzzleCheck = true;
+        }
+        puzzleBoxButton.setVisible(puzzleCheck);
         //Show updated turn counter
         turnNumText.setText("Turn: " + turn);
         //only the Closet has no suspects to talk to, so if we are in the closet, hide the talk button
@@ -414,6 +463,12 @@ public class GameGUIController
         {
             if (i.getName().equalsIgnoreCase(button.getText()) && buttonClicked == 1)
             {
+                //If the player picks up the rusty key, let them into locked rooms
+                if(i instanceof Utility && ((Utility) i).checkKey())
+                    m.getRoom("Bedroom").setType(RoomType.OCCUPIED);
+                //If the player has picked up the Puzzle box, display that button
+                if(i.getName().equalsIgnoreCase("Puzzle box"))
+                    puzzleBoxButton.setVisible(true);
                 //Add item to player inventory
                 p.addItem(i);
                 toRemove = i;
@@ -422,9 +477,9 @@ public class GameGUIController
         //If you hit yes on the context menu
         if (buttonClicked == 1)
         {
-            //Find first empty inv slot -- Should be equal to Inventory size
-            invSlots[p.getInventory().size()].setVisible(true);
-            invSlots[p.getInventory().size()].setText(button.getText());
+            //Sets as many slots as you have items visible
+            for(int i = 0; i < p.getInventory().size(); i++)
+                invSlots[i].setVisible(true);
 
             //Remove that item from the rooms contents
             m.getRoom(location).getContents().remove(toRemove);

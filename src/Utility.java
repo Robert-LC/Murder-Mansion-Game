@@ -36,5 +36,11 @@ public class Utility extends Item implements PointValue
         this.points = 10;
     }
 
+    public boolean checkKey() {
+        if (this.getName().equalsIgnoreCase("Rusty key"))
+            return true;
+        return false;
+    }
+
 
 }

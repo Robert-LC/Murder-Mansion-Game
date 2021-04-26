@@ -5,9 +5,9 @@ Clue/Broken Shelf/Cracked wooden shelf broken by the weight of many books. Could
 Clue/Glove/A dirty leather riding glove. Strange place to find this./Garden/Librarian
 Utility/Dirty Shovel/Looks like it was used recently. Someone was digging here./Garden
 Utility/Rusty Musket/A trophy from a bygone era. I wonder if it still works?/Closet
-Clue/Tattered Cloth/Torn white linen tablecloth. A small piece is missing./Closet/Mother
-Utility/Map/A framed map of the manor/Main Hall
-Utility/Rusty Key/A skeleton key rusted from years of use by the manor's staff/Main Hall
+Clue/Tattered Cloth/Torn white linen tablecloth. A small piece is missing./Dev/Mother
+Utility/Puzzle Box/An elaborate puzzle box, held together by a complicated looking clasp./Bedroom
+Utility/Rusty Key/A skeleton key rusted from years of use by the manor's staff/Garden
 Clue/Broken Glass/Could be signs of a struggle/Main Hall/Father
 Clue/Piss Stained Note/A yellow stained piece of paper. Could someone be trying to get rid of evidence?/Bathroom/Butler
 Clue/Poison Bottle/Vial filled with some greenish liquid. It says "Rat Away" on the side./Dining Hall/Daughter

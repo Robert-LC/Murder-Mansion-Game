@@ -135,6 +135,10 @@ public class FileReaderClass
                 }
                 r.setExits(newArray);
 
+                //If the room is the bedroom, make inaccessible
+                if(r.getName().equalsIgnoreCase("Bedroom"))
+                    r.setType(RoomType.INACCESSIBLE);
+
                 //Finally add the Room to an ArrayList of Rooms
                 roomsArray.add(r);
 

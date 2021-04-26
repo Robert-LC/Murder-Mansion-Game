@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GameGUIController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GameGUIController">
     <columnConstraints>
         <ColumnConstraints />
         <ColumnConstraints hgrow="SOMETIMES" maxWidth="295" minWidth="10.0" prefWidth="111" />
@@ -22,13 +22,13 @@
     </columnConstraints>
     <rowConstraints>
         <RowConstraints />
-        <RowConstraints maxHeight="359" minHeight="10.0" prefHeight="359" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="200" minHeight="10.0" prefHeight="41" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="395.20001220703125" minHeight="10.0" prefHeight="377.6000122070312" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="20.0" style="-fx-border-width: 1; -fx-border-style: hidden solid hidden hidden; -fx-border-color: BLACK;" styleClass="Border Right" GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.rowSpan="2147483647">
             <children>
-                <Accordion prefHeight="343.0" prefWidth="109.0">
+                <Accordion prefHeight="368.0" prefWidth="109.0">
                     <panes>
                         <TitledPane animated="false" maxHeight="1.8" minHeight="-Infinity" prefWidth="106.0" text="Menu">
                             <content>
@@ -65,13 +65,14 @@
                             <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
                                     <children>
-                                        <VBox prefHeight="217.0" prefWidth="110.0">
+                                        <VBox prefHeight="288.0" prefWidth="110.0">
                                             <children>
                                                 <Button fx:id="notepadButton" alignment="CENTER" mnemonicParsing="false" onAction="#notepadButtonPressed" text="Notepad" textAlignment="CENTER">
                                                     <VBox.margin>
                                                         <Insets bottom="5.0" top="5.0" />
                                                     </VBox.margin>
                                                 </Button>
+                                    <Button fx:id="puzzleBoxButton" mnemonicParsing="false" onAction="#puzzleBoxButtonPressed" text="Puzzle Box" />
                                                 <Text fx:id="invSlot1" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot1" />
                                                 <Text fx:id="invSlot2" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot2" />
                                                 <Text fx:id="invSlot3" strokeType="OUTSIDE" strokeWidth="0.0" text="invSlot3" />
@@ -104,7 +105,7 @@
         </VBox>
         <Pane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
             <children>
-                <TextArea fx:id="textArea" editable="false" prefHeight="359.0" prefWidth="490.0" style="-fx-border-color: BLACK; -fx-border-width: 1;" wrapText="true" />
+                <TextArea fx:id="textArea" editable="false" prefHeight="380.0" prefWidth="490.0" style="-fx-border-color: BLACK; -fx-border-width: 1;" wrapText="true" />
                 <AnchorPane fx:id="chooseSuspectPane" layoutY="274.0" prefHeight="85.0" prefWidth="490.0">
                     <children>
                         <Button fx:id="accuseButlerButton" layoutX="11.0" layoutY="10.0" mnemonicParsing="false" onAction="#accuseButlerButtonPressed" prefHeight="25.0" prefWidth="69.0" text="Butler" />
