@@ -11,7 +11,8 @@ public class Room {
     public Room() {
         contents = new ArrayList<>();
     }
-
+    
+    //adds item to contents ArrayList
     public void addItem(Item i) {
         contents.add(i);
     }
