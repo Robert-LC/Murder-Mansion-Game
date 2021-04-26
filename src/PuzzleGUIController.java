@@ -95,9 +95,10 @@ public class PuzzleGUIController {
     public int buttonIndex2 = -5;
 
     void randomizeImages() {
-        //Put all image files into an array
+        //Put all image files into two arrays
         for(int i = 0; i < imageViews.length; i++){
             images[i] = imageViews[i].getImage();
+            //This stores the proper order of the images in the imagesCorrect array
             imagesCorrect[i] = imageViews[i].getImage();
         }
         //Randomize positions of images in that array
@@ -112,20 +113,27 @@ public class PuzzleGUIController {
     }
 
     void initialize(Mansion m, Player p) {
+        //sets size of images array to 9
         images = new Image[9];
+        //Gets in the mansion and player objects from GameGUI
         this.m = m;
         this.p = p;
+        //Create buttons, and image view arrays
         buttons = new Button[]{button1, button2, button3, button4, button5, button6, button7, button8, button9};
         imageViews = new ImageView[]{image1, image2, image3, image4, image5, image6, image7, image8, image9};
+        //Set correct images array size
         imagesCorrect = new Image[9];
         randomizeImages();
     }
 
     void move() {
+        //Create temp variable to store image during swap
         Image temp;
         temp = imageViews[buttonIndex1].getImage();
+        //Swap images
         imageViews[buttonIndex1].setImage(imageViews[buttonIndex2].getImage());
         imageViews[buttonIndex2].setImage(temp);
+        //Set these variables back to default values
         buttonIndex1 = -5;
         buttonIndex2 = -5;
         buttonX1 = -5;
@@ -195,7 +203,6 @@ public class PuzzleGUIController {
     void button1Pressed(ActionEvent event) {
         detectButton(button1, 0);
         if(checkWin()) {
-            System.out.println("HERE");
             doWin();
         }
     }
