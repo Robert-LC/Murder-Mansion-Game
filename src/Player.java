@@ -23,7 +23,8 @@ public class Player
         inventory = new ArrayList<Item>();
 
     }
-
+    
+    //setter for points
     public void setPoints(int points)
     {
         this.points = points;
@@ -35,22 +36,25 @@ public class Player
         this.location = location;
     }
 
-
+    //adds item to inventory Arraylist
     public void addItem(Item item)
     {
         inventory.add(item);
     }
-
+    
+    //getter for points
     public int getPoints()
     {
         return points;
     }
-
+    
+    //setter for points
     public String getLocation()
     {
         return location;
     }
-
+    
+    //returns inventory Arraylist
     public ArrayList<Item> getInventory()
     {
         return inventory;
