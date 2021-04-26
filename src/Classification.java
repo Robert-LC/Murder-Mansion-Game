@@ -8,6 +8,14 @@
  * Creation Date: April 23, 2021
  * ---------------------------------------------------------------------------
  */
+
+/**
+ * Enums constants used with the score a player gets after guessing the suspect.
+ * 
+ * Date Created: 04/26/2021
+ * 
+ * @author Megan Toth
+ */
 enum Classification
 {
     BEGINNER,

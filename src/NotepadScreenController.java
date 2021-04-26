@@ -1,9 +1,26 @@
+/**
+ * ============================================================
+ * File Name: NotepadScreenController.java
+ * Project Name: Final Game Project
+ * ============================================================
+ * Creator's Name and Email: Chris Seals, sealscm@etsu.edu
+ * Date Created: 04/26/2021
+ * Course: CSCI-1260-942
+ * ============================================================
+ */
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 
+/**
+ * Controller used for the Notepad gui.
+ * 
+ * @author Chris Seals
+ * @since 04/26/2021
+ */
 public class NotepadScreenController {
 
     @FXML

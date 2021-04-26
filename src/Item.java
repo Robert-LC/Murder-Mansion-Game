@@ -1,3 +1,20 @@
+/**
+ * ===============================================================
+ * File Name: Item.java
+ * Project Name: Final Game Project
+ * ===============================================================
+ * Creator's Name and Email: Chris Seals, sealscm@etsu.edu
+ * Date Created: 04/26/2021
+ * Course: CSCI-1260-942
+ * ===============================================================
+ */
+
+/**
+ * Items that has subclasses that go more indepth. Used for Inventory in player class.
+ * 
+ * @since 04/26/2021
+ * @author Chris Seals
+ */
 public abstract class Item implements PointValue
 {
     private String name, description, roomLocation;
